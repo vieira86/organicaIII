@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Química Orgânica II — IFRO Ji-Paraná</title>
+<meta name="description" content="Plataforma de apoio aos estudantes de Licenciatura em Química do IFRO Campus Ji-Paraná: flashcards, quizzes e vídeos sobre Química Orgânica II.">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav">
+    <a class="brand" href="index.html">
+      <span class="mol">⚗️</span>
+      <span>Química Orgânica II<br><small>Licenciatura em Química — IFRO Ji-Paraná</small></span>
+    </a>
+    <button class="nav-toggle" aria-label="Abrir menu">☰</button>
+    <div class="nav-links">
+      <a href="index.html">Início</a>
+      <a href="flashcards.html">Flashcards</a>
+      <a href="quizzes.html">Quizzes</a>
+      <a href="videos.html">Vídeos</a>
+      <a href="praticas.html">Práticas</a>
+      <a href="autor.html">Autor</a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <span class="eyebrow">IFRO · Campus Ji-Paraná · Licenciatura em Química</span>
+    <h1>Domine Química Orgânica II<br>de forma prática e visual</h1>
+    <p class="lead">Flashcards, quizzes e vídeo-aulas selecionadas para consolidar condensações, reações
+      de aminas, heterocíclicos e as quatro grandes técnicas espectroscópicas usadas na elucidação
+      estrutural.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="flashcards.html">🗂️ Estudar com flashcards</a>
+      <a class="btn btn-ghost" href="quizzes.html">📝 Fazer um quiz</a>
+      <a class="btn btn-ghost" href="videos.html">▶️ Ver vídeo-aulas</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h2 class="section-title">Conteúdo programático</h2>
+    <p class="section-sub">Oito frentes de estudo cobrindo toda a ementa da disciplina. Clique em qualquer
+      tópico para ir direto aos flashcards correspondentes.</p>
+    <div class="grid" id="topics-grid"></div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>Química Orgânica II — Licenciatura em Química, IFRO Campus Ji-Paraná<br>
+    Desenvolvido por <a href="autor.html">Prof. Dr. Rafael Vieira</a></p>
+  </div>
+</footer>
+
+<script src="assets/js/topics-data.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const grid = document.getElementById("topics-grid");
+    TOPICS.forEach(t => {
+      const card = document.createElement("a");
+      card.href = `flashcards.html?topic=${t.id}`;
+      card.className = "card topic-card";
+      card.style.color = "inherit";
+      card.innerHTML = `
+        <div class="icon">${t.icon}</div>
+        <h3>${t.title}</h3>
+        <p>${t.description}</p>
+        <div class="tags">
+          <span class="tag">Flashcards</span>
+          <span class="tag">Quiz</span>
+          <span class="tag">Vídeos</span>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+  });
+</script>
+</body>
+</html>
