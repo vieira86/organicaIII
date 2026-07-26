@@ -41,7 +41,7 @@ function renderTopicChips(container, topics, activeId, onSelect){
   topics.forEach(t => {
     const chip = document.createElement("button");
     chip.className = "topic-chip" + (t.id === activeId ? " active" : "");
-    chip.textContent = `${t.icon} ${t.short}`;
+    chip.textContent = t.short;
     chip.addEventListener("click", () => onSelect(t.id));
     container.appendChild(chip);
   });

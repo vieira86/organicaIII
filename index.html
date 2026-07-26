@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Química Orgânica II — IFRO Ji-Paraná</title>
+<title>Química Orgânica III — IFRO Ji-Paraná</title>
 <meta name="description" content="Plataforma de apoio aos estudantes de Licenciatura em Química do IFRO Campus Ji-Paraná: flashcards, quizzes e vídeos sobre Química Orgânica II.">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
@@ -13,7 +13,7 @@
   <nav class="nav">
     <a class="brand" href="index.html">
       <span class="mol">⚗️</span>
-      <span>Química Orgânica II<br><small>Licenciatura em Química — IFRO Ji-Paraná</small></span>
+      <span>Química Orgânica III<br><small>Licenciatura em Química — IFRO Ji-Paraná</small></span>
     </a>
     <button class="nav-toggle" aria-label="Abrir menu">☰</button>
     <div class="nav-links">
@@ -29,13 +29,15 @@
 
 <section class="hero">
   <div class="container">
+    <span class="tag tag-tool">Plataforma</span>
     <span class="eyebrow">IFRO · Campus Ji-Paraná · Licenciatura em Química</span>
-    <h1>Domine Química Orgânica II<br>de forma prática e visual</h1>
+    <h1> Química Orgânica III<br> </h1>
+    <h2> Prof. Dr. Rafael Vieira </h2>
     <p class="lead">Flashcards, quizzes e vídeo-aulas selecionadas para consolidar condensações, reações
       de aminas, heterocíclicos e as quatro grandes técnicas espectroscópicas usadas na elucidação
       estrutural.</p>
     <div class="hero-actions">
-      <a class="btn btn-primary" href="flashcards.html">🗂️ Estudar com flashcards</a>
+      <a class="btn btn-ghost" href="flashcards.html">🗂️ Estudar com flashcards</a>
       <a class="btn btn-ghost" href="quizzes.html">📝 Fazer um quiz</a>
       <a class="btn btn-ghost" href="videos.html">▶️ Ver vídeo-aulas</a>
     </div>
@@ -48,6 +50,19 @@
     <p class="section-sub">Oito frentes de estudo cobrindo toda a ementa da disciplina. Clique em qualquer
       tópico para ir direto aos flashcards correspondentes.</p>
     <div class="grid" id="topics-grid"></div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h2 class="section-title">Programas Úteis</h2>
+    <p class="section-sub">Ferramentas externas desenvolvidas para apoiar o estudo de química orgânica.</p>
+    <div class="card tool-card">
+      <span class="cat-tag teal">Ferramenta externa</span>
+      <h3>Mass</h3>
+      <p>Plataforma para desenhar estruturas moleculares e explorá-las interativamente.</p>
+      <a class="btn btn-ghost btn-sm" href="https://mass.rafaelvieira.org" target="_blank" rel="noopener">Acessar mass.rafaelvieira.org →</a>
+    </div>
   </div>
 </section>
 
@@ -69,7 +84,7 @@
       card.className = "card topic-card";
       card.style.color = "inherit";
       card.innerHTML = `
-        <div class="icon">${t.icon}</div>
+        <span class="cat-tag ${t.catClass}">${t.category}</span>
         <h3>${t.title}</h3>
         <p>${t.description}</p>
         <div class="tags">

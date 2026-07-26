@@ -4,7 +4,7 @@
 
 let videoTopicId = "all";
 
-const ALL_TOPICS_CHIP = { id: "all", title: "Todos os vídeos", short: "Todos", icon: "🎬" };
+const ALL_TOPICS_CHIP = { id: "all", title: "Todos os vídeos", short: "Todos" };
 
 function initVideos(){
   const params = new URLSearchParams(window.location.search);
@@ -42,7 +42,7 @@ function renderVideos(){
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <div class="meta">
-          <span class="tag">${topic.icon} ${topic.short}</span>
+          <span class="tag">${topic.short}</span>
           <h4>${v.title}</h4>
           <p>${v.desc}</p>
           <span class="channel">${v.channel}</span>
