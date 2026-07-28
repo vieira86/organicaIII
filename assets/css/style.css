@@ -291,6 +291,37 @@ section{ padding: 48px 0; }
   color: var(--success);
   border-color: rgba(74,222,128,0.3);
 }
+.cat-tag.muted{
+  background: var(--surface-2);
+  color: var(--text-muted);
+  border-color: var(--border);
+}
+
+/* ---------- MATERIAIS ---------- */
+.material-grid{
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+.material-card{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.material-card h3{ margin: 0; font-size: 1.05rem; }
+.material-card p{ margin: 0; color: var(--text-muted); font-size: 0.9rem; }
+.material-card .material-meta{
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  margin-top: 2px;
+}
+.material-card.soon{
+  opacity: 0.55;
+}
+.material-card.soon:hover{ border-color: var(--border); transform: none; }
 
 /* ---------- TOPIC SELECTOR (flashcards/quiz/videos) ---------- */
 .topic-selector{
@@ -419,8 +450,32 @@ section{ padding: 48px 0; }
   overflow: hidden;
   box-shadow: var(--shadow);
 }
-.video-card .frame-wrap{ position: relative; padding-top: 56.25%; background: #000; }
+.video-card .frame-wrap{ position: relative; padding-top: 56.25%; background: #000; cursor: pointer; }
 .video-card iframe{ position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.video-thumb{
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+.play-btn{
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 62px; height: 62px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.55);
+  border: 2px solid var(--accent);
+  color: #fff;
+  font-size: 1.4rem;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: all .15s ease;
+}
+.play-btn::before{ content: "▶"; margin-left: 3px; }
+.frame-wrap:hover .play-btn{
+  background: var(--accent);
+  color: #04121a;
+  transform: translate(-50%, -50%) scale(1.08);
+}
 .video-card .meta{ padding: 16px 18px; }
 .video-card .meta h4{ margin: 0 0 6px; font-size: 1rem; }
 .video-card .meta p{ margin: 0; color: var(--text-muted); font-size: 0.85rem; }

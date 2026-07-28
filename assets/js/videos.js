@@ -37,9 +37,9 @@ function renderVideos(){
       const card = document.createElement("div");
       card.className = "video-card";
       card.innerHTML = `
-        <div class="frame-wrap">
-          <iframe src="https://www.youtube.com/embed/${v.id}" title="${v.title}" loading="lazy"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div class="frame-wrap" data-id="${v.id}" data-title="${v.title.replace(/"/g, '&quot;')}">
+          <img class="video-thumb" src="https://img.youtube.com/vi/${v.id}/hqdefault.jpg" alt="Capa do vídeo: ${v.title}" loading="lazy">
+          <button class="play-btn" aria-label="Reproduzir vídeo"></button>
         </div>
         <div class="meta">
           <span class="tag">${topic.short}</span>
@@ -48,6 +48,8 @@ function renderVideos(){
           <span class="channel">${v.channel}</span>
         </div>
       `;
+      const frameWrap = card.querySelector(".frame-wrap");
+      frameWrap.addEventListener("click", () => playVideo(frameWrap));
       grid.appendChild(card);
     });
   });
@@ -55,6 +57,15 @@ function renderVideos(){
   if (grid.children.length === 0){
     grid.innerHTML = '<div class="empty-state">Nenhum vídeo cadastrado para este tópico ainda.</div>';
   }
+}
+
+function playVideo(frameWrap){
+  const id = frameWrap.dataset.id;
+  const title = frameWrap.dataset.title;
+  frameWrap.innerHTML = `
+    <iframe src="https://www.youtube.com/embed/${id}?autoplay=1" title="${title}"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  `;
 }
 
 document.addEventListener("DOMContentLoaded", initVideos);
