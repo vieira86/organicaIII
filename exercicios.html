@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Quizzes — Química Orgânica III</title>
+<title>Exercícios — Química Orgânica III</title>
+<meta name="description" content="Listas de exercícios em PDF da disciplina de Química Orgânica III do IFRO Campus Ji-Paraná.">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
@@ -30,14 +31,26 @@
 
 <section>
   <div class="container">
-    <h1 class="section-title">📝 Quizzes</h1>
-    <p class="section-sub">Teste seus conhecimentos por tópico. As questões são embaralhadas a cada tentativa
-      e cada resposta traz uma explicação para reforçar o aprendizado.</p>
+    <h1 class="section-title">Listas de Exercícios</h1>
+    <p class="section-sub">Listas em PDF para resolver e fixar o conteúdo das aulas. Novas listas são
+      adicionadas ao longo do semestre.</p>
 
-    <div class="topic-selector" id="quiz-topic-chips"></div>
+    <div class="material-grid" id="exercicios-grid">
 
-    <div class="quiz-wrap">
-      <div class="card" id="quiz-body"></div>
+      <a class="card material-card" href="aulas/lista1_orgânicaIII.pdf" target="_blank" rel="noopener">
+        <span class="cat-tag violet">Lista 1</span>
+        <h3>Lista de Exercícios 1</h3>
+        <p>Primeira lista de exercícios da disciplina.</p>
+        <div class="material-meta">📄 PDF · <span>Abrir lista →</span></div>
+      </a>
+
+      <div class="card material-card soon">
+        <span class="cat-tag muted">Em breve</span>
+        <h3>Lista de Exercícios 2</h3>
+        <p>Próxima lista, em preparação.</p>
+        <div class="material-meta">📄 PDF · <span>Em preparação</span></div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -49,9 +62,6 @@
   </div>
 </footer>
 
-<script src="assets/js/topics-data.js"></script>
-<script src="assets/js/quizzes-data.js"></script>
 <script src="assets/js/app.js"></script>
-<script src="assets/js/quizzes.js"></script>
 </body>
 </html>

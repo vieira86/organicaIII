@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Quizzes — Química Orgânica III</title>
+<title>Vídeos — Química Orgânica III</title>
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
@@ -18,7 +18,6 @@
     <div class="nav-links">
       <a href="index.html">Início</a>
       <a href="materiais.html">Materiais</a>
-      <a href="exercicios.html">Exercícios</a>
       <a href="flashcards.html">Flashcards</a>
       <a href="quizzes.html">Quizzes</a>
       <a href="videos.html">Vídeos</a>
@@ -30,15 +29,13 @@
 
 <section>
   <div class="container">
-    <h1 class="section-title">📝 Quizzes</h1>
-    <p class="section-sub">Teste seus conhecimentos por tópico. As questões são embaralhadas a cada tentativa
-      e cada resposta traz uma explicação para reforçar o aprendizado.</p>
+    <h1 class="section-title">▶️ Vídeo-aulas</h1>
+    <p class="section-sub">Seleção de vídeos reais do YouTube (Khan Academy, Univesp e outros canais de
+      química orgânica) para consolidar cada tópico da disciplina.</p>
 
-    <div class="topic-selector" id="quiz-topic-chips"></div>
+    <div class="topic-selector" id="video-topic-chips"></div>
 
-    <div class="quiz-wrap">
-      <div class="card" id="quiz-body"></div>
-    </div>
+    <div class="video-grid" id="video-grid"></div>
   </div>
 </section>
 
@@ -50,8 +47,8 @@
 </footer>
 
 <script src="assets/js/topics-data.js"></script>
-<script src="assets/js/quizzes-data.js"></script>
+<script src="assets/js/videos-data.js"></script>
 <script src="assets/js/app.js"></script>
-<script src="assets/js/quizzes.js"></script>
+<script src="assets/js/videos.js"></script>
 </body>
 </html>
