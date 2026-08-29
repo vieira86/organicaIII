@@ -22,6 +22,7 @@
   --font-body: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   --font-mono: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
   --maxw: 1120px;
+  --billow: #f82e05;
 }
 
 *{ box-sizing: border-box; }
@@ -271,6 +272,12 @@ section{ padding: 48px 0; }
   color: var(--accent-3);
   border-color: rgba(167,139,250,0.3);
 }
+
+/* .cat-tag.yellow{
+  background: rgba(196, 236, 86, 0.12);
+  color: var(--accent-3);
+  border-color: rgba(222, 250, 139, 0.3);
+} */
 .cat-tag.teal{
   background: rgba(45,212,191,0.12);
   color: var(--accent);
@@ -308,6 +315,24 @@ section{ padding: 48px 0; }
   flex-direction: column;
   gap: 10px;
 }
+
+.material-card_lab{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.material-card_lab h3{ margin: 0; color: greenyellow; font-size: 1.05rem; }
+.material-card_lab p{ margin: 0; color: white; font-size: 0.9rem; }
+.material-card_lab .material-meta{
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  margin-top: 2px;
+}
+
 .material-card h3{ margin: 0; font-size: 1.05rem; }
 .material-card p{ margin: 0; color: var(--text-muted); font-size: 0.9rem; }
 .material-card .material-meta{
