@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Molécula-Apocalipse — Desafio do Antídoto | Química Orgânica III</title>
+<meta name="description" content="Desafio de síntese orgânica: ajude Kaká a reconstruir a molécula-antídoto W-01 usando reações clássicas de formação de ligação carbono-carbono e destranque o laboratório para concorrer a prêmios.">
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+  /* ---------- Molécula-Apocalipse — estilos específicos desta página ---------- */
+  .apoc-card{
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 28px;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .apoc-card h3{ margin-top: 0; }
+  .apoc-sub{ color: var(--text-muted); font-size: 0.95rem; }
+
+  .apoc-gate{ max-width: 480px; text-align: center; }
+  .apoc-gate .field{ text-align: left; margin-bottom: 16px; }
+  .apoc-gate label{
+    display: block;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+    font-weight: 600;
+  }
+  .apoc-gate input{
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--bg-alt);
+    color: var(--text);
+    font-size: 0.95rem;
+    font-family: var(--font-body);
+    box-sizing: border-box;
+  }
+  .apoc-gate input:focus{ outline: none; border-color: var(--accent); }
+  .apoc-gate .hint-small{ font-size: 0.78rem; margin-top: -8px; margin-bottom: 18px; }
+
+  .apoc-file{
+    background: var(--surface-2);
+    border: 1px dashed var(--border);
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin: 16px 0;
+  }
+  .apoc-file-title{ font-weight: 700; margin-bottom: 8px; }
+  .apoc-file-list{ margin: 0; padding-left: 1.1em; color: var(--text-muted); font-size: 0.92rem; }
+  .apoc-file-list li{ margin-bottom: 4px; }
+
+  .apoc-mol-frame{
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px;
+    text-align: center;
+    margin: 16px 0 20px;
+  }
+  .apoc-mol-frame img{ max-width: 100%; max-height: 260px; margin: 0 auto; background: #fff; border-radius: 6px; }
+  .apoc-mol-caption{ color: var(--text-muted); font-size: 0.82rem; margin-top: 8px; }
+
+  .apoc-step{
+    border-left: 3px solid var(--accent-3, var(--accent));
+    padding: 4px 0 4px 16px;
+    margin: 18px 0;
+  }
+  .apoc-step-tag{
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--accent-3, var(--accent));
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 6px;
+  }
+  .apoc-step p{ margin: 6px 0; }
+
+  .apoc-safe{
+    text-align: center;
+    margin-top: 26px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--border);
+  }
+  .apoc-lock-icon{ font-size: 2.4rem; margin-bottom: 6px; }
+  .apoc-formula-inputs{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 14px;
+    margin: 14px 0;
+    flex-wrap: wrap;
+  }
+  .apoc-formula-field{ display: flex; flex-direction: column; gap: 6px; align-items: center; }
+  .apoc-formula-field label{ font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); }
+  .apoc-num{
+    width: 76px; height: 52px;
+    text-align: center;
+    font-size: 1.3rem;
+    font-family: var(--font-mono);
+    color: var(--text);
+    background: var(--surface-2);
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    outline: none;
+    box-sizing: border-box;
+  }
+  .apoc-num:focus{ border-color: var(--accent); box-shadow: 0 0 0 3px rgba(45,212,191,0.25); }
+  .apoc-safe.apoc-unlocked .apoc-num{ border-color: var(--success); color: var(--success); }
+  @keyframes apoc-shake-kf{
+    10%,90% { transform: translateX(-2px); }
+    20%,80% { transform: translateX(4px); }
+    30%,50%,70% { transform: translateX(-8px); }
+    40%,60% { transform: translateX(8px); }
+  }
+  .apoc-shake .apoc-formula-inputs{ animation: apoc-shake-kf 0.5s; }
+  .apoc-msg{ min-height: 1.4em; font-size: 0.92rem; margin-top: 4px; }
+  .apoc-msg.ok{ color: var(--success); }
+  .apoc-msg.err{ color: var(--danger); }
+  .apoc-msg.warn{ color: var(--warning); }
+
+  .apoc-final{
+    text-align: center;
+    padding: 18px 6px 4px;
+    font-size: 1.05rem;
+  }
+  .apoc-registered{ display: block; margin-top: 10px; font-size: 0.85rem; color: var(--text-muted); }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav">
+    <a class="brand" href="index.html">
+      <span class="mol">⚗️</span>
+      <span>Química Orgânica III<br><small>Licenciatura em Química — IFRO Ji-Paraná</small></span>
+    </a>
+    <button class="nav-toggle" aria-label="Abrir menu">☰</button>
+    <div class="nav-links">
+      <a href="index.html">Início</a>
+      <a href="materiais.html">Materiais</a>
+      <a href="exercicios.html">Exercícios</a>
+      <a href="flashcards.html">Flashcards</a>
+      <a href="quizzes.html">Quizzes</a>
+      <a href="videos.html">Vídeos</a>
+      <!-- <a href="praticas.html">Práticas</a> -->
+      <a href="molecula-apocalipse.html">🧟 Molécula-Apocalipse</a>
+      <a href="autor.html">Autor</a>
+    </div>
+  </nav>
+</header>
+
+<section>
+  <div class="container">
+    <h1 class="section-title">☣️ Molécula-Apocalipse — O Antídoto de Kaká</h1>
+    <p class="section-sub">Um desafio de síntese orgânica baseado na Lista de Exercícios 2. Resolva o
+      mecanismo de cada etapa, descubra a fórmula molecular do antídoto W-01 e destranque o laboratório
+      para concorrer a prêmios — os primeiros a chegar à resposta certa entram no sorteio.</p>
+
+    <div id="apoc-body"></div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>Química Orgânica III — Licenciatura em Química, IFRO Campus Ji-Paraná<br>
+    Desenvolvido por <a href="autor.html">Prof. Dr. Rafael Vieira</a></p>
+  </div>
+</footer>
+
+<script src="assets/js/sheets-config.js"></script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/apocalipse-quiz.js"></script>
+</body>
+</html>
