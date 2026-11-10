@@ -1,0 +1,299 @@
+
+  /* ============================================================
+   enigma-elucidacao.css — Enigmas de elucidação estrutural
+   (mesmo visual dos enigmas da Química Orgânica II)
+   ============================================================ */
+  :root{ --enig-acc: #2dd4bf; --enig-acc-soft: #99f6e4; --enig-acc-glow: rgba(45,212,191,0.25); }
+body.enig-2{ --enig-acc: #a78bfa; --enig-acc-soft: #c4b5fd; --enig-acc-glow: rgba(167,139,250,0.25); }
+
+  .enig-card{
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 28px;
+    max-width: 720px;
+    margin: 0 auto 18px;
+  }
+  .enig-card h3{ margin-top: 0; }
+  .enig-sub{ color: var(--text-muted); font-size: 0.95rem; }
+  .enig-story{
+    border-left: 3px solid var(--enig-acc);
+    background: var(--surface-2);
+    border-radius: 0 10px 10px 0;
+    padding: 14px 16px;
+    margin: 14px 0;
+    font-size: 0.95rem;
+  }
+  .enig-story em{ color: var(--enig-acc-soft); font-style: normal; }
+
+  /* o texto literário */
+  .enig-text{
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin: 14px 0;
+    max-height: 460px;
+    overflow-y: auto;
+    font-size: 0.97rem;
+    line-height: 1.65;
+  }
+  .enig-text p{ margin: 0 0 10px; }
+  .enig-text p.fala{ padding-left: 14px; }
+  .enig-text p.fala::before{ content: "— "; color: var(--enig-acc-soft); margin-left: -14px; }
+  .enig-text .credit{ font-size: 0.82rem; color: var(--text-muted); text-align: right; margin-top: 12px; }
+  .enig-box{
+    display: flex; gap: 12px; align-items: flex-start;
+    border: 1px dashed var(--enig-acc);
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin: 14px 0 4px;
+    font-size: 0.92rem;
+  }
+  .enig-box .ico{ font-size: 1.8rem; line-height: 1; }
+  .enig-box strong{ color: var(--enig-acc-soft); }
+
+  .enig-mol-frame{
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px;
+    text-align: center;
+    margin: 16px 0 6px;
+  }
+  .enig-mol-frame img{ max-width: 100%; max-height: 330px; margin: 0 auto; background: #fff; border-radius: 6px; padding: 6px; }
+  .enig-mol-cap{ font-size: 0.85rem; color: var(--text-muted); margin-top: 8px; }
+
+  /* barra de progresso das 5 etapas */
+  .enig-progress{
+    display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;
+    max-width: 720px; margin: 0 auto 18px;
+  }
+  .enig-pill{
+    font-size: 0.8rem; padding: 6px 12px; border-radius: 999px;
+    background: var(--surface-2); border: 1px solid var(--border); color: var(--text-muted);
+  }
+  .enig-pill.on{ border-color: var(--enig-acc); color: var(--text); }
+  .enig-pill.done{ border-color: var(--success); color: var(--success); }
+
+  /* etapas */
+  .enig-stage{ position: relative; transition: opacity .25s ease; }
+  .enig-stage.locked{ opacity: 0.42; pointer-events: none; user-select: none; }
+  .enig-stage.locked .enig-stage-body{ filter: blur(3px); }
+  .enig-stage-tag{
+    display: inline-block; font-size: 0.75rem; letter-spacing: .5px; text-transform: uppercase;
+    color: var(--enig-acc-soft); margin-bottom: 4px;
+  }
+  .enig-stage.solved .enig-stage-tag{ color: var(--success); }
+
+  /* perguntas de leitura (uma de cada vez) */
+  .enig-q{ border-top: 1px dashed var(--border); padding-top: 14px; margin-top: 14px; }
+  .enig-q:first-of-type{ border-top: none; padding-top: 0; margin-top: 6px; }
+  .enig-q.hidden{ display: none; }
+  .enig-q-num{ font-family: var(--font-mono); font-size: 0.8rem; color: var(--enig-acc-soft); }
+  .enig-q h4{ margin: 4px 0 6px; font-size: 1.02rem; }
+
+  .enig-options{ display: grid; gap: 8px; margin: 12px 0; }
+  .enig-opt{
+    display: flex; gap: 10px; align-items: flex-start;
+    background: var(--surface-2); border: 1px solid var(--border); border-radius: 10px;
+    padding: 11px 14px; color: var(--text); cursor: pointer; text-align: left;
+    font-family: var(--font-body); font-size: 0.95rem; transition: all .15s ease;
+  }
+  .enig-opt:hover:not(:disabled){ border-color: var(--enig-acc); }
+  .enig-opt b{ font-family: var(--font-mono); color: var(--enig-acc-soft); }
+  .enig-opt.wrong{ border-color: var(--danger); opacity: .55; text-decoration: line-through; }
+  .enig-opt.right{ border-color: var(--success); background: rgba(74,222,128,0.08); }
+  .enig-opt:disabled{ cursor: default; }
+
+  /* checklist das funções */
+  .enig-checks{ display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 8px; margin: 14px 0; }
+  .enig-check{
+    display: flex; align-items: center; gap: 10px;
+    background: var(--surface-2); border: 1px solid var(--border); border-radius: 10px;
+    padding: 10px 12px; cursor: pointer; font-size: 0.95rem; user-select: none;
+    transition: all .15s ease;
+  }
+  .enig-check:hover{ border-color: var(--enig-acc); }
+  .enig-check input{ accent-color: var(--enig-acc); width: 18px; height: 18px; margin: 0; }
+  .enig-check.sel{ border-color: var(--enig-acc); background: rgba(34,197,94,0.08); }
+  .enig-checks.done .enig-check{ pointer-events: none; }
+  .enig-checks.done .enig-check.sel{ border-color: var(--success); }
+
+  .enig-row{ display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin: 12px 0; }
+  .enig-input{
+    font-family: var(--font-mono); font-size: 1.1rem; width: 140px;
+    padding: 10px 12px; color: var(--text); background: var(--surface-2);
+    border: 2px solid var(--border); border-radius: 8px; outline: none;
+  }
+  .enig-input:focus{ border-color: var(--enig-acc); }
+  .enig-input.ok{ border-color: var(--success); color: var(--success); }
+  .enig-input.bad{ border-color: var(--danger); }
+  .enig-unit{ color: var(--text-muted); font-family: var(--font-mono); }
+
+  /* fórmula molecular C?H?N?O? */
+  .enig-formula-inputs{
+    display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 4px 2px;
+    font-family: var(--font-mono); font-size: 1.4rem; margin: 16px 0 8px;
+  }
+  .enig-formula-inputs .el{ padding: 0 2px 0 8px; }
+  .enig-formula-inputs .enig-input{ width: 64px; font-size: 1rem; padding: 8px 6px; text-align: center; }
+
+  .enig-formula{
+    font-family: var(--font-mono);
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin: 14px 0;
+    text-align: center;
+    font-size: 1.02rem;
+    letter-spacing: 0.3px;
+    overflow-x: auto;
+  }
+  .enig-frac{ display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; }
+  .enig-frac > span:first-child{ border-bottom: 1.5px solid var(--text); padding: 0 6px 3px; }
+  .enig-frac > span:last-child{ padding-top: 3px; }
+  .enig-legend{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px,1fr));
+    gap: 6px 14px;
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    margin: 10px 0 4px;
+  }
+  .enig-legend b{ color: var(--text); font-family: var(--font-mono); }
+  .enig-masses{ font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); }
+  .enig-sub-step{ margin-top: 18px; padding-top: 16px; border-top: 1px dashed var(--border); }
+  .enig-sub-step.hidden{ display: none; }
+
+  .enig-msg{ min-height: 1.4em; font-size: 0.92rem; margin-top: 6px; }
+  .enig-msg.ok{ color: var(--success); }
+  .enig-msg.err{ color: var(--danger); }
+  .enig-msg.warn{ color: var(--warning); }
+
+  /* cadeado final */
+  .enig-safe{ text-align: center; margin-top: 18px; padding-top: 18px; border-top: 1px dashed var(--border); }
+  .enig-lock-icon{ font-size: 2.4rem; margin-bottom: 6px; }
+  .enig-digits{ display: flex; justify-content: center; gap: 10px; margin: 14px 0; }
+  .enig-digit{
+    width: 50px; height: 60px; text-align: center; font-size: 1.7rem;
+    font-family: var(--font-mono); color: var(--text); background: var(--surface-2);
+    border: 2px solid var(--border); border-radius: 8px; outline: none;
+  }
+  .enig-digit:focus{ border-color: var(--enig-acc); box-shadow: 0 0 0 3px var(--enig-acc-glow); }
+  .enig-safe.unlocked .enig-digit{ border-color: var(--success); color: var(--success); }
+  @keyframes enig-shake-kf{
+    10%,90% { transform: translateX(-2px); }
+    20%,80% { transform: translateX(4px); }
+    30%,50%,70% { transform: translateX(-8px); }
+    40%,60% { transform: translateX(8px); }
+  }
+  .enig-shake{ animation: enig-shake-kf 0.5s; }
+
+  .enig-final{ text-align: center; padding: 10px 6px 4px; font-size: 1.05rem; }
+  .enig-final .big{ font-size: 2.6rem; display: block; margin-bottom: 6px; }
+  .enig-registered{ display: block; margin-top: 10px; font-size: 0.85rem; color: var(--text-muted); }
+  .enig-gate .field{ margin-bottom: 14px; }
+  /* formulário de entrada (o style.css do organicaII não tem esses estilos) */
+  .enig-gate label{ display: block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 6px; }
+  .enig-gate input{
+    width: 100%; padding: 11px 14px; font-size: 1rem; font-family: var(--font-body);
+    color: var(--text); background: var(--surface-2);
+    border: 1px solid var(--border); border-radius: 10px; outline: none;
+  }
+  .enig-gate input:focus{ border-color: var(--enig-acc); }
+  .hint-small{ font-size: 0.85rem; }
+  .enig-ava{
+    margin-top: 18px; padding: 16px 18px; border-radius: 10px;
+    border: 2px solid var(--warning); background: rgba(250,204,21,0.08);
+    text-align: left; font-size: 0.97rem;
+  }
+  .enig-ava .ava-title{ display: block; color: var(--warning); margin-bottom: 8px; font-size: 1.02rem; }
+  .enig-ava ul{ margin: 0; padding-left: 20px; }
+  .enig-ava li{ margin: 4px 0; }
+  .enig-ava li strong{ color: var(--text); }
+
+  @media (max-width: 560px){
+    .enig-card{ padding: 20px 16px; }
+    .enig-text{ padding: 14px; max-height: 380px; }
+    .enig-digit{ width: 44px; height: 54px; }
+  }
+
+/* ---------- ferramentas de apoio ---------- */
+.enig-tools{ display:grid; grid-template-columns: repeat(auto-fit, minmax(190px,1fr)); gap:10px; margin: 14px 0 4px; }
+.enig-tool{ display:block; background: var(--surface-2); border:1px solid var(--border); border-radius:10px; padding:10px 12px; color: var(--text); font-size:.9rem; }
+.enig-tool:hover{ border-color: var(--enig-acc); color: var(--text); }
+.enig-tool b{ color: var(--enig-acc-soft); display:block; font-size: 1rem; }
+.enig-tool small{ color: var(--text-muted); }
+.enig-tip-tool{ font-size:.88rem; border:1px dashed var(--enig-acc); border-radius:10px; padding:9px 12px; margin: 10px 0; color: var(--text-muted); }
+.enig-tip-tool a{ color: var(--enig-acc-soft); font-weight:600; }
+
+/* ---------- painel de dados de cada etapa ---------- */
+.enig-dados{ background: var(--surface-2); border:1px solid var(--border); border-radius:10px; padding: 12px 14px; margin: 12px 0 6px; }
+.enig-dados-cap{ display:flex; justify-content: space-between; flex-wrap: wrap; gap: 6px; font-size:.82rem; color: var(--text-muted); font-family: var(--font-mono); margin-bottom: 6px; }
+.enig-dados-cap b{ color: var(--text); }
+.enig-tabela{ width:100%; border-collapse: collapse; font-size: .92rem; margin: 6px 0; }
+.enig-tabela th, .enig-tabela td{ padding: 7px 9px; border-bottom: 1px solid var(--border); text-align:left; }
+.enig-tabela th{ color: var(--text-muted); font-size: .8rem; letter-spacing: .02em; }
+.enig-tabela td.num{ font-family: var(--font-mono); }
+.enig-tabela .enig-input{ width: 90px; font-size: 1rem; padding: 7px 8px; }
+.enig-cands{ display:grid; grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); gap:10px; margin: 12px 0; }
+.enig-cand{ background: var(--surface-2); border: 2px solid var(--border); border-radius: 12px; padding: 8px; cursor:pointer; color: var(--text); font-family: var(--font-mono); }
+.enig-cand .mol{ height: 120px; } .enig-cand .mol svg{ width:100%; height:100%; }
+.enig-cand:hover:not(:disabled){ border-color: var(--enig-acc); }
+.enig-cand.wrong{ border-color: var(--danger); opacity:.5; }
+.enig-cand.right{ border-color: var(--success); background: rgba(74,222,128,0.08); }
+.enig-cand:disabled{ cursor: default; }
+.enig-reveal{ text-align:center; }
+.enig-reveal .mol{ height: 170px; max-width: 320px; margin: 6px auto; } .enig-reveal .mol svg{ width:100%; height:100%; }
+.enig-resume{ text-align:center; }
+
+/* ---------- espectros (mesmos motores das aulas de massas e RMN) ---------- */
+.enig-spec{ --accent3:#22d3c7; --warm:#ffb14f; --pink:#ff8adc; --muted: var(--text-muted); --card-border: var(--border); --mono: var(--font-mono); --text: #e6edf6; position: relative; }
+.ms-svg, .ir-svg, .rmn-svg, .c13-svg{ width:100%; height:auto; display:block; overflow: visible; }
+.ms-grid{ stroke: rgba(255,255,255,0.07); stroke-width: 1; }
+.ms-axis{ stroke: rgba(255,255,255,0.35); stroke-width: 1.2; }
+.ms-tick{ fill: var(--muted); font-size: 12px; font-family: var(--mono); }
+.ms-lab{ fill: var(--muted); font-size: 12.5px; font-style: italic; }
+.ms-bar{ fill: var(--accent3); }
+.ms-num{ fill: #dfe5f0; font-size: 12px; font-family: var(--mono); font-weight: 700; }
+.ms-tag{ fill: var(--warm); font-size: 12px; font-weight: 700; }
+.ms-peak.hot .ms-bar{ fill: var(--warm); }
+.ms-hit{ fill: transparent; cursor: pointer; }
+.ms-tip, .rmn-tip{ position:absolute; transform: translateX(-50%); pointer-events:none; white-space:nowrap;
+  background: rgba(11,15,26,.96); border:1px solid rgba(255,255,255,.14); color: #e6edf6;
+  font-size: 12.5px; font-family: var(--mono); padding: 5px 9px; border-radius: 7px; opacity:0; transition: opacity .15s; z-index: 4; }
+.ms-tip.on, .rmn-tip.on{ opacity: 1; }
+.ir-line{ fill:none; stroke: var(--accent3); stroke-width: 1.5; stroke-linejoin: round; }
+.ir-num{ fill: var(--warm); font-size: 10.5px; font-family: var(--mono); }
+.ir-cursor{ stroke: rgba(255,255,255,.35); stroke-dasharray: 3 3; }
+.ir-hit{ fill: transparent; cursor: crosshair; }
+.rmn-main{ position: relative; }
+.rmn-axis{ stroke: rgba(255,255,255,0.4); stroke-width: 1.2; }
+.rmn-tick{ fill: var(--muted); font-size: 12px; font-family: var(--mono); }
+.rmn-lab{ fill: var(--muted); font-size: 12.5px; font-style: italic; }
+.rmn-line{ fill: none; stroke: var(--accent3); stroke-width: 1.6; stroke-linejoin: round; }
+.rmn-line.tms{ stroke: rgba(154,164,184,.7); }
+.rmn-tms{ fill: var(--muted); font-size: 11px; font-family: var(--mono); }
+.rmn-tag{ fill: var(--warm); font-size: 13px; font-weight: 700; }
+.rmn-int{ fill: none; stroke: var(--pink); stroke-width: 1.4; stroke-opacity: .75; }
+.rmn-ival{ fill: var(--pink); font-size: 11.5px; font-family: var(--mono); font-weight: 700; }
+.rmn-insets{ display:flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.rmn-inset{ flex: 1 1 150px; max-width: 240px; background: rgba(255,255,255,0.025); border:1px solid var(--card-border); border-radius: 10px; padding: 4px 6px 2px; }
+.rmn-inset-cap{ font-family: var(--mono); font-size: 11.5px; color: var(--muted); }
+.rmn-inset-cap b{ color: var(--warm); }
+.rmn-zoom{ width: 100%; height: auto; display:block; }
+.rmn-hz{ fill: #c9d3e6; font-family: var(--mono); }
+.rmn-nota{ font-size: .78rem; color: var(--muted); margin-top: 6px; }
+.c13-axis{ stroke: rgba(255,255,255,0.4); stroke-width: 1.2; }
+.c13-axis.fino{ stroke: rgba(255,255,255,0.14); stroke-width: 1; }
+.c13-tick{ fill: var(--muted); font-size: 12px; font-family: var(--mono); }
+.c13-lab{ fill: var(--muted); font-size: 12.5px; font-style: italic; }
+.c13-ptit{ fill: var(--muted); font-size: 11.5px; font-family: var(--mono); }
+.c13-line{ fill: none; stroke: var(--accent3); stroke-width: 1.6; stroke-linejoin: round; }
+.c13-line.neg{ stroke: var(--pink); }
+.c13-line.solv{ stroke: rgba(154,164,184,.7); }
+.c13-solv{ fill: var(--muted); font-size: 10.5px; font-family: var(--mono); }
+.c13-tag{ fill: var(--warm); font-size: 12.5px; font-weight: 700; }

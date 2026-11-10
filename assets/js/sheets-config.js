@@ -18,3 +18,13 @@
 const SHEETS_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbxRGFTaAPIyBsOrUP1sGqE9uv80zBLcpi99OG8DG1BzVwz_bDeHtSv0FCMAYLMaFqYfLQ/exec";
 
 const SHEETS_PLATFORM_NAME = "Química Orgânica III";
+
+/* ------------------------------------------------------------
+   Enigmas de Elucidação Estrutural (enigma-elucidacao-1.html e -2.html)
+   Web App próprio (planilha própria). Passo a passo:
+   google-apps-script/enigmas-elucidacao/COMO_CONFIGURAR.md
+   (na pasta organicaIII, fora de "site").
+   Enquanto estiver vazio, os enigmas funcionam normalmente, mas
+   não registram na planilha (o aluno vê um aviso para mostrar a tela).
+   ------------------------------------------------------------ */
+const ELUCIDACAO_WEBAPP_URL = "";

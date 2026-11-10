@@ -1,0 +1,7 @@
+# Vídeos originais e material de trabalho (quadros, áudio) — não vão para o GitHub
+# (os .mp4 passam do limite de 100 MB por arquivo do GitHub)
+*.mp4
+_material_video/
+
+# macOS
+.DS_Store

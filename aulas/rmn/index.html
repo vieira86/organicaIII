@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aula — Ressonância Magnética Nuclear (RMN de ¹H) | Prof. Dr. Rafael Vieira</title>
+<meta name="description" content="Aula de RMN de ¹H (Análise Orgânica): apresentação interativa, Missão RMN (identificação de uma amostra desconhecida), questionário de percepção e análise de dados.">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<div class="bg-glow"></div>
+
+<header>
+  <a class="logo" href="#apresentacao">Rafael<span>Vieira</span><small>Análise Orgânica · RMN de ¹H</small></a>
+  <nav>
+    <a href="#apresentacao" data-view="apresentacao">🎬 Apresentação</a>
+    <a href="#missao" data-view="missao">🧲 Missão RMN</a>
+    <a href="#questionario" data-view="questionario">📝 Questionário</a>
+    <a href="#analise" data-view="analise" class="nav-data">📊 Análise de Dados</a>
+  </nav>
+</header>
+
+<!-- =========================================================
+     APRESENTAÇÃO
+     Cada elemento com class="frag" aparece a cada clique.
+     Espectros: <div class="rmn-plot" data-sinais="δ nºH multiplicidade; …"> (ver assets/js/rmn.js)
+     Moléculas: <div class="mol md" data-mol="nome"> (ver assets/js/estruturas.js)
+     ========================================================= -->
+<main id="view-apresentacao" class="view">
+  <div class="deck-wrap">
+    <div class="deck" id="deck" tabindex="0" aria-label="Apresentação — clique para avançar">
+
+      <!-- 1 · CAPA -->
+      <section class="slide" data-title="Capa">
+        <div class="cols">
+          <div>
+            <div class="kicker">Análise Orgânica · IFRO · 2026</div>
+            <h1>Ressonância Magnética <span class="grad">Nuclear de ¹H</span></h1>
+            <p class="lead">Como um ímã, uma onda de rádio e um punhado de prótons contam, átomo por átomo, como uma molécula orgânica é montada.</p>
+            <p style="margin-top:1.6em; font-size:1em;" class="muted">Prof. Dr. Rafael Vieira · Instituto Federal de Rondônia</p>
+          </div>
+          <div class="hide-mobile spec-card">
+            <div class="cap"><span>RMN de ¹H · <b>acetato de etila</b></span><span>CDCl₃ · 300 MHz</span></div>
+            <div class="rmn-plot" data-sinais="4.12 2 q7.1; 2.05 3 s; 1.26 3 t7.1" data-xmax="5" data-int="1" data-rot="a,b,c"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2 · POR QUÊ -->
+      <section class="slide" data-title="Por quê?">
+        <div class="kicker">Para começar</div>
+        <h2>O IV mostra os grupos. A EM mostra a massa. <span class="grad">A RMN mostra o esqueleto.</span></h2>
+        <div class="cols-4" style="margin-top:1.2em">
+          <div class="tile frag zoom"><div class="big-num hl">nº</div><h4>Sinais</h4><p>Quantos <b>tipos</b> de hidrogênio a molécula tem.</p></div>
+          <div class="tile frag zoom"><div class="big-num hl2">δ</div><h4>Deslocamento</h4><p>Em que <b>ambiente químico</b> cada H está (vizinho de O? de C=O? de um anel?).</p></div>
+          <div class="tile frag zoom"><div class="big-num hl3">∫</div><h4>Integração</h4><p><b>Quantos</b> H há em cada tipo.</p></div>
+          <div class="tile frag zoom"><div class="big-num hl">n+1</div><h4>Desdobramento</h4><p>Quantos H estão nos carbonos <b>vizinhos</b>.</p></div>
+        </div>
+        <p class="frag" style="margin-top:1.6em; font-size:1.2em;">Quatro informações em um único espectro. Junto com IV e EM, ela <b class="hl">fecha a estrutura</b> de um composto orgânico.</p>
+      </section>
+
+      <!-- 3 · SPIN NUCLEAR -->
+      <section class="slide" data-title="Spin nuclear">
+        <div class="cols">
+          <div>
+            <div class="kicker">A origem do fenômeno</div>
+            <h2>Núcleos também <span class="grad">têm spin</span></h2>
+            <ul>
+              <li class="frag">Assim como prótons e nêutrons (férmions), muitos núcleos apresentam <b class="hl">momento angular de spin</b> e, com ele, um <b>momento magnético</b>: comportam-se como pequenos ímãs.</li>
+              <li class="frag">Regra prática: tem spin todo núcleo com <b class="hl2">massa ímpar</b>, <b class="hl2">número atômico ímpar</b> ou ambos.</li>
+              <li class="frag">O número quântico de spin <b>I</b> define quantos estados (orientações) o núcleo pode ter: <span class="eq-box eq">nº de estados = 2I + 1</span></li>
+              <li class="frag">Valores de m: +I, (I − 1), …, (−I + 1), −I.</li>
+            </ul>
+          </div>
+          <div class="frag">
+            <table class="mini-table" style="font-size:1.05em">
+              <thead><tr><th>Núcleo</th><th>I</th><th>nº de estados</th></tr></thead>
+              <tbody>
+                <tr><td><b>¹H</b></td><td>1/2</td><td class="hl">2 (+½, −½)</td></tr>
+                <tr><td>¹²C</td><td>0</td><td>0 · <span class="muted">"invisível" na RMN</span></td></tr>
+                <tr><td>¹³C</td><td>1/2</td><td>2</td></tr>
+                <tr><td>¹⁹F</td><td>1/2</td><td>2</td></tr>
+                <tr><td>³⁵Cl</td><td>3/2</td><td>4 (+3/2, +1/2, −1/2, −3/2)</td></tr>
+              </tbody>
+            </table>
+            <p class="small muted" style="margin-top:.6em">Nesta aula: o ¹H, com I = ½ e apenas dois estados possíveis.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4 · CAMPO APLICADO -->
+      <section class="slide" data-title="Dois estados">
+        <div class="cols">
+          <div>
+            <div class="kicker">Dentro de um campo magnético B₀</div>
+            <h2>Dois estados, <span class="grad">duas energias</span></h2>
+            <ul>
+              <li class="frag">Sem campo, os estados +½ e −½ têm a <b>mesma energia</b> (orientações ao acaso).</li>
+              <li class="frag">Com um campo externo <b>B₀</b>, o spin <b class="hl3">+½ (alinhado ao campo)</b> fica com energia menor e o <b class="hl2">−½ (oposto)</b>, com energia maior.</li>
+              <li class="frag">A <b>ressonância magnética nuclear</b> ocorre quando núcleos alinhados absorvem energia e passam a ter spin oposto ao campo.</li>
+              <li class="frag"><span class="eq-box eq">E<sub>abs</sub> = E<sub>−½</sub> − E<sub>+½</sub> = hν</span></li>
+            </ul>
+          </div>
+          <div class="frag">
+            <svg viewBox="0 0 420 300" class="dia" aria-label="Separação dos níveis de energia com o campo">
+              <line x1="40" y1="20" x2="40" y2="270" stroke="#9aa4b8" stroke-width="2"/><text x="20" y="30" font-size="16">E</text>
+              <line x1="40" y1="270" x2="400" y2="270" stroke="#9aa4b8" stroke-width="2"/><text x="330" y="292" font-size="15">campo B₀</text>
+              <line x1="50" y1="150" x2="140" y2="150" stroke="#eef1f7" stroke-width="3"/>
+              <path d="M140 150 L380 50" stroke="#ff8adc" stroke-width="3" fill="none"/>
+              <path d="M140 150 L380 240" stroke="#22d3c7" stroke-width="3" fill="none"/>
+              <text x="388" y="55" font-size="17" fill="#ff8adc">−½</text>
+              <text x="388" y="246" font-size="17" fill="#22d3c7">+½</text>
+              <line x1="320" y1="76" x2="320" y2="218" stroke="#ffb14f" stroke-width="2.5" marker-end="url(#ar1)" marker-start="url(#ar1)"/>
+              <text x="250" y="152" font-size="18" fill="#ffb14f">ΔE = hν</text>
+              <defs><marker id="ar1" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10z" fill="#ffb14f"/></marker></defs>
+              <text x="58" y="140" font-size="13">sem campo</text>
+            </svg>
+            <p class="small muted" style="text-align:center">Quanto mais forte o campo, maior a diferença de energia ΔE.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5 · EQUAÇÃO E TABELA -->
+      <section class="slide dense" data-title="Frequência de ressonância">
+        <div class="kicker">ΔE depende do campo e do núcleo</div>
+        <h2>Frequência de ressonância: <span class="grad">ν = (γ / 2π) · B₀</span></h2>
+        <div class="cols" style="align-items:start">
+          <div>
+            <ul>
+              <li class="frag"><span class="eq-box eq">ΔE = γ (h / 2π) B₀ = hν</span></li>
+              <li class="frag"><b>γ</b> (razão giromagnética) é uma constante de cada núcleo. O ¹H tem um dos maiores γ: por isso é o núcleo mais sensível.</li>
+              <li class="frag">A frequência cai na faixa das <b class="hl">ondas de rádio</b> (MHz). Por isso os aparelhos são chamados pela frequência do ¹H: "um RMN de <b>300 MHz</b>" tem ímã de 7,05 T.</li>
+              <li class="frag">O ¹³C tem só <b>1,1%</b> de abundância e γ quatro vezes menor: o sinal é muito mais fraco.</li>
+            </ul>
+          </div>
+          <table class="mini-table frag" style="font-size:.92em">
+            <thead><tr><th>Isótopo</th><th>Abund. (%)</th><th>B₀ (T)</th><th>ν (MHz)</th><th>γ (10⁶ rad·T⁻¹s⁻¹)</th></tr></thead>
+            <tbody>
+              <tr><td><b>¹H</b></td><td>99,98</td><td>1,00 · 1,41 · 2,35 · 7,05</td><td class="hl">42,6 · 60 · 100 · 300</td><td>267,53</td></tr>
+              <tr><td>²H</td><td>0,0156</td><td>1,00</td><td>6,5</td><td>41,1</td></tr>
+              <tr><td>¹³C</td><td>1,108</td><td>1,00 · 7,05</td><td>10,7 · 75,0</td><td>67,28</td></tr>
+              <tr><td>¹⁹F</td><td>100</td><td>1,00</td><td>40,0</td><td>251,7</td></tr>
+              <tr><td>³¹P</td><td>100</td><td>1,00</td><td>17,2</td><td>108,3</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="small muted" style="margin-top:.6em">Dados de Pavia et al., <i>Introdução à Espectroscopia</i>.</p>
+      </section>
+
+      <!-- 6 · PRECESSÃO -->
+      <section class="slide" data-title="Precessão">
+        <div class="cols">
+          <div>
+            <div class="kicker">O mecanismo da absorção</div>
+            <h2>O núcleo <span class="grad">precessa</span> como um pião</h2>
+            <ul>
+              <li class="frag">No campo B₀, o eixo do spin gira em torno da direção do campo: é a <b>precessão</b>, com a <b class="hl">frequência de Larmor</b>.</li>
+              <li class="frag">Quando chega uma radiação de radiofrequência com <b>a mesma frequência</b> da precessão, os dois "entram em fase" e há <b class="hl2">absorção</b>: o spin inverte (+½ → −½).</li>
+              <li class="frag">Exemplo clássico: a 1,41 T (14.100 gauss), o ¹H precessa a <b>60 MHz</b> e absorve radiação de 60 MHz.</li>
+              <li class="frag">É uma <b>ressonância</b>, como empurrar um balanço no ritmo certo.</li>
+            </ul>
+          </div>
+          <svg viewBox="0 0 360 320" class="dia frag" aria-label="Precessão de um núcleo">
+            <defs><marker id="ar2" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#4f8cff"/></marker>
+              <marker id="ar3" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#ffb14f"/></marker></defs>
+            <line x1="180" y1="300" x2="180" y2="30" stroke="#4f8cff" stroke-width="3" marker-end="url(#ar2)"/><text x="190" y="40" font-size="17" fill="#4f8cff">B₀</text>
+            <ellipse cx="180" cy="80" rx="80" ry="22" fill="none" stroke="#7c5cff" stroke-dasharray="6 5" stroke-width="2"/>
+            <line x1="180" y1="200" x2="245" y2="85" stroke="#ffb14f" stroke-width="4" marker-end="url(#ar3)"/>
+            <circle cx="180" cy="200" r="22" fill="#1d2a4a" stroke="#22d3c7" stroke-width="3"/><text x="171" y="207" font-size="17" fill="#22d3c7">H</text>
+            <path d="M270 70 q 15 10 0 20" stroke="#7c5cff" fill="none" stroke-width="2"/>
+            <text x="20" y="150" font-size="14">radiação de RF</text>
+            <path d="M20 170 q 12 -14 24 0 t 24 0 t 24 0 t 24 0 t 24 0" stroke="#ff8adc" fill="none" stroke-width="2.5"/>
+            <text x="200" y="300" font-size="14">frequência de Larmor ν</text>
+          </svg>
+        </div>
+      </section>
+
+      <!-- 7 · BLINDAGEM -->
+      <section class="slide" data-title="Blindagem">
+        <div class="cols">
+          <div>
+            <div class="kicker">Blindagem diamagnética</div>
+            <h2>Os elétrons <span class="grad">protegem</span> o núcleo</h2>
+            <ul>
+              <li class="frag">No campo B₀, os elétrons ao redor do núcleo circulam e geram um <b class="hl">campo magnético induzido oposto</b> ao aplicado.</li>
+              <li class="frag">O núcleo "sente" um campo menor: B<sub>efetivo</sub> = B₀ − B<sub>induzido</sub>. Esse efeito é a <b>blindagem diamagnética</b>.</li>
+              <li class="frag">Quanto <b>maior a densidade eletrônica</b>, maior o campo induzido, mais blindado o H e <b class="hl3">menor a frequência</b> em que ele absorve.</li>
+              <li class="frag">Um H vizinho de um átomo eletronegativo (Cl, O…) perde densidade eletrônica: fica <b class="hl2">desblindado</b> e absorve em frequência maior.</li>
+            </ul>
+          </div>
+          <svg viewBox="0 0 380 300" class="dia frag" aria-label="Campo induzido pelos elétrons">
+            <defs><marker id="ar4" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#4ade80"/></marker>
+              <marker id="ar5" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#ff8adc"/></marker></defs>
+            <line x1="40" y1="270" x2="40" y2="40" stroke="#4ade80" stroke-width="4" marker-end="url(#ar4)"/><text x="50" y="50" font-size="18" fill="#4ade80">B₀</text>
+            <ellipse cx="210" cy="150" rx="110" ry="34" fill="none" stroke="#7c5cff" stroke-width="2" stroke-dasharray="7 5"/>
+            <text x="300" y="120" font-size="13">elétrons circulando</text>
+            <circle cx="210" cy="150" r="16" fill="#4f8cff"/><text x="204" y="156" font-size="15" fill="#04121a">H</text>
+            <line x1="210" y1="170" x2="210" y2="255" stroke="#ff8adc" stroke-width="3.5" marker-end="url(#ar5)"/>
+            <text x="220" y="250" font-size="16" fill="#ff8adc">B induzido</text>
+            <path d="M110 150 C 90 60, 330 60, 310 150" fill="none" stroke="#ff8adc" stroke-opacity=".5" stroke-width="2"/>
+            <path d="M110 150 C 90 240, 330 240, 310 150" fill="none" stroke="#ff8adc" stroke-opacity=".5" stroke-width="2"/>
+          </svg>
+        </div>
+      </section>
+
+      <!-- 8 · DESLOCAMENTO QUÍMICO -->
+      <section class="slide" data-title="Deslocamento químico">
+        <div class="kicker">Por que medir em ppm?</div>
+        <h2>Deslocamento químico <span class="grad">δ</span></h2>
+        <div class="cols" style="align-items:start">
+          <div>
+            <ul>
+              <li class="frag">As diferenças de frequência causadas pela blindagem são minúsculas (alguns Hz em milhões). Não se mede a frequência absoluta: mede-se a <b class="hl">diferença em relação a um padrão</b>, o <b>TMS</b>.</li>
+              <li class="frag">Problema: o deslocamento em Hz depende do campo do aparelho. A solução é dividir pela frequência do aparelho:</li>
+              <li class="frag"><span class="eq-box eq">δ (ppm) = deslocamento do TMS (Hz) ÷ frequência do aparelho (MHz)</span></li>
+            </ul>
+            <div class="tile frag" style="margin-top:.6em">
+              <h4>CH₃Br</h4>
+              <p class="mono">162 Hz ÷ 60 MHz = <b class="hl">2,70 ppm</b> &nbsp;·&nbsp; 270 Hz ÷ 100 MHz = <b class="hl">2,70 ppm</b></p>
+              <p class="small muted">Em Hz o valor muda com o aparelho; em ppm, não.</p>
+            </div>
+          </div>
+          <div class="frag">
+            <div class="tile"><div class="mol md" data-mol="s_tms" style="margin:0 auto"></div>
+              <h4 style="margin-top:.4em">TMS · tetrametilsilano, (CH₃)₄Si</h4>
+              <p>12 H equivalentes (um sinal só e forte) · o Si é pouco eletronegativo, então os H são <b>muito blindados</b> e aparecem à direita de quase tudo · inerte e volátil. Por definição, <b class="hl">δ<sub>TMS</sub> = 0</b>.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 9 · ESCALA -->
+      <section class="slide" data-title="Escala δ">
+        <div class="kicker">Lendo o eixo do espectro</div>
+        <h2>A escala δ <span class="grad">corre da direita para a esquerda</span></h2>
+        <div class="frag" style="margin-top:1em">
+          <div class="shift-bar"></div>
+          <div class="shift-scale"><span>12</span><span>11</span><span>10</span><span>9</span><span>8</span><span>7</span><span>6</span><span>5</span><span>4</span><span>3</span><span>2</span><span>1</span><span>0 · TMS</span></div>
+          <div class="shift-tags">
+            <span style="left:5%">COOH<br>10,5–12</span>
+            <span style="left:20%">CHO<br>9–10</span>
+            <span style="left:38%">aromáticos<br>6,5–8</span>
+            <span style="left:51%">vinílicos<br>4,5–6,5</span>
+            <span style="left:65%">H–C–O, H–C–X<br>3–4,5</span>
+            <span style="left:79%">H α a C=O<br>2–2,7</span>
+            <span style="left:92%">alcanos<br>0,7–1,7</span>
+          </div>
+        </div>
+        <div class="cols frag" style="margin-top:.6em">
+          <div class="tile"><h4>⬅ Esquerda: δ alto</h4><p>H <b class="hl2">desblindado</b> · "campo baixo" · vizinho de grupos que retiram elétrons.</p></div>
+          <div class="tile"><h4>Direita: δ baixo ➡</h4><p>H <b class="hl3">blindado</b> · "campo alto" · cercado de densidade eletrônica.</p></div>
+        </div>
+      </section>
+
+      <!-- 10 · INSTRUMENTOS -->
+      <section class="slide" data-title="CW e FT">
+        <div class="kicker">Os aparelhos</div>
+        <h2>Onda contínua <span class="grad">× Transformada de Fourier</span></h2>
+        <div class="cols" style="align-items:stretch">
+          <div class="tile frag left"><span class="tag tag-b">CW · onda contínua</span>
+            <ul style="margin-top:.6em">
+              <li>Mantém a <b>frequência fixa</b> e varia o campo (ou vice-versa).</li>
+              <li>Os núcleos entram em ressonância <b>um tipo de cada vez</b>; o detector registra as emissões como picos.</li>
+              <li>Lento: uma varredura leva minutos.</li>
+            </ul></div>
+          <div class="tile frag"><span class="tag tag-p">FT · pulsado</span>
+            <ul style="margin-top:.6em">
+              <li>Um <b>pulso rápido e de alta potência</b> excita <b>todos os núcleos juntos</b>.</li>
+              <li>Os núcleos relaxam emitindo um sinal que decai com o tempo: o <b class="hl">Decaimento Livre de Indução (DIL, ou FID)</b>.</li>
+              <li>A <b>Transformada de Fourier</b> converte o sinal do domínio do tempo no domínio da frequência: o espectro.</li>
+            </ul></div>
+        </div>
+        <div class="cols frag" style="margin-top:1em; align-items:center">
+          <svg viewBox="0 0 420 110" class="dia" aria-label="Sinal de decaimento livre de indução">
+            <path d="M10,13.0L11,14.4L12,17.8L13,22.9L14,29.5L15,37.2L16,45.4L17,53.8L18,61.9L19,69.1L20,75.3L21,80.1L22,83.2L23,84.7L24,84.6L25,83.0L26,80.0L27,76.1L28,71.5L29,66.5L30,61.5L31,56.8L32,52.8L33,49.5L34,47.1L35,45.7L36,45.2L37,45.6L38,46.7L39,48.3L40,50.1L41,51.9L42,53.5L43,54.7L44,55.4L45,55.4L46,54.8L47,53.5L48,51.7L49,49.6L50,47.4L51,45.2L52,43.3L53,41.9L54,41.2L55,41.4L56,42.4L57,44.4L58,47.2L59,50.8L60,55.0L61,59.5L62,64.1L63,68.5L64,72.4L65,75.5L66,77.8L67,78.9L68,78.8L69,77.5L70,75.0L71,71.4L72,67.0L73,62.0L74,56.6L75,51.1L76,45.9L77,41.2L78,37.3L79,34.3L80,32.5L81,31.8L82,32.3L83,33.9L84,36.5L85,39.9L86,43.9L87,48.2L88,52.6L89,56.8L90,60.5L91,63.7L92,66.2L93,67.8L94,68.7L95,68.6L96,67.9L97,66.6L98,64.8L99,62.7L100,60.5L101,58.3L102,56.4L103,54.8L104,53.6L105,52.9L106,52.7L107,52.8L108,53.4L109,54.1L110,55.0L111,55.9L112,56.6L113,57.1L114,57.2L115,56.9L116,56.2L117,55.2L118,53.8L119,52.1L120,50.4L121,48.6L122,46.9L123,45.6L124,44.7L125,44.3L126,44.4L127,45.2L128,46.6L129,48.6L130,51.0L131,53.7L132,56.7L133,59.7L134,62.6L135,65.1L136,67.2L137,68.7L138,69.5L139,69.6L140,68.9L141,67.6L142,65.6L143,63.1L144,60.3L145,57.2L146,54.1L147,51.1L148,48.5L149,46.2L150,44.5L151,43.3L152,42.8L153,43.0L154,43.7L155,45.0L156,46.7L157,48.6L158,50.8L159,52.9L160,55.0L161,56.8L162,58.4L163,59.5L164,60.3L165,60.7L166,60.6L167,60.3L168,59.6L169,58.8L170,57.9L171,57.0L172,56.2L173,55.5L174,55.1L175,54.9L176,54.9L177,55.1L178,55.5L179,56.0L180,56.6L181,57.2L182,57.6L183,57.9L184,58.0L185,57.8L186,57.3L187,56.6L188,55.6L189,54.5L190,53.2L191,51.9L192,50.6L193,49.4L194,48.5L195,47.8L196,47.5L197,47.6L198,48.1L199,49.0L200,50.2L201,51.7L202,53.4L203,55.3L204,57.1L205,58.9L206,60.5L207,61.8L208,62.8L209,63.3L210,63.5L211,63.2L212,62.5L213,61.5L214,60.1L215,58.6L216,56.9L217,55.2L218,53.6L219,52.1L220,50.9L221,49.9L222,49.3L223,49.0L224,49.0L225,49.4L226,49.9L227,50.7L228,51.7L229,52.7L230,53.7L231,54.6L232,55.5L233,56.1L234,56.6L235,56.9L236,57.0L237,56.9L238,56.7L239,56.4L240,56.0L241,55.6L242,55.3L243,55.1L244,54.9L245,54.9L246,55.1L247,55.3L248,55.7L249,56.1L250,56.5L251,57.0L252,57.4L253,57.6L254,57.8L255,57.8L256,57.5L257,57.1L258,56.6L259,55.8L260,55.0L261,54.1L262,53.2L263,52.3L264,51.5L265,50.9L266,50.4L267,50.2L268,50.2L269,50.5L270,51.0L271,51.7L272,52.6L273,53.6L274,54.7L275,55.8L276,56.8L277,57.8L278,58.6L279,59.2L280,59.5L281,59.7L282,59.6L283,59.3L284,58.7L285,58.0L286,57.2L287,56.4L288,55.5L289,54.6L290,53.9L291,53.2L292,52.7L293,52.4L294,52.2L295,52.2L296,52.4L297,52.7L298,53.0L299,53.5L300,53.9L301,54.3L302,54.7L303,55.0L304,55.3L305,55.4L306,55.5L307,55.4L308,55.3L309,55.2L310,55.0L311,54.8L312,54.7L313,54.6L314,54.6L315,54.6L316,54.7L317,55.0L318,55.2L319,55.6L320,55.9L321,56.3L322,56.6L323,56.9L324,57.1L325,57.2L326,57.1L327,57.0L328,56.7L329,56.3L330,55.8L331,55.3L332,54.7L333,54.1L334,53.5L335,53.0L336,52.5L337,52.2L338,52.1L339,52.1L340,52.2L341,52.5L342,52.9L343,53.4L344,53.9L345,54.6L346,55.2L347,55.8L348,56.3L349,56.8L350,57.1L351,57.4L352,57.5L353,57.4L354,57.3L355,57.0L356,56.7L357,56.3L358,55.9L359,55.4L360,55.0L361,54.6L362,54.3L363,54.1L364,53.9L365,53.9L366,53.9L367,53.9L368,54.1L369,54.2L370,54.4L371,54.6L372,54.8L373,54.9L374,55.0L375,55.0L376,55.0L377,55.0L378,54.9L379,54.8L380,54.7L381,54.6L382,54.5L383,54.4L384,54.4L385,54.4L386,54.5L387,54.7L388,54.9L389,55.1L390,55.4L391,55.6L392,55.9L393,56.1L394,56.3L395,56.4L396,56.5L397,56.5L398,56.4L399,56.2L400,56.0L401,55.7L402,55.3L403,54.9L404,54.6L405,54.2L406,53.9L407,53.6L408,53.4L409,53.3L410,53.3" fill="none" stroke="#22d3c7" stroke-width="2"/>
+            <text x="300" y="104" font-size="13">tempo →</text>
+          </svg>
+          <p>Resultado: espectros <b class="hl3">muito mais limpos e rápidos</b>. Dá para somar centenas de pulsos em minutos, o que torna possível até o RMN de ¹³C.</p>
+        </div>
+      </section>
+
+      <!-- 11 · EQUIVALÊNCIA -->
+      <section class="slide dense" data-title="Equivalência química">
+        <div class="kicker">Quantos sinais?</div>
+        <h2>H <span class="grad">quimicamente equivalentes</span> dão um único sinal</h2>
+        <p class="frag">Dois ou mais núcleos são equivalentes quando estão no <b class="hl">mesmo ambiente químico</b> (mesma simetria em relação aos vizinhos). Em geral, também são magneticamente equivalentes.</p>
+        <div class="cols-3" style="margin-top:.8em">
+          <div class="tile frag"><h4>Um único sinal</h4>
+            <div class="cols" style="grid-template-columns:1fr 1fr 1fr; gap:.2em"><div class="mol sm" data-mol="s_benzeno"></div><div class="mol sm" data-mol="s_acetona"></div><div class="mol sm" data-mol="s_tms"></div></div>
+            <p class="small">benzeno · acetona · TMS</p></div>
+          <div class="tile frag"><h4>Dois sinais</h4>
+            <div class="cols" style="grid-template-columns:1fr 1fr 1fr; gap:.2em"><div class="mol sm" data-mol="c_p_xileno"></div><div class="mol sm" data-mol="s_acetato_metila"></div><div class="mol sm" data-mol="s_clorometoximetano"></div></div>
+            <p class="small">p-xileno · acetato de metila · ClCH₂OCH₃</p></div>
+          <div class="tile frag"><h4>Três sinais</h4>
+            <div class="cols" style="grid-template-columns:1fr 1fr; gap:.2em"><div class="mol sm" data-mol="acetato_etila"></div><div class="mol sm" data-mol="c_propanoato_de_metila"></div></div>
+            <p class="small">acetato de etila · propanoato de metila</p></div>
+        </div>
+        <p class="frag" style="margin-top:.9em">Contar os sinais já <b>diferencia isômeros</b>: só olhando o nº de picos você distingue o p-xileno (2) do etilbenzeno (3).</p>
+      </section>
+
+      <!-- 12 · TABELA DE δ -->
+      <section class="slide dense" data-title="Tabela de δ">
+        <div class="kicker">Mapa de deslocamentos de ¹H</div>
+        <h2>Onde cada tipo de H <span class="grad">costuma aparecer</span></h2>
+        <table class="mini-table" style="font-size:.95em">
+          <thead><tr><th>Tipo de H</th><th>Exemplo</th><th>δ (ppm)</th></tr></thead>
+          <tbody>
+            <tr class="frag"><td>Alcanos (CH₃, CH₂, CH)</td><td class="mono">R–CH₃</td><td>0,7–1,7</td></tr>
+            <tr class="frag"><td>Alílico · α à C=O · benzílico · H–C–N · H–C≡C</td><td class="mono">CH₃C=O, ArCH₃</td><td>1,6–3,0</td></tr>
+            <tr class="frag"><td>H–C–X (Cl, Br, I) · H–C–O (álcool, éter, éster)</td><td class="mono">CH₂Cl, OCH₃</td><td>2,5–4,8</td></tr>
+            <tr class="frag"><td>Vinílicos</td><td class="mono">C=C–H</td><td>4,5–6,5</td></tr>
+            <tr class="frag"><td>Aromáticos</td><td class="mono">Ar–H</td><td>6,5–8,0</td></tr>
+            <tr class="frag"><td>Aldeídos</td><td class="mono">R–CHO</td><td>9,0–10,0</td></tr>
+            <tr class="frag"><td>Ácidos carboxílicos</td><td class="mono">R–COOH</td><td>10,5–12,0</td></tr>
+            <tr class="frag"><td>OH e NH (variáveis!)</td><td class="mono">R–OH, R–NH₂</td><td>0,5–5,0</td></tr>
+          </tbody>
+        </table>
+        <p class="small muted" style="margin-top:.5em">Faixas resumidas da carta de correlação de Pavia et al.</p>
+      </section>
+
+      <!-- 13 · INTEGRAÇÃO -->
+      <section class="slide dense" data-title="Integração">
+        <div class="kicker">Quantos H em cada sinal?</div>
+        <h2>A área do pico é <span class="grad">proporcional ao nº de H</span></h2>
+        <div class="cols" style="align-items:start">
+          <div class="spec-card frag">
+            <div class="cap"><span>acetato de benzila · C₉H₁₀O₂</span><span>curva de integração em rosa</span></div>
+            <div class="rmn-plot" data-sinais="7.34 5 m0.12; 5.09 2 s; 2.08 3 s" data-xmax="8.5" data-int="1"></div>
+          </div>
+          <div class="frag">
+            <p>O aparelho desenha uma <b>curva em degraus</b>: a altura de cada degrau é proporcional à área. Medindo com a régua: <b class="mono">2,5 cm · 1,0 cm · 1,5 cm</b>.</p>
+            <table class="mini-table" style="margin-top:.6em; font-size:.95em">
+              <thead><tr><th>÷ menor valor</th><th>× 2</th><th>arredonde</th></tr></thead>
+              <tbody>
+                <tr><td class="mono">4,58 ÷ 1,92 = 2,39</td><td class="mono">4,78</td><td class="hl">5 H</td></tr>
+                <tr><td class="mono">1,92 ÷ 1,92 = 1,00</td><td class="mono">2,00</td><td class="hl">2 H</td></tr>
+                <tr><td class="mono">2,80 ÷ 1,92 = 1,46</td><td class="mono">2,92</td><td class="hl">3 H</td></tr>
+              </tbody>
+            </table>
+            <p class="small" style="margin-top:.5em">Total: <b>10 H</b>, como pede a fórmula. A integração dá a <b>proporção</b>; a fórmula molecular dá o número absoluto.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 14 · ELETRONEGATIVIDADE -->
+      <section class="slide dense" data-title="Eletronegatividade">
+        <div class="kicker">Fatores que mudam δ · 1</div>
+        <h2>Eletronegatividade: <span class="grad">quem puxa elétrons desblinda</span></h2>
+        <table class="mini-table frag" style="font-size:.95em">
+          <thead><tr><th>CH₃X</th><th>CH₃F</th><th>CH₃OH</th><th>CH₃Cl</th><th>CH₃Br</th><th>CH₃I</th><th>CH₄</th><th>(CH₃)₄Si</th></tr></thead>
+          <tbody>
+            <tr><td>X</td><td>F</td><td>O</td><td>Cl</td><td>Br</td><td>I</td><td>H</td><td>Si</td></tr>
+            <tr><td>χ do X</td><td>4,0</td><td>3,5</td><td>3,1</td><td>2,8</td><td>2,5</td><td>2,1</td><td>1,8</td></tr>
+            <tr><td><b>δ (ppm)</b></td><td class="hl">4,26</td><td class="hl">3,40</td><td class="hl">3,05</td><td class="hl">2,68</td><td class="hl">2,16</td><td class="hl">0,23</td><td class="hl">0</td></tr>
+          </tbody>
+        </table>
+        <div class="cols" style="margin-top:1em; align-items:center">
+          <p class="frag">Quanto <b>mais eletronegativo</b> o átomo vizinho, menor a densidade eletrônica ao redor do H e <b class="hl2">maior o δ</b>. Grupos retiradores se <b>somam</b>: CH₃Cl 3,05 · CH₂Cl₂ 5,30 · CHCl₃ 7,27.</p>
+          <div class="tile frag"><h4>O efeito cai com a distância</h4>
+            <p class="mono" style="font-size:1.05em">–CH₂–Br <b class="hl">3,30</b> &nbsp;→&nbsp; –CH₂–CH₂Br <b class="hl">1,69</b> &nbsp;→&nbsp; –CH₂–CH₂CH₂Br <b class="hl">1,25</b></p>
+            <p class="small muted">Depois de dois ou três carbonos, o efeito quase desaparece.</p></div>
+        </div>
+      </section>
+
+      <!-- 15 · HIBRIDIZAÇÃO -->
+      <section class="slide" data-title="Hibridização">
+        <div class="kicker">Fatores que mudam δ · 2</div>
+        <h2>Hibridização do <span class="grad">carbono que segura o H</span></h2>
+        <div class="cols-3" style="margin-top:.8em">
+          <div class="tile frag"><span class="tag tag-t">H em C sp³</span><div class="big-num hl3" style="margin-top:.3em">0–2</div>
+            <p>Metino (R₃C–H) &gt; metileno (–CH₂–) &gt; metila (–CH₃). Anéis tensionados (ciclopropano) chegam perto de 0.</p></div>
+          <div class="tile frag"><span class="tag tag-p">H em C sp²</span><div class="big-num hl2" style="margin-top:.3em">4,5–7</div>
+            <p>Vinílicos. O caráter s maior e a <b>anisotropia</b> desblindam. Aromáticos: 7–8. Aldeído (sp² + O): 9–10.</p></div>
+          <div class="tile frag"><span class="tag tag-b">H em C sp</span><div class="big-num hl" style="margin-top:.3em">2–3</div>
+            <p>Seria de esperar o maior δ, mas a <b>anisotropia da tripla</b> blinda o H acetilênico. Veremos já já.</p></div>
+        </div>
+      </section>
+
+      <!-- 16 · H ÁCIDOS -->
+      <section class="slide dense" data-title="H ácidos">
+        <div class="kicker">Fatores que mudam δ · 3</div>
+        <h2>H ácidos e <span class="grad">ligação de hidrogênio</span></h2>
+        <div class="cols" style="align-items:start">
+          <div>
+            <ul>
+              <li class="frag">Os H de <b>ácidos carboxílicos</b> são os mais desblindados: <b class="hl">10–12 ppm</b> (o O puxa elétrons e a ligação de hidrogênio aumenta o efeito).</li>
+              <li class="frag">Quanto <b>mais concentrada</b> a solução, mais ligações de hidrogênio e maior o δ do OH e do NH.</li>
+              <li class="frag">R–O–H: <b>0,5–1,0 ppm</b> em solução diluída, mas <b>4–5 ppm</b> quando associado por ligação de H.</li>
+              <li class="frag">Por isso, OH e NH aparecem em posições <b class="hl2">variáveis</b> e costumam ser <b>largos</b>.</li>
+            </ul>
+          </div>
+          <table class="mini-table frag" style="font-size:1em">
+            <thead><tr><th>Classe</th><th>Grupo</th><th>δ (ppm)</th></tr></thead>
+            <tbody>
+              <tr><td>Ácidos</td><td class="mono">RCOOH</td><td class="hl">10,5–12,0</td></tr>
+              <tr><td>Fenóis</td><td class="mono">ArOH</td><td>4,0–7,0</td></tr>
+              <tr><td>Álcoois</td><td class="mono">ROH</td><td>0,5–5,0</td></tr>
+              <tr><td>Aminas</td><td class="mono">RNH₂</td><td>0,5–5,0</td></tr>
+              <tr><td>Amidas</td><td class="mono">RCONH₂</td><td>5,0–8,0</td></tr>
+              <tr><td>Enóis</td><td class="mono">CH=CH–OH</td><td class="hl">&gt; 15</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 17 · ANISOTROPIA -->
+      <section class="slide dense" data-title="Anisotropia">
+        <div class="kicker">Fatores que mudam δ · 4</div>
+        <h2>Anisotropia magnética: <span class="grad">o campo dos elétrons π</span></h2>
+        <div class="cols" style="align-items:center">
+          <div>
+            <ul>
+              <li class="frag">Elétrons π circulam quando a molécula é posta no campo, criando um campo induzido com <b>regiões de blindagem (+) e de desblindagem (−)</b>.</li>
+              <li class="frag"><b class="hl">Benzeno:</b> a corrente do anel reforça o campo do lado de fora, onde estão os H. Resultado: <b>7–8 ppm</b>.</li>
+              <li class="frag"><b class="hl2">Alcenos e carbonila:</b> os H ficam na região desblindada (vinílicos 4,5–6,5; aldeídos 9–10).</li>
+              <li class="frag"><b class="hl3">Alcinos:</b> a nuvem cilíndrica da tripla gira em torno do eixo e o H fica na região <b>blindada</b>: só ~2–3 ppm.</li>
+            </ul>
+          </div>
+          <svg viewBox="0 0 380 300" class="dia frag" style="max-height:11em" aria-label="Corrente do anel no benzeno">
+            <defs><marker id="ar6" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#4ade80"/></marker></defs>
+            <line x1="190" y1="290" x2="190" y2="20" stroke="#4ade80" stroke-width="3" marker-end="url(#ar6)"/><text x="198" y="32" font-size="16" fill="#4ade80">B₀</text>
+            <ellipse cx="190" cy="160" rx="95" ry="26" fill="none" stroke="#7c5cff" stroke-width="3"/>
+            <text x="150" y="205" font-size="13">corrente do anel</text>
+            <path d="M190 150 C 120 40, 20 90, 70 160 C 20 230, 120 280, 190 170" fill="none" stroke="#ff8adc" stroke-opacity=".7" stroke-width="2"/>
+            <path d="M190 150 C 260 40, 360 90, 310 160 C 360 230, 260 280, 190 170" fill="none" stroke="#ff8adc" stroke-opacity=".7" stroke-width="2"/>
+            <circle cx="62" cy="160" r="14" fill="#4f8cff"/><text x="56" y="166" font-size="14" fill="#04121a">H</text>
+            <circle cx="318" cy="160" r="14" fill="#4f8cff"/><text x="312" y="166" font-size="14" fill="#04121a">H</text>
+            <text x="20" y="128" font-size="14" fill="#ffb14f">desblindado</text>
+            <text x="150" y="108" font-size="14" fill="#22d3c7">(+) blindado</text>
+          </svg>
+        </div>
+        <figure class="frag" style="margin:.7em 0 0; text-align:center">
+          <img src="anitropia.png" alt="Regiões de blindagem (+) e desblindagem (−) no anel aromático, na ligação dupla C=C, na carbonila e no alcino" style="display:inline-block; width:auto; max-width:100%; max-height:12em; background:#fff; border-radius:.6em; padding:.3em">
+        </figure>
+      </section>
+
+      <!-- 18 · ANULENO -->
+      <section class="slide dense" data-title="Anulenos">
+        <div class="kicker">A prova da corrente de anel</div>
+        <h2>Dentro do anel, <span class="grad">δ negativo!</span></h2>
+        <div class="cols" style="grid-template-columns: 1.35fr 1fr; margin-top:.8em; align-items:stretch">
+          <div class="tile frag">
+            <div class="cols" style="grid-template-columns: 1.15fr 1fr; align-items:center; gap:.6em">
+              <svg viewBox="0 0 300 300" class="dia" style="max-height:17em" aria-label="[18]anuleno: 12 H externos e 6 H internos"><line x1="184.0" y1="208.9" x2="218.0" y2="208.9" stroke="#e5edf7" stroke-width="2.6"/><line x1="190.1" y1="202.1" x2="211.9" y2="202.1" stroke="#e5edf7" stroke-width="2.6"/><line x1="218.0" y1="208.9" x2="235.0" y2="179.4" stroke="#e5edf7" stroke-width="2.6"/><line x1="235.0" y1="179.4" x2="218.0" y2="150.0" stroke="#e5edf7" stroke-width="2.6"/><line x1="226.1" y1="177.5" x2="215.2" y2="158.7" stroke="#e5edf7" stroke-width="2.6"/><line x1="218.0" y1="150.0" x2="235.0" y2="120.6" stroke="#e5edf7" stroke-width="2.6"/><line x1="235.0" y1="120.6" x2="218.0" y2="91.1" stroke="#e5edf7" stroke-width="2.6"/><line x1="226.1" y1="118.7" x2="215.2" y2="99.8" stroke="#e5edf7" stroke-width="2.6"/><line x1="218.0" y1="91.1" x2="184.0" y2="91.1" stroke="#e5edf7" stroke-width="2.6"/><line x1="184.0" y1="91.1" x2="167.0" y2="61.7" stroke="#e5edf7" stroke-width="2.6"/><line x1="175.1" y1="89.2" x2="164.2" y2="70.4" stroke="#e5edf7" stroke-width="2.6"/><line x1="167.0" y1="61.7" x2="133.0" y2="61.7" stroke="#e5edf7" stroke-width="2.6"/><line x1="133.0" y1="61.7" x2="116.0" y2="91.1" stroke="#e5edf7" stroke-width="2.6"/><line x1="135.8" y1="70.4" x2="124.9" y2="89.2" stroke="#e5edf7" stroke-width="2.6"/><line x1="116.0" y1="91.1" x2="82.0" y2="91.1" stroke="#e5edf7" stroke-width="2.6"/><line x1="82.0" y1="91.1" x2="65.0" y2="120.6" stroke="#e5edf7" stroke-width="2.6"/><line x1="84.8" y1="99.8" x2="73.9" y2="118.7" stroke="#e5edf7" stroke-width="2.6"/><line x1="65.0" y1="120.6" x2="82.0" y2="150.0" stroke="#e5edf7" stroke-width="2.6"/><line x1="82.0" y1="150.0" x2="65.0" y2="179.4" stroke="#e5edf7" stroke-width="2.6"/><line x1="84.8" y1="158.7" x2="73.9" y2="177.5" stroke="#e5edf7" stroke-width="2.6"/><line x1="65.0" y1="179.4" x2="82.0" y2="208.9" stroke="#e5edf7" stroke-width="2.6"/><line x1="82.0" y1="208.9" x2="116.0" y2="208.9" stroke="#e5edf7" stroke-width="2.6"/><line x1="88.1" y1="202.1" x2="109.9" y2="202.1" stroke="#e5edf7" stroke-width="2.6"/><line x1="116.0" y1="208.9" x2="133.0" y2="238.3" stroke="#e5edf7" stroke-width="2.6"/><line x1="133.0" y1="238.3" x2="167.0" y2="238.3" stroke="#e5edf7" stroke-width="2.6"/><line x1="139.1" y1="231.5" x2="160.9" y2="231.5" stroke="#e5edf7" stroke-width="2.6"/><line x1="167.0" y1="238.3" x2="184.0" y2="208.9" stroke="#e5edf7" stroke-width="2.6"/><line x1="184.0" y1="208.9" x2="173.5" y2="190.6" stroke="#4ade80" stroke-width="2"/><text x="168.4" y="186.8" font-size="16" font-weight="700" text-anchor="middle" style="fill:#4ade80">H</text><line x1="218.0" y1="208.9" x2="228.5" y2="227.1" stroke="#ff8adc" stroke-width="2"/><text x="233.6" y="241.0" font-size="16" font-weight="700" text-anchor="middle" style="fill:#ff8adc">H</text><line x1="235.0" y1="179.4" x2="256.1" y2="179.4" stroke="#ff8adc" stroke-width="2"/><text x="266.3" y="184.4" font-size="16" font-weight="700" text-anchor="middle" style="fill:#ff8adc">H</text><line x1="218.0" y1="150.0" x2="196.9" y2="150.0" stroke="#4ade80" stroke-width="2"/><text x="186.7" y="155.0" font-size="16" font-weight="700" text-anchor="middle" style="fill:#4ade80">H</text><line x1="235.0" y1="120.6" x2="256.1" y2="120.6" stroke="#ff8adc" stroke-width="2"/><text x="266.3" y="125.6" font-size="16" font-weight="700" text-anchor="middle" style="fill:#ff8adc">H</text><line x1="218.0" y1="91.1" x2="228.5" y2="72.9" stroke="#ff8adc" stroke-width="2"/><text x="233.6" y="69.0" font-size="16" font-weight="700" text-anchor="middle" style="fill:#ff8adc">H</text><line x1="184.0" y1="91.1" x2="173.5" y2="109.4" stroke="#4ade80" stroke-width="2"/><text x="168.4" y="123.2" font-size="16" font-weight="700" text-anchor="middle" style="fill:#4ade80">H</text><line x1="167.0" y1="61.7" x2="177.5" y2="43.4" stroke="#ff8adc" stroke-width="2"/><text x="182.6" y="39.6" font-size="16" font-weight="700" text-anchor="middle" style="fill:#ff8adc">H</text><line x1="133.0" y1="61.7" x2="122.5" y2="43.4" stroke="#ff8adc" stroke-width="2"/><text x="117.4" y="39.6" font-size="16" font-weight="700" text-anchor="middle" style="fill:#ff8adc">H</text><line x1="116.0" y1="91.1" x2="126.5" y2="109.4" stroke="#4ade80" stroke-width="2"/><text x="131.6" y="123.2" font-size="16" font-weight="700" text-anchor="middle" style="fill:#4ade80">H</text><line x1="82.0" y1="91.1" x2="71.5" y2="72.9" stroke="#ff8adc" stroke-width="2"/><text x="66.4" y="69.0" font-size="16" font-weight="700" text-anchor="middle" style="fill:#ff8adc">H</text><line x1="65.0" y1="120.6" x2="43.9" y2="120.6" stroke="#ff8adc" stroke-width="2"/><text x="33.7" y="125.6" font-size="16" font-weight="700" text-anchor="middle" style="fill:#ff8adc">H</text><line x1="82.0" y1="150.0" x2="103.1" y2="150.0" stroke="#4ade80" stroke-width="2"/><text x="113.3" y="155.0" font-size="16" font-weight="700" text-anchor="middle" style="fill:#4ade80">H</text><line x1="65.0" y1="179.4" x2="43.9" y2="179.4" stroke="#ff8adc" stroke-width="2"/><text x="33.7" y="184.4" font-size="16" font-weight="700" text-anchor="middle" style="fill:#ff8adc">H</text><line x1="82.0" y1="208.9" x2="71.5" y2="227.1" stroke="#ff8adc" stroke-width="2"/><text x="66.4" y="241.0" font-size="16" font-weight="700" text-anchor="middle" style="fill:#ff8adc">H</text><line x1="116.0" y1="208.9" x2="126.5" y2="190.6" stroke="#4ade80" stroke-width="2"/><text x="131.6" y="186.8" font-size="16" font-weight="700" text-anchor="middle" style="fill:#4ade80">H</text><line x1="133.0" y1="238.3" x2="122.5" y2="256.6" stroke="#ff8adc" stroke-width="2"/><text x="117.4" y="270.4" font-size="16" font-weight="700" text-anchor="middle" style="fill:#ff8adc">H</text><line x1="167.0" y1="238.3" x2="177.5" y2="256.6" stroke="#ff8adc" stroke-width="2"/><text x="182.6" y="270.4" font-size="16" font-weight="700" text-anchor="middle" style="fill:#ff8adc">H</text></svg>
+              <div>
+                <h4>[18]Anuleno</h4>
+                <p style="margin-top:.4em"><span class="big-num" style="font-size:1.6em; color:#ff8adc">+8,9</span><br>12 H <b>de fora</b>: região desblindada, como no benzeno.</p>
+                <p style="margin-top:.5em"><span class="big-num" style="font-size:1.6em; color:#4ade80">−1,8</span><br>6 H <b>de dentro</b>: no centro da corrente de anel (18 elétrons π), onde o campo induzido <b>se opõe</b> ao aplicado.</p>
+              </div>
+            </div>
+          </div>
+          <div class="tile frag">
+            <svg viewBox="0 0 300 260" class="dia" style="max-height:13em" aria-label="Paraciclofano: ponte de CH₂ passando sobre o anel benzênico"><line x1="88.0" y1="195.0" x2="119.0" y2="175.9" stroke="#e5edf7" stroke-width="3"/><line x1="119.0" y1="175.9" x2="181.0" y2="175.9" stroke="#e5edf7" stroke-width="3"/><line x1="181.0" y1="175.9" x2="212.0" y2="195.0" stroke="#e5edf7" stroke-width="3"/><line x1="212.0" y1="195.0" x2="181.0" y2="214.1" stroke="#e5edf7" stroke-width="3"/><line x1="181.0" y1="214.1" x2="119.0" y2="214.1" stroke="#e5edf7" stroke-width="3"/><line x1="119.0" y1="214.1" x2="88.0" y2="195.0" stroke="#e5edf7" stroke-width="3"/><ellipse cx="150" cy="195" rx="36" ry="11" fill="none" stroke="#e5edf7" stroke-width="2"/><path d="M88.0,195.0 L78.5,146.2 L101.4,120.4 L104.7,89.0 L132.2,84.5 L150.0,66.0 L167.8,84.5 L195.3,89.0 L198.6,120.4 L221.5,146.2 L212.0,195.0" fill="none" stroke="#e5edf7" stroke-width="3" stroke-linejoin="round"/><circle cx="150.0" cy="66.0" r="8" fill="#4ade80" fill-opacity=".4"/><line x1="150.0" y1="66.0" x2="137.0" y2="88.0" stroke="#4ade80" stroke-width="2"/><text x="132.4" y="104.0" font-size="16" font-weight="700" text-anchor="middle" style="fill:#4ade80">H</text><line x1="150.0" y1="66.0" x2="163.0" y2="88.0" stroke="#4ade80" stroke-width="2"/><text x="167.6" y="104.0" font-size="16" font-weight="700" text-anchor="middle" style="fill:#4ade80">H</text><text x="150" y="252" font-size="13" text-anchor="middle" style="fill:#9aa4b8">anel benzênico (visto de lado)</text></svg>
+            <h4><span style="color:#4ade80">≈ −1</span> · Paraciclofanos</h4>
+            <p>O CH₂ do meio da ponte fica bem em cima do anel benzênico, na região blindada: aparece abaixo do TMS.</p>
+          </div>
+        </div>
+        <p class="frag" style="margin-top:.9em">A mesma corrente que desblinda os H de fora <b class="hl">blinda</b> quem está sobre ou dentro do anel. A posição no espaço importa, e não só as ligações.</p>
+      </section>
+
+      <!-- 19 · n+1 -->
+      <section class="slide dense" data-title="Regra do n+1">
+        <div class="kicker">Desdobramento spin-spin</div>
+        <h2>Os sinais <span class="grad">se dividem</span>: regra do n + 1</h2>
+        <p class="frag">Além do ambiente químico e da quantidade, o espectro informa quantos H estão nos <b>carbonos vizinhos</b> (acoplados). Um sinal se divide em <b class="hl">n + 1 picos</b>, em que n é o nº de H vizinhos <b>não equivalentes</b> a ele.</p>
+        <div class="cols-3" style="margin-top:.6em">
+          <div class="spec-card frag"><div class="cap"><span><b>Cl₂CH–CH₂Cl</b></span><span>t (1H) · d (2H)</span></div>
+            <div class="rmn-plot" data-sinais="5.77 1 t6.0; 3.95 2 d6.0" data-xmin="3" data-xmax="6.5" data-ampl="1" data-rot="a,b"></div></div>
+          <div class="spec-card frag"><div class="cap"><span><b>CH₃CH₂I</b></span><span>q (2H) · t (3H)</span></div>
+            <div class="rmn-plot" data-sinais="3.20 2 q7.5; 1.83 3 t7.5" data-xmin="1" data-xmax="4" data-ampl="1" data-rot="a,b"></div></div>
+          <div class="spec-card frag"><div class="cap"><span><b>(CH₃)₂CH–NO₂</b></span><span>sept (1H) · d (6H)</span></div>
+            <div class="rmn-plot" data-sinais="4.67 1 sept6.6; 1.56 6 d6.6" data-xmin="1" data-xmax="5.5" data-ampl="1" data-rot="a,b"></div></div>
+        </div>
+      </section>
+
+      <!-- 20 · POR QUE DESDOBRA -->
+      <section class="slide dense" data-title="Por que desdobra?">
+        <div class="kicker">Por que existe o desdobramento?</div>
+        <h2>O spin do vizinho <span class="grad">soma ou subtrai</span> campo</h2>
+        <div class="cols-3" style="margin-top:.4em">
+          <div class="tile frag"><h4>1 vizinho → dubleto</h4>
+            <p class="mono" style="font-size:1.2em; letter-spacing:.1em"><span class="hl3">↑</span> &nbsp; <span class="hl2">↓</span></p>
+            <p class="small">O H vizinho pode estar +½ (reforça B₀) ou −½ (enfraquece): metade das moléculas de cada jeito → <b>1 : 1</b>.</p>
+            <div class="rmn-plot" data-modo="zoom" data-sinais="1 1 d7"></div></div>
+          <div class="tile frag"><h4>2 vizinhos → tripleto</h4>
+            <p class="mono" style="font-size:1.2em; letter-spacing:.1em"><span class="hl3">↑↑</span> &nbsp; <span class="hl">↑↓ ↓↑</span> &nbsp; <span class="hl2">↓↓</span></p>
+            <p class="small">Há duas formas de os spins se cancelarem: o pico do meio é o dobro → <b>1 : 2 : 1</b>.</p>
+            <div class="rmn-plot" data-modo="zoom" data-sinais="1 1 t7"></div></div>
+          <div class="tile frag"><h4>3 vizinhos → quarteto</h4>
+            <p class="mono" style="font-size:1.05em; letter-spacing:.06em"><span class="hl3">↑↑↑</span> <span class="hl">↑↑↓ ×3</span> <span class="hl">↑↓↓ ×3</span> <span class="hl2">↓↓↓</span></p>
+            <p class="small">Combinações 1, 3, 3, 1 → <b>1 : 3 : 3 : 1</b>.</p>
+            <div class="rmn-plot" data-modo="zoom" data-sinais="1 1 q7"></div></div>
+        </div>
+        <p class="frag small" style="margin-top:.6em">H equivalentes entre si <b>não</b> se desdobram uns aos outros: os 3 H de um CH₃ isolado dão um singleto.</p>
+      </section>
+
+      <!-- 21 · PASCAL -->
+      <section class="slide" data-title="Pascal">
+        <div class="kicker">As intensidades relativas</div>
+        <h2>O <span class="grad">triângulo de Pascal</span> dá as alturas</h2>
+        <div class="cols" style="align-items:center">
+          <div class="pascal frag">
+            <div><em>n = 0 · singleto</em><span>1</span></div>
+            <div><em>1 · dubleto</em><span>1</span><span>1</span></div>
+            <div><em>2 · tripleto</em><span>1</span><span>2</span><span>1</span></div>
+            <div><em>3 · quarteto</em><span>1</span><span>3</span><span>3</span><span>1</span></div>
+            <div><em>4 · quinteto</em><span>1</span><span>4</span><span>6</span><span>4</span><span>1</span></div>
+            <div><em>5 · sexteto</em><span>1</span><span>5</span><span>10</span><span>10</span><span>5</span><span>1</span></div>
+            <div><em>6 · septeto</em><span>1</span><span>6</span><span>15</span><span>20</span><span>15</span><span>6</span><span>1</span></div>
+          </div>
+          <div class="frag">
+            <div class="spec-card"><div class="cap"><span>septeto (6 vizinhos: dois CH₃)</span><span>1:6:15:20:15:6:1</span></div>
+              <div class="rmn-plot" data-modo="zoom" data-sinais="1 1 sept6.6"></div></div>
+            <p class="small" style="margin-top:.5em">Nos multipletos grandes as linhas externas são tão baixas que podem se perder no ruído: um septeto pode "parecer" um quinteto. Confira sempre a integração dos vizinhos.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 22 · CONSTANTE J -->
+      <section class="slide dense" data-title="Constante J">
+        <div class="kicker">Constante de acoplamento</div>
+        <h2>J: a distância entre as linhas, <span class="grad">em Hz</span></h2>
+        <div class="cols" style="align-items:start">
+          <div>
+            <ul>
+              <li class="frag"><b>J</b> mede o quanto um núcleo é influenciado pelo vizinho. É a separação, em <b>Hz</b>, entre duas linhas vizinhas de um multipleto.</li>
+              <li class="frag">É <b class="hl">constante, independente da frequência do aparelho</b>: a 60 ou a 600 MHz, J é o mesmo. (Já o δ em Hz muda com o aparelho.)</li>
+              <li class="frag">Por isso, num espectro ampliado, basta subtrair as posições das linhas: <span class="mono hl">738,0 − 731,0 = 7,0 Hz</span>.</li>
+              <li class="frag">Notação: ²J (geminal, H–C–H), <b>³J</b> (vicinal, H–C–C–H, o mais comum), ⁴J (longa distância).</li>
+            </ul>
+          </div>
+          <div class="spec-card frag"><div class="cap"><span>quarteto de um CH₂ (300 MHz) · posições em Hz</span><span>J = 7,0 Hz</span></div>
+            <div class="rmn-plot" data-modo="zoom" data-hz="1" data-sinais="2.44 2 q7.0"></div></div>
+        </div>
+      </section>
+
+      <!-- 23 · VALORES DE J -->
+      <section class="slide dense" data-title="Valores de J">
+        <div class="kicker">J também identifica geometria</div>
+        <h2>Valores típicos de <span class="grad">constante de acoplamento</span></h2>
+        <table class="mini-table" style="font-size:.95em">
+          <thead><tr><th>Sistema</th><th>J (Hz)</th><th>Observação</th></tr></thead>
+          <tbody>
+            <tr class="frag"><td class="mono">H–C–C–H (livre rotação)</td><td class="hl">6–8 (≈ 7)</td><td>Cadeias alquílicas</td></tr>
+            <tr class="frag"><td class="mono">H–C=C–H trans</td><td class="hl">11–18 (≈ 16)</td><td>Distingue isômeros <b>E/Z</b></td></tr>
+            <tr class="frag"><td class="mono">H–C=C–H cis</td><td class="hl">6–15 (≈ 10)</td><td>Sempre menor que o trans</td></tr>
+            <tr class="frag"><td class="mono">=CH₂ geminal · H–C=C–C–H alílico</td><td>0–3</td><td>Mesmo no mesmo carbono, os H podem não ser equivalentes</td></tr>
+            <tr class="frag"><td class="mono">Ar–H orto · meta · para</td><td>7–10 · 2–3 · 0–1</td><td>Padrão de substituição do anel</td></tr>
+            <tr class="frag"><td class="mono">H–C–CHO</td><td>1–3</td><td>Acoplamento fraco do aldeído</td></tr>
+            <tr class="frag"><td class="mono">H–C≡C–C–H</td><td>2–3</td><td>⁴J através da tripla</td></tr>
+            <tr class="frag"><td class="mono">H–C–F · H–C–C–F</td><td>≈ 50 · ≈ 20</td><td>O ¹⁹F também acopla com o ¹H</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- 24 · RECÍPROCOS -->
+      <section class="slide" data-title="J recíprocos">
+        <div class="kicker">Quem acopla com quem?</div>
+        <h2>Parceiros de acoplamento <span class="grad">têm o mesmo J</span></h2>
+        <p class="frag lead" style="margin-top:.6em">"As constantes de acoplamento dos grupos de prótons que produzem separações recíprocas devem ser idênticas."</p>
+        <div class="cols-4" style="margin-top:1.2em">
+          <div class="tile frag"><h4>A · J = 7 Hz</h4><div class="rmn-plot" data-modo="zoom" data-sinais="1 1 d7"></div></div>
+          <div class="tile frag"><h4>B · J = 5 Hz</h4><div class="rmn-plot" data-modo="zoom" data-sinais="1 1 d5"></div></div>
+          <div class="tile frag"><h4>C · J = 7 Hz</h4><div class="rmn-plot" data-modo="zoom" data-sinais="1 1 d7"></div></div>
+          <div class="tile frag"><h4>D · J = 5 Hz</h4><div class="rmn-plot" data-modo="zoom" data-sinais="1 1 d5"></div></div>
+        </div>
+        <p class="frag" style="margin-top:1em">Logo, <b class="hl">A acopla com C</b> e <b class="hl2">B acopla com D</b>. Em espectros complicados, comparar os J é o jeito de descobrir quais grupos são vizinhos.</p>
+      </section>
+
+      <!-- 25 · ALCANOS -->
+      <section class="slide dense" data-title="Alcanos">
+        <div class="kicker">Classes de compostos · alcanos</div>
+        <h2>Alcanos: <span class="grad">tudo entre 0,7 e 1,7 ppm</span></h2>
+        <div class="cols" style="align-items:start">
+          <table class="mini-table frag" style="font-size:.95em">
+            <tbody>
+              <tr><td class="mono">R–CH₃</td><td class="hl">0,7–1,3</td><td>pico isolado e agudo</td></tr>
+              <tr><td class="mono">R–CH₂–R</td><td class="hl">1,2–1,4</td><td>em cadeias longas se agrupam num único pico</td></tr>
+              <tr><td class="mono">R₃CH</td><td class="hl">1,4–1,7</td><td>acima dos demais</td></tr>
+              <tr><td class="mono">–CH–CH–</td><td>³J = 7–8 Hz</td><td></td></tr>
+            </tbody>
+          </table>
+          <div class="spec-card frag"><div class="cap"><span><b>octano</b> · CH₃(CH₂)₆CH₃</span><span>12H : 6H</span></div>
+            <div class="rmn-plot" data-sinais="1.27 12 m0.08; 0.88 6 t6.9" data-xmax="3" data-int="1" data-rot="b,a"></div></div>
+        </div>
+        <p class="frag small" style="margin-top:.6em">Os 12 H dos CH₂ internos têm ambientes tão parecidos que formam um único "morro"; os dois CH₃ das pontas dão o tripleto em 0,88.</p>
+      </section>
+
+      <!-- 26 · ALCENOS -->
+      <section class="slide dense" data-title="Alcenos">
+        <div class="kicker">Classes de compostos · alcenos</div>
+        <h2>Alcenos: H <span class="grad">vinílicos e alílicos</span></h2>
+        <div class="cols" style="align-items:start">
+          <div>
+            <table class="mini-table frag" style="font-size:.95em">
+              <tbody>
+                <tr><td class="mono">C=C–H (vinílico)</td><td class="hl">4,5–6,5</td></tr>
+                <tr><td class="mono">C=C–C–H (alílico)</td><td class="hl">1,6–2,6</td></tr>
+                <tr><td class="mono">H–C=C–H</td><td>³J trans 11–18 · cis 6–15</td></tr>
+                <tr><td class="mono">=CH₂ · –HC=C–C–H</td><td>²J 0–3 · ⁴J 0–3</td></tr>
+              </tbody>
+            </table>
+            <p class="frag small" style="margin-top:.5em">Os dois tipos são desblindados pela <b>anisotropia</b> da ligação dupla.</p>
+          </div>
+          <div class="spec-card frag"><div class="cap"><span><b>2-metil-1-penteno</b></span><span>2 : 2 : 3 : 2 : 3</span></div>
+            <div class="rmn-plot" data-sinais="4.69 2 m0.03; 2.00 2 t7.4; 1.71 3 s; 1.45 2 sext7.4; 0.91 3 t7.4" data-xmax="5.5" data-int="1" data-rot="e,d,c,b,a"></div></div>
+        </div>
+      </section>
+
+      <!-- 27 · ALCINOS -->
+      <section class="slide dense" data-title="Alcinos">
+        <div class="kicker">Classes de compostos · alcinos</div>
+        <h2>Alcinos: a tripla <span class="grad">blinda e acopla de longe</span></h2>
+        <div class="cols" style="align-items:start">
+          <div>
+            <table class="mini-table frag" style="font-size:.95em">
+              <tbody>
+                <tr><td class="mono">C≡C–H</td><td class="hl">1,7–2,7</td></tr>
+                <tr><td class="mono">C≡C–CH–</td><td class="hl">1,6–2,6</td></tr>
+                <tr><td class="mono">H–C≡C–C–H</td><td>⁴J = 2–3 Hz</td></tr>
+              </tbody>
+            </table>
+            <p class="frag" style="margin-top:.6em">No 1-pentino, o H acetilênico (1,94) é um <b>tripleto</b> com J = 2,6 Hz: acopla com o CH₂ do outro lado da tripla. E esse CH₂ (2,16) é um <b class="hl">tripleto de dubletos</b>: ³J = 7 Hz com o CH₂ vizinho e ⁴J = 2,6 Hz com o ≡C–H.</p>
+          </div>
+          <div class="spec-card frag"><div class="cap"><span><b>1-pentino</b> · HC≡C–CH₂CH₂CH₃</span><span>2 : 1 : 2 : 3</span></div>
+            <div class="rmn-plot" data-sinais="2.16 2 td7.1/2.6; 1.94 1 t2.6; 1.56 2 sext7.2; 1.00 3 t7.4" data-xmax="3" data-int="1" data-ampl="1" data-rot="d,c,b,a"></div></div>
+        </div>
+      </section>
+
+      <!-- 28 · AROMÁTICOS -->
+      <section class="slide dense" data-title="Aromáticos">
+        <div class="kicker">Classes de compostos · aromáticos</div>
+        <h2>Aromáticos: <span class="grad">6,5 a 8,0 ppm</span></h2>
+        <div class="cols" style="align-items:start">
+          <div>
+            <ul>
+              <li class="frag">H aromáticos: <b class="hl">6,5–8,0 ppm</b> (anisotropia do anel). H benzílicos (Ar–C–H): <b>2,3–2,7</b>.</li>
+              <li class="frag">J no anel: <b>orto 7–10 Hz</b> · meta 2–3 · para 0–1.</li>
+              <li class="frag">Grupos que retiram elétrons (NO₂, C=O) <b class="hl2">desblindam</b> os H orto; grupos doadores (OCH₃, NH₂) <b class="hl3">blindam</b>.</li>
+              <li class="frag">Anel <b>para-dissubstituído</b>: dois "dubletos" de 2H cada, com o mesmo J (orto). Monossubstituído: um bloco de 5H.</li>
+            </ul>
+          </div>
+          <div class="spec-card frag"><div class="cap"><span><b>4-nitrotolueno</b></span><span>2 : 2 : 3</span></div>
+            <div class="rmn-plot" data-sinais="8.10 2 d8.6; 7.31 2 d8.6; 2.46 3 s" data-xmax="9" data-int="1" data-ampl="1" data-rot="c,b,a"></div></div>
+        </div>
+      </section>
+
+      <!-- 29 · HALETOS -->
+      <section class="slide dense" data-title="Haletos">
+        <div class="kicker">Classes de compostos · haletos de alquila</div>
+        <h2>Haletos: <span class="grad">quanto mais eletronegativo, maior δ</span></h2>
+        <div class="cols" style="align-items:start">
+          <table class="mini-table frag" style="font-size:.95em">
+            <tbody>
+              <tr><td class="mono">–CH–I</td><td class="hl">2,0–4,0</td></tr>
+              <tr><td class="mono">–CH–Br</td><td class="hl">2,7–4,1</td></tr>
+              <tr><td class="mono">–CH–Cl</td><td class="hl">3,1–4,1</td></tr>
+              <tr><td class="mono">–CH–F</td><td class="hl">4,2–4,8</td></tr>
+              <tr><td class="mono">H–C–F · H–C–C–F</td><td>²J ≈ 50 Hz · ³J ≈ 20 Hz</td></tr>
+            </tbody>
+          </table>
+          <div class="spec-card frag"><div class="cap"><span><b>1-clorobutano</b> · CH₃CH₂CH₂CH₂Cl</span><span>2 : 2 : 2 : 3</span></div>
+            <div class="rmn-plot" data-sinais="3.54 2 t6.7; 1.76 2 quint7.0; 1.45 2 sext7.3; 0.94 3 t7.3" data-xmax="4.5" data-int="1" data-rot="d,c,b,a"></div></div>
+        </div>
+        <p class="frag small" style="margin-top:.5em">Só o CH₂ ligado ao Cl sai da região dos alcanos. Os outros sentem o Cl cada vez menos (efeito da distância).</p>
+      </section>
+
+      <!-- 30 · ÁLCOOIS -->
+      <section class="slide dense" data-title="Álcoois">
+        <div class="kicker">Classes de compostos · álcoois</div>
+        <h2>Álcoois: o OH <span class="grad">anda e não acopla</span></h2>
+        <div class="cols" style="align-items:start">
+          <div>
+            <table class="mini-table frag" style="font-size:.92em">
+              <tbody>
+                <tr><td class="mono">C–O–H</td><td class="hl">0,5–5,0</td><td>depende de temperatura, concentração, pureza</td></tr>
+                <tr><td class="mono">CH–OH</td><td class="hl">3,2–3,8</td><td>desblindado pelo O</td></tr>
+                <tr><td class="mono">HC–O–H</td><td>³J ≈ 5 Hz</td><td>geralmente não se observa</td></tr>
+              </tbody>
+            </table>
+            <p class="frag small" style="margin-top:.5em">O H da hidroxila é <b>trocado</b> rapidamente com outras moléculas: o acoplamento some. Em amostras muito puras ele aparece.</p>
+            <p class="frag small"><b class="hl">Teste do D₂O:</b> –CH–OH + D₂O ⇌ –CH–OD + HDO. O sinal do OH desaparece.</p>
+          </div>
+          <div class="spec-card frag"><div class="cap"><span><b>2-metilpropan-1-ol</b> · (CH₃)₂CHCH₂OH</span><span>2 : 1 : 1 : 6</span></div>
+            <div class="rmn-plot" data-sinais="3.39 2 d6.5; 2.20 1 br; 1.77 1 non6.7; 0.92 6 d6.7" data-xmax="4.5" data-int="1" data-rot="d,c,b,a"></div></div>
+        </div>
+      </section>
+
+      <!-- 31 · ÉTERES -->
+      <section class="slide dense" data-title="Éteres">
+        <div class="kicker">Classes de compostos · éteres</div>
+        <h2>Éteres: <span class="grad">CH–O em 3,2–3,8 ppm</span></h2>
+        <div class="cols" style="align-items:start">
+          <div>
+            <ul>
+              <li class="frag">O H α (C–H ligado ao O) é parecido com o dos álcoois: fortemente desblindado pela eletronegatividade do O.</li>
+              <li class="frag">Grupos <b class="hl">metóxi</b> (–OCH₃): um <b>singleto</b> nessa faixa.</li>
+              <li class="frag">Grupos <b class="hl2">etóxi</b> (–OCH₂CH₃): um <b>tripleto</b> blindado e um <b>quarteto</b> na região do O.</li>
+              <li class="frag">Epóxidos: desblindagem menos eficiente pela tensão do anel, <b>2,5–3,5 ppm</b>.</li>
+            </ul>
+          </div>
+          <div class="spec-card frag"><div class="cap"><span><b>butil metil éter</b> · CH₃CH₂CH₂CH₂OCH₃</span><span>2 : 3 : 2 : 2 : 3</span></div>
+            <div class="rmn-plot" data-sinais="3.37 2 t6.5; 3.33 3 s; 1.55 2 quint7.0; 1.37 2 sext7.3; 0.92 3 t7.3" data-xmax="4.5" data-int="1" data-ampl="1" data-rot="e,d,c,b,a"></div></div>
+        </div>
+      </section>
+
+      <!-- 32 · AMINAS -->
+      <section class="slide dense" data-title="Aminas">
+        <div class="kicker">Classes de compostos · aminas</div>
+        <h2>Aminas: <span class="grad">parecidas com os álcoois</span></h2>
+        <div class="cols" style="align-items:start">
+          <table class="mini-table frag" style="font-size:.92em">
+            <tbody>
+              <tr><td class="mono">R–N–H</td><td class="hl">0,5–4,0</td><td>depende de temperatura, concentração, pureza</td></tr>
+              <tr><td class="mono">–CH–N–</td><td class="hl">2,2–2,9</td><td>leve desblindagem (N menos eletronegativo que O)</td></tr>
+              <tr><td class="mono">Ar–N–H</td><td class="hl">3,0–5,0</td><td>desblindado pela anisotropia</td></tr>
+              <tr><td class="mono">–N–H · H–C–N–H</td><td>¹J ≈ 50 Hz (raro) · ³J ≈ 0</td><td>troca rápida: sem acoplamento</td></tr>
+            </tbody>
+          </table>
+          <div class="spec-card frag"><div class="cap"><span><b>propilamina</b> · CH₃CH₂CH₂NH₂</span><span>2 : 2 : 2 : 3</span></div>
+            <div class="rmn-plot" data-sinais="2.67 2 t7.0; 1.46 2 sext7.2; 1.15 2 br; 0.92 3 t7.4" data-xmax="3.5" data-int="1" data-rot="d,c,b,a"></div></div>
+        </div>
+      </section>
+
+      <!-- 33 · NITRILAS E NITRO -->
+      <section class="slide dense" data-title="Nitrilas e nitro">
+        <div class="kicker">Classes de compostos · nitrilas e nitroalcanos</div>
+        <h2>C≡N desblinda pouco; <span class="grad">NO₂ desblinda muito</span></h2>
+        <div class="cols" style="align-items:start">
+          <div class="spec-card frag"><div class="cap"><span><b>pentanonitrila</b> · H α ao CN: <b class="hl">2,1–3,0</b></span><span>2 : 2 : 2 : 3</span></div>
+            <div class="rmn-plot" data-sinais="2.34 2 t7.1; 1.66 2 quint7.3; 1.48 2 sext7.3; 0.96 3 t7.3" data-xmax="5" data-int="1" data-rot="d,c,b,a"></div></div>
+          <div class="spec-card frag"><div class="cap"><span><b>1-nitrobutano</b> · H α ao NO₂: <b class="hl2">4,1–4,4</b></span><span>2 : 2 : 2 : 3</span></div>
+            <div class="rmn-plot" data-sinais="4.39 2 t7.1; 2.00 2 quint7.4; 1.40 2 sext7.4; 0.97 3 t7.4" data-xmax="5" data-int="1" data-rot="d,c,b,a"></div></div>
+        </div>
+        <p class="frag" style="margin-top:.6em">O H α da nitrila lembra o dos éteres e das cetonas; o do nitro é tão desblindado quanto um O–CH₂ de éster.</p>
+      </section>
+
+      <!-- 34 · CETONAS -->
+      <section class="slide dense" data-title="Cetonas">
+        <div class="kicker">Classes de compostos · cetonas</div>
+        <h2>Cetonas: <span class="grad">só o H α denuncia</span></h2>
+        <div class="cols" style="align-items:start">
+          <div>
+            <ul>
+              <li class="frag">O único H característico de uma cetona é o <b>H α</b> (no carbono ligado à C=O): <b class="hl">2,1–2,4 ppm</b>. O mesmo vale para outros compostos carbonílicos.</li>
+              <li class="frag">Metilcetonas (CH₃–C=O) dão um <b>singleto de 3H</b> forte nessa região.</li>
+              <li class="frag">Para diferenciar cetonas de outras funções, procure a <b>ausência</b> dos deslocamentos típicos delas (CHO em 9–10, O–CH em 3,5–4,8, COOH em 11–12) e use o IV.</li>
+            </ul>
+          </div>
+          <div class="spec-card frag"><div class="cap"><span><b>5-metil-2-hexanona</b></span><span>2 : 3 : 3 : 6</span></div>
+            <div class="rmn-plot" data-sinais="2.42 2 t7.6; 2.13 3 s; 1.50 3 m0.10; 0.89 6 d6.4" data-xmax="3.5" data-int="1"></div></div>
+        </div>
+      </section>
+
+      <!-- 35 · ALDEÍDOS -->
+      <section class="slide dense" data-title="Aldeídos">
+        <div class="kicker">Classes de compostos · aldeídos</div>
+        <h2>Aldeídos: <span class="grad">um sinal quase exclusivo em 9–10</span></h2>
+        <div class="cols" style="align-items:start">
+          <div>
+            <table class="mini-table frag" style="font-size:.92em">
+              <tbody>
+                <tr><td class="mono">R–CHO</td><td class="hl">9,0–10,0</td><td>posição quase exclusiva dos aldeídos</td></tr>
+                <tr><td class="mono">R–CH–CHO</td><td class="hl">2,1–2,4</td><td>levemente desblindado</td></tr>
+                <tr><td class="mono">R–CH–CHO</td><td>³J = 1–3 Hz</td><td>acoplamento fraco</td></tr>
+              </tbody>
+            </table>
+            <p class="frag small" style="margin-top:.5em">Os dois H (CHO e α) são desblindados pela carbonila: eletronegatividade + anisotropia. No 2-metilpropanal, o CH é um <b class="hl">septeto de dubletos</b>: ³J = 7,0 Hz com os dois CH₃ e ³J = 1,5 Hz com o CHO.</p>
+          </div>
+          <div class="spec-card frag"><div class="cap"><span><b>2-metilpropanal</b> · (CH₃)₂CH–CHO</span><span>1 : 1 : 6</span></div>
+            <div class="rmn-plot" data-sinais="9.61 1 d1.5; 2.44 1 septd7.0/1.5; 1.12 6 d7.0" data-xmax="10.5" data-int="1" data-ampl="1" data-rot="c,b,a"></div></div>
+        </div>
+      </section>
+
+      <!-- 36 · ÉSTERES -->
+      <section class="slide dense" data-title="Ésteres">
+        <div class="kicker">Classes de compostos · ésteres</div>
+        <h2>Ésteres: <span class="grad">dois lados, duas faixas</span></h2>
+        <div class="cols" style="align-items:start">
+          <div>
+            <ul>
+              <li class="frag">H α à carbonila (lado ácido): <b class="hl">2,1–2,5 ppm</b>.</li>
+              <li class="frag">H α ao O (lado alcoólico): <b class="hl2">3,5–4,8 ppm</b>.</li>
+              <li class="frag">É isso que separa isômeros como <b>acetato de etila</b> (CH₂ em 4,12) e <b>propanoato de metila</b> (CH₂ em 2,32).</li>
+            </ul>
+          </div>
+          <div class="spec-card frag"><div class="cap"><span><b>acetato de isobutila</b> · CH₃COOCH₂CH(CH₃)₂</span><span>2 : 3 : 1 : 6</span></div>
+            <div class="rmn-plot" data-sinais="3.85 2 d6.7; 2.05 3 s; 1.93 1 non6.7; 0.93 6 d6.7" data-xmax="4.5" data-int="1" data-rot="d,c,b,a"></div></div>
+        </div>
+      </section>
+
+      <!-- 37 · ÁCIDOS -->
+      <section class="slide dense" data-title="Ácidos carboxílicos">
+        <div class="kicker">Classes de compostos · ácidos carboxílicos</div>
+        <h2>Ácidos: <span class="grad">o H mais desblindado de todos</span></h2>
+        <div class="cols" style="align-items:start">
+          <div>
+            <ul>
+              <li class="frag">H α à carbonila: <b class="hl">2,1–2,5 ppm</b>. H ácido: <b class="hl2">11,0–12,0 ppm</b>.</li>
+              <li class="frag">O H ácido <b>não é desdobrado</b>.</li>
+              <li class="frag">As ligações de hidrogênio fazem o pico ficar <b>alargado</b> e, às vezes, tão largo que desaparece na linha de base.</li>
+            </ul>
+          </div>
+          <div class="spec-card frag"><div class="cap"><span><b>ácido 2-metilpropanoico</b></span><span>1 : 1 : 6</span></div>
+            <div class="rmn-plot" data-sinais="11.9 1 br; 2.57 1 sept7.0; 1.20 6 d7.0" data-xmax="13" data-int="1" data-rot="c,b,a"></div></div>
+        </div>
+      </section>
+
+      <!-- 38 · AMIDAS -->
+      <section class="slide dense" data-title="Amidas">
+        <div class="kicker">Classes de compostos · amidas</div>
+        <h2>Amidas: <span class="grad">o espectro mais complexo</span></h2>
+        <div class="cols" style="align-items:start">
+          <div>
+            <ul>
+              <li class="frag">H α à carbonila: <b class="hl">2,1–2,5</b> · N–H: <b class="hl2">5,0–9,0</b>, largos.</li>
+              <li class="frag">Diferente das aminas, os H ligados ao N <b>podem acoplar</b> com o CH vizinho (³J = 0–7 Hz).</li>
+              <li class="frag">A ligação C–N tem caráter de dupla (ressonância) e <b>não gira livremente</b>: os dois H do NH₂ ficam em ambientes diferentes e dão <b>dois sinais</b>.</li>
+            </ul>
+          </div>
+          <div class="spec-card frag"><div class="cap"><span><b>butanamida</b> · CH₃CH₂CH₂CONH₂</span><span>1 : 1 : 2 : 2 : 3</span></div>
+            <div class="rmn-plot" data-sinais="6.03 1 br; 5.62 1 br; 2.20 2 t7.5; 1.67 2 sext7.4; 0.96 3 t7.4" data-xmax="7.5" data-int="1"></div></div>
+        </div>
+      </section>
+
+      <!-- 39 · IDH + IV -->
+      <section class="slide" data-title="IDH e IV">
+        <div class="kicker">Antes de olhar o espectro</div>
+        <h2>Comece pela fórmula: <span class="grad">calcule o IDH</span></h2>
+        <div class="cols" style="align-items:start">
+          <div>
+            <p class="frag"><span class="eq-box eq">IDH = (2C + 2 + N − H − X) ÷ 2</span></p>
+            <p class="frag small" style="margin-top:.4em">X = halogênios (contam como H) · o oxigênio não entra na conta.</p>
+            <ul style="margin-top:.6em">
+              <li class="frag"><b>IDH 0</b> + um O → álcool ou éter.</li>
+              <li class="frag"><b>IDH 1</b> + O → provavelmente C=O (aldeído, cetona, éster, ácido); sem O → C=C ou anel.</li>
+              <li class="frag"><b>IDH 2</b> + N → pense em nitrila (C≡N).</li>
+              <li class="frag"><b>IDH ≥ 4</b> → pense em anel benzênico.</li>
+            </ul>
+          </div>
+          <div class="tile frag"><h4>Dados que se completam</h4>
+            <p><b class="hl">IV</b> confirma o grupo funcional (C=O em ~1715, O–H largo em ~3300…).<br>
+            <b class="hl2">EM</b> dá a massa e a fórmula.<br>
+            <b class="hl3">RMN</b> diz como os pedaços se ligam.</p>
+            <p class="small muted" style="margin-top:.5em">Um O, IDH = 0 → álcool ou éter. Se o IV não mostra O–H, é éter; o RMN diz qual.</p></div>
+        </div>
+      </section>
+
+      <!-- 40 · EXERCÍCIO 1 -->
+      <section class="slide dense" data-title="Exercício: ésteres">
+        <div class="kicker">Exercício · C₅H₁₀O₂ (IDH = 1)</div>
+        <h2>Dois ésteres isoméricos. <span class="grad">Quem é quem?</span></h2>
+        <div class="cols" style="align-items:start">
+          <div class="spec-card"><div class="cap"><span><b>Espectro A</b></span><span>300 MHz</span></div>
+            <div class="rmn-plot" data-sinais="4.02 2 t6.7; 2.05 3 s; 1.65 2 sext7.0; 0.94 3 t7.4" data-xmax="5.5" data-int="1"></div>
+            <p class="frag small" style="margin-top:.3em">✅ <b class="hl">Acetato de propila</b>: tripleto 2H em 4,02 (OCH₂ com CH₂ vizinho) + sexteto + tripleto; singleto 3H do acetato.</p></div>
+          <div class="spec-card"><div class="cap"><span><b>Espectro B</b></span><span>300 MHz</span></div>
+            <div class="rmn-plot" data-sinais="4.99 1 sept6.3; 2.02 3 s; 1.23 6 d6.3" data-xmax="5.5" data-int="1"></div>
+            <p class="frag small" style="margin-top:.3em">✅ <b class="hl2">Acetato de isopropila</b>: septeto 1H em 4,99 (OCH com dois CH₃ vizinhos) e dubleto 6H.</p></div>
+        </div>
+      </section>
+
+      <!-- 41 · EXERCÍCIO 2 -->
+      <section class="slide dense" data-title="Exercício: ácidos">
+        <div class="kicker">Exercício · C₃H₅ClO₂ (IDH = 1)</div>
+        <h2>Dois ácidos isoméricos. <span class="grad">Onde está o cloro?</span></h2>
+        <div class="cols" style="align-items:start">
+          <div class="spec-card"><div class="cap"><span><b>Espectro A</b></span><span>300 MHz</span></div>
+            <div class="rmn-plot" data-sinais="11.2 1 br; 4.43 1 q6.9; 1.73 3 d6.9" data-xmax="12.5" data-int="1"></div>
+            <p class="frag small" style="margin-top:.3em">✅ <b class="hl">Ácido 2-cloropropanoico</b>: quarteto 1H em 4,43 (CH com Cl <b>e</b> C=O) + dubleto 3H.</p></div>
+          <div class="spec-card"><div class="cap"><span><b>Espectro B</b></span><span>300 MHz</span></div>
+            <div class="rmn-plot" data-sinais="11.0 1 br; 3.77 2 t6.6; 2.87 2 t6.6" data-xmax="12.5" data-int="1"></div>
+            <p class="frag small" style="margin-top:.3em">✅ <b class="hl2">Ácido 3-cloropropanoico</b>: dois tripletos de 2H: CH₂Cl (3,1–4,1) e CH₂ α à C=O (2,1–2,5).</p></div>
+        </div>
+      </section>
+
+      <!-- 42 · ROTEIRO -->
+      <section class="slide" data-title="Roteiro">
+        <div class="kicker">Juntando tudo</div>
+        <h2>Roteiro para <span class="grad">ler um espectro desconhecido</span></h2>
+        <ol class="checklist" style="margin-top:.6em">
+          <li class="frag">Calcule o <b class="hl">IDH</b> a partir da fórmula molecular.</li>
+          <li class="frag">Conte os <b>sinais</b>: quantos tipos de H existem? (Pense em simetria.)</li>
+          <li class="frag">Use a <b>integração</b> para achar o nº de H de cada sinal (a soma é o H da fórmula).</li>
+          <li class="frag">Leia o <b>desdobramento</b>: n + 1 picos → n H vizinhos. Meça J e encontre os parceiros (mesmo J).</li>
+          <li class="frag">Use o <b class="hl3">deslocamento químico</b> para saber a que cada grupo está ligado (O, N, C=O, anel, halogênio…).</li>
+          <li class="frag">Monte os fragmentos (CH₃CH₂–, (CH₃)₂CH–, –OCH₃…) e una as peças respeitando a fórmula.</li>
+          <li class="frag">Confira: a estrutura proposta explica <b>todos</b> os sinais? Bate com o IV e a EM?</li>
+        </ol>
+      </section>
+
+      <!-- 43 · COLA -->
+      <section class="slide" data-title="Cola de bolso">
+        <div class="kicker">Cola de bolso</div>
+        <h2>Padrões que <span class="grad">você vai reconhecer de longe</span></h2>
+        <div class="cols" style="align-items:start">
+          <div class="frag">
+            <h4 style="margin-bottom:.5em">Fragmentos e seus "desenhos"</h4>
+            <div class="chip-row">
+              <span><b>CH₃CH₂–</b> quarteto 2H + tripleto 3H</span><span><b>(CH₃)₂CH–</b> septeto 1H + dubleto 6H</span><span><b>(CH₃)₃C–</b> singleto 9H</span><span><b>CH₃–C=O</b> singleto 3H ~2,1</span><span><b>–OCH₃</b> singleto 3H 3,3–4,0</span><span><b>C₆H₅–</b> 5H em ~7,2–7,4</span><span><b>p-C₆H₄</b> dois "dubletos" 2H</span><span><b>–CH₂CH₂–</b> dois tripletos</span>
+            </div>
+          </div>
+          <div class="frag">
+            <h4 style="margin-bottom:.5em">Sinais que entregam a função</h4>
+            <div class="chip-row">
+              <span><b>11–12</b> COOH largo</span><span><b>9–10</b> CHO</span><span><b>6,5–8</b> aromático</span><span><b>4,5–6,5</b> vinílico</span><span><b>4,1–4,4</b> CH–NO₂</span><span><b>3,5–4,8</b> CH–O de éster</span><span><b>3,2–3,8</b> CH–O de álcool/éter</span><span><b>2,1–2,5</b> CH α à C=O</span><span><b>2,2–2,9</b> CH–N</span><span><b>largo e móvel</b> OH / NH</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 44 · APLICAÇÕES -->
+      <section class="slide" data-title="Aplicações">
+        <div class="kicker">Para que serve, no mundo real</div>
+        <h2>Do laboratório <span class="grad">ao hospital</span></h2>
+        <div class="cols-4">
+          <div class="tile frag"><div class="ico">🏥</div><h4>Ressonância magnética</h4><p>O exame de imagem (MRI) usa a mesma física: mapeia os H da água e da gordura do corpo.</p></div>
+          <div class="tile frag"><div class="ico">💊</div><h4>Fármacos</h4><p>Confirmação de estrutura, pureza e identificação de impurezas em novos medicamentos.</p></div>
+          <div class="tile frag"><div class="ico">🍯</div><h4>Alimentos</h4><p>Autenticidade de mel, azeite, sucos e vinhos: a "impressão digital" de RMN denuncia adulterações.</p></div>
+          <div class="tile frag"><div class="ico">🌿</div><h4>Produtos naturais</h4><p>Elucidação de moléculas inéditas de plantas da Amazônia, junto com ¹³C e RMN 2D.</p></div>
+        </div>
+        <p class="frag" style="margin-top:1.3em">Para praticar com espectros reais: o banco aberto <b class="hl">SDBS</b> (AIST, Japão) e, para treinar a interpretação, a plataforma <b class="hl2">NUMARES</b>.</p>
+      </section>
+
+      <!-- 45 · MISSÃO -->
+      <section class="slide" data-title="Sua missão">
+        <div class="kicker">Mão na massa</div>
+        <h2>🧲 Sua <span class="grad">Missão RMN</span></h2>
+        <p class="frag muted">Cada um vai receber, por sorteio, o espectro de RMN de ¹H de uma <b>amostra desconhecida</b> diferente e vai identificá-la como um químico analítico:</p>
+        <div class="pipe">
+          <div class="step frag"><div class="n">00</div><div class="ico">🎲</div><h4>Sorteio</h4><p>Sua amostra exclusiva</p></div>
+          <div class="step frag"><div class="n">01</div><div class="ico">🧮</div><h4>IDH</h4><p>Insaturações da fórmula</p></div>
+          <div class="step frag"><div class="n">02</div><div class="ico">📏</div><h4>Integração</h4><p>Sinais e nº de H</p></div>
+          <div class="step frag"><div class="n">03</div><div class="ico">🔀</div><h4>Desdobramento</h4><p>n + 1 e J</p></div>
+          <div class="step frag"><div class="n">04</div><div class="ico">🧲</div><h4>Deslocamento</h4><p>Por que ali?</p></div>
+          <div class="step frag"><div class="n">05</div><div class="ico">🧩</div><h4>Identificação</h4><p>Qual é a molécula?</p></div>
+          <div class="step frag"><div class="n">06</div><div class="ico">🧠</div><h4>Conclusão</h4><p>Justifique</p></div>
+        </div>
+        <div class="frag" style="margin-top:1.4em"><a class="btn btn-primary" href="#missao" data-noadvance>Começar a Missão RMN →</a></div>
+      </section>
+
+      <!-- 46 · ENCERRAMENTO -->
+      <section class="slide" data-title="Obrigado">
+        <div style="text-align:center">
+          <div class="kicker">Encerramento</div>
+          <h1>Obrigado! <span class="grad">Sua opinião importa.</span></h1>
+          <p class="lead" style="margin:1em auto 0">Responda ao questionário de percepção. Leva 2 minutos, é só clicar, e ajuda a melhorar as próximas aulas.</p>
+          <div style="margin-top:1.6em; display:flex; gap:.8em; justify-content:center; flex-wrap:wrap">
+            <a class="btn btn-primary" href="#questionario" data-noadvance>📝 Responder ao questionário</a>
+            <a class="btn btn-ghost" href="#analise" data-noadvance>📊 Ver análise dos dados</a>
+          </div>
+          <p class="muted" style="margin-top:2em; font-size:.95em">Prof. Dr. Rafael Vieira · rafael.vieira@ifro.edu.br · rafaelvieira.org</p>
+          <p class="muted small" style="margin-top:.6em">Referências: Pavia, Lampman, Kriz &amp; Vyvyan, <i>Introdução à Espectroscopia</i> · Silverstein, Webster &amp; Kiemle, <i>Identificação Espectrométrica de Compostos Orgânicos</i></p>
+        </div>
+      </section>
+
+
+      <div class="deck-progress" id="deck-progress"></div>
+      <div class="deck-hint" id="deck-hint">clique ou use → para avançar</div>
+    </div>
+
+    <div class="deck-bar">
+      <button class="btn btn-ghost btn-sm" id="btn-prev">← Voltar</button>
+      <button class="btn btn-primary btn-sm" id="btn-next">Avançar →</button>
+      <button class="btn btn-ghost btn-sm" id="btn-play">▶ Reproduzir</button>
+      <span class="deck-count" id="deck-count">1 / 57</span>
+      <span class="spacer"></span>
+      <button class="btn btn-ghost btn-sm" id="btn-restart">↺ Início</button>
+      <button class="btn btn-ghost btn-sm" id="btn-full">⛶ Tela cheia</button>
+    </div>
+  </div>
+</main>
+
+<!-- =========================================================
+     MISSÃO RMN
+     ========================================================= -->
+<main id="view-missao" class="view">
+  <section class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Desafio</span>
+      <h2>🧲 Missão RMN</h2>
+      <p>Um espectro de RMN de ¹H só seu, de uma amostra desconhecida. Seis etapas: cada uma resolvida destrava a próxima.</p>
+    </div>
+    <div id="mission-body" class="mission"></div>
+  </section>
+</main>
+
+<!-- =========================================================
+     QUESTIONÁRIO
+     ========================================================= -->
+<main id="view-questionario" class="view">
+  <section class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Percepção</span>
+      <h2>📝 Como foi a aula para você?</h2>
+      <p>Clique na opção que melhor representa sua opinião. As respostas são anônimas.</p>
+    </div>
+    <div id="quiz-body" class="quiz"></div>
+  </section>
+</main>
+
+<!-- =========================================================
+     ANÁLISE DE DADOS
+     ========================================================= -->
+<main id="view-analise" class="view">
+  <section class="wrap" style="max-width:1180px">
+    <div class="section-head">
+      <span class="eyebrow">Resultados</span>
+      <h2>📊 Análise de Dados</h2>
+      <p>Gráficos e interpretações gerados automaticamente a partir das respostas gravadas na planilha.</p>
+      <div style="margin-top:18px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap">
+        <button class="btn btn-primary" id="btn-analisar">📊 Analisar dados agora</button>
+      </div>
+    </div>
+    <div id="analysis-body"></div>
+  </section>
+</main>
+
+<footer>
+  © 2026 Prof. Dr. Rafael Vieira · IFRO. Aula de Ressonância Magnética Nuclear (RMN de ¹H) · Análise Orgânica.
+</footer>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/estruturas.js"></script>
+<script src="moleculas/amostras.js"></script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/rmn.js"></script>
+<script src="assets/js/slides.js"></script>
+<script src="assets/js/missao.js"></script>
+<script src="assets/js/questionario.js"></script>
+<script src="assets/js/analise.js"></script>
+</body>
+</html>

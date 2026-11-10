@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Minicurso — Espectrometria de Massas | Prof. Dr. Rafael Vieira</title>
+<meta name="description" content="Minicurso de Espectrometria de Massas: apresentação interativa, Missão Espectral (identificação de uma amostra desconhecida), questionário de percepção e análise de dados.">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<div class="bg-glow"></div>
+
+<header>
+  <a class="logo" href="#apresentacao">Rafael<span>Vieira</span><small>Minicurso · Espectrometria de Massas</small></a>
+  <nav>
+    <a href="#apresentacao" data-view="apresentacao">🎬 Apresentação</a>
+    <a href="#missao" data-view="missao">🔬 Missão Espectral</a>
+    <a href="#questionario" data-view="questionario">📝 Questionário</a>
+    <a href="#analise" data-view="analise" class="nav-data">📊 Análise de Dados</a>
+  </nav>
+</header>
+
+<!-- =========================================================
+     APRESENTAÇÃO
+     Cada elemento com class="frag" aparece a cada clique.
+     Espectros: <div class="ms-plot" data-picos="m/z:intensidade,…">
+     Moléculas: <div class="mol md" data-mol="nome"> (ver assets/js/estruturas.js)
+     ========================================================= -->
+<main id="view-apresentacao" class="view">
+  <div class="deck-wrap">
+    <div class="deck" id="deck" tabindex="0" aria-label="Apresentação — clique para avançar">
+
+      <!-- 1 · CAPA -->
+      <section class="slide" data-title="Capa">
+        <div class="cols">
+          <div>
+            <div class="kicker">Minicurso · IFRO · 2026</div>
+            <h1>Espectrometria <span class="grad">de Massas</span></h1>
+            <p class="lead">Como "pesar" uma molécula, quebrá-la em pedaços e, a partir dos pedaços, descobrir quem ela é.</p>
+            <p style="margin-top:1.6em; font-size:1em;" class="muted">Prof. Dr. Rafael Vieira · Instituto Federal de Rondônia</p>
+          </div>
+          <div class="hide-mobile spec-card">
+            <div class="cap"><span>Espectro de impacto de elétrons · <b>butano</b></span><span>C₄H₁₀ · M = 58</span></div>
+            <div class="ms-plot" data-picos="58:12,57:3,43:100,42:12,41:28,39:12,29:44,28:32,27:37,26:6,15:5" data-xmin="10" data-xmax="65" data-destaque="58:mol,43:hot" data-rotulos="58:M⁺•,43:pico base"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2 · PERGUNTA -->
+      <section class="slide" data-title="Por quê?">
+        <div class="kicker">Para começar</div>
+        <h2>Como pesar algo que tem <span class="grad">10⁻²² gramas?</span></h2>
+        <div class="cols-3" style="margin-top:1.2em">
+          <div class="tile frag zoom"><div class="big-num hl">3,2×10⁻²²</div><p>gramas: a massa de <b>uma</b> molécula de cafeína (194 g/mol ÷ 6,02×10²³). Nenhuma balança chega perto disso.</p></div>
+          <div class="tile frag zoom"><div class="big-num hl2">m/z</div><p>O truque: transformar a molécula em um <b>íon</b> e medir como ele se move em campos elétricos e magnéticos.</p></div>
+          <div class="tile frag zoom"><div class="big-num hl3">ng</div><p>Bastam <b>nanogramas</b> (ou menos) de amostra. Por isso a técnica está no antidoping, na perícia, nos alimentos e na indústria farmacêutica.</p></div>
+        </div>
+        <p class="frag" style="margin-top:1.6em; font-size:1.3em;">Uma única análise pode revelar a <b class="hl">massa molar</b>, a <b class="hl2">fórmula molecular</b> e pistas da <b class="hl3">estrutura</b>.</p>
+      </section>
+
+      <!-- 3 · DEFINIÇÃO -->
+      <section class="slide" data-title="O que é">
+        <div class="cols">
+          <div>
+            <div class="kicker">Definição</div>
+            <h2>Espectro<span class="grad">metria</span>, não espectro<span class="grad">scopia</span></h2>
+            <ul>
+              <li class="frag">Técnica muito usada hoje (inclusive em laboratórios <b>farmacêuticos</b>) que permite, entre outras coisas, determinar a <b class="hl">fórmula molecular</b>.</li>
+              <li class="frag">Não há absorção de radiação, como no IV ou na RMN: a molécula é <b>ionizada</b>, <b>fragmentada</b> e os íons são <b>separados pela razão massa/carga (m/z)</b>.</li>
+              <li class="frag">É uma técnica <b class="hl3">destrutiva</b>, mas gasta pouquíssima amostra.</li>
+            </ul>
+          </div>
+          <div class="cols" style="grid-template-columns:1fr 1fr; gap:1em">
+            <div class="tile frag"><span class="tag tag-b">IV</span><h4 style="margin-top:.5em">Grupos funcionais</h4><p>Absorção de radiação infravermelha pelas ligações.</p></div>
+            <div class="tile frag"><span class="tag tag-p">RMN</span><h4 style="margin-top:.5em">Esqueleto C–H</h4><p>Absorção de radiofrequência por núcleos em campo magnético.</p></div>
+            <div class="tile frag" style="grid-column: span 2"><span class="tag tag-t">EM</span><h4 style="margin-top:.5em">Massa e fragmentos</h4><p>Íons separados por m/z. Junto com IV e RMN, fecha a identificação de um composto orgânico.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4 · LINHA DO TEMPO -->
+      <section class="slide" data-title="Linha do tempo">
+        <div class="kicker">Um século de prêmios Nobel</div>
+        <h2>A técnica nasceu com <span class="grad">a física do elétron</span></h2>
+        <div class="timeline">
+          <div class="tl-item frag"><div class="tl-year">1906</div><h4>J. J. Thomson</h4><p>Nobel de <b>Física</b> (condução elétrica em gases). Em seguida separou "raios positivos" com campos elétricos e magnéticos: em 1913, o neônio-20 e o 22.</p></div>
+          <div class="tl-item frag"><div class="tl-year">1922</div><h4>F. W. Aston</h4><p>Nobel de <b>Química</b>. Com o espectrógrafo de massas, mostrou que os elementos têm <b>isótopos</b>.</p></div>
+          <div class="tl-item frag"><div class="tl-year">1956</div><h4>GC-MS</h4><p>Gohlke &amp; McLafferty acoplam a cromatografia gasosa ao espectrômetro.</p></div>
+          <div class="tl-item frag"><div class="tl-year">1989</div><h4>W. Paul</h4><p>Nobel de <b>Física</b> pelo filtro de massas quadrupolar e pela armadilha de íons.</p></div>
+          <div class="tl-item frag"><div class="tl-year">2002</div><h4>Fenn &amp; Tanaka</h4><p>Nobel de <b>Química</b>: ESI e MALDI permitem ionizar proteínas e outras biomoléculas.</p></div>
+          <div class="tl-item frag"><div class="tl-year">2005</div><h4>Orbitrap</h4><p>Analisador de altíssima resolução (Makarov) chega ao mercado.</p></div>
+        </div>
+        <p class="frag muted" style="margin-top:1.6em">Hoje: espectrômetros portáteis, imageamento de tecidos e proteômica com milhares de proteínas por análise.</p>
+      </section>
+
+      <!-- 5 · BLOCOS -->
+      <section class="slide" data-title="O aparelho">
+        <div class="kicker">Por dentro do espectrômetro</div>
+        <h2>Cinco blocos, <span class="grad">um caminho</span></h2>
+        <div class="blocks">
+          <div class="bk frag"><div class="ico">💉</div><h4>Entrada da amostra</h4><p>A amostra entra na forma de vapor</p></div>
+          <div class="bk frag"><div class="ico">⚡</div><h4>Fonte de íons</h4><p>A molécula vira íon (e se fragmenta)</p></div>
+          <div class="bk frag"><div class="ico">🧲</div><h4>Analisador</h4><p>Separa os íons pela razão m/z</p></div>
+          <div class="bk frag"><div class="ico">📡</div><h4>Detector</h4><p>Conta os íons que chegam</p></div>
+          <div class="bk frag"><div class="ico">💻</div><h4>Sistema de dados</h4><p>Monta o espectro</p></div>
+        </div>
+        <div class="vac frag"><span>atmosfera / vácuo</span><span class="hv">alto vácuo (10⁻⁵ a 10⁻⁸ torr)</span></div>
+        <p class="frag" style="margin-top:1.3em">Por que <b class="hl">alto vácuo</b>? Para que os íons percorram o aparelho <b>sem colidir</b> com moléculas de ar, que os desviariam ou neutralizariam.</p>
+      </section>
+
+      <!-- 6 · INJEÇÃO -->
+      <section class="slide" data-title="Injeção">
+        <div class="kicker">Etapa 1 · Injeção da amostra</div>
+        <h2>A amostra entra <span class="grad">como vapor</span></h2>
+        <div class="cols" style="align-items:stretch">
+          <div class="tile frag left"><span class="tag tag-b">GC-MS</span><h4 style="margin-top:.6em">Cromatografia gasosa + EM</h4>
+            <p>O cromatógrafo separa a mistura e manda cada componente, um de cada vez, ao espectrômetro. Ideal para compostos voláteis: solventes, aromas, combustíveis, drogas.</p></div>
+          <div class="tile frag"><span class="tag tag-p">LC-MS (HPLC-MS)</span><h4 style="margin-top:.6em">Cromatografia líquida + EM</h4>
+            <p>Para moléculas pouco voláteis ou sensíveis ao calor: fármacos, metabólitos, peptídeos. Exige fontes de ionização especiais (ESI, APCI).</p></div>
+        </div>
+        <p class="frag" style="margin-top:1.3em">Resultado: para <b>cada pico do cromatograma</b> obtém-se <b class="hl">um espectro de massas</b> completo.</p>
+      </section>
+
+      <!-- 7 · EI -->
+      <section class="slide" data-title="Ionização por elétrons">
+        <div class="cols">
+          <div>
+            <div class="kicker">Etapa 2 · Métodos de ionização</div>
+            <h2>Ionização por elétrons <span class="grad">(EI)</span></h2>
+            <ul>
+              <li class="frag">A molécula é bombardeada por um feixe de elétrons de <b class="hl">alta energia (70 eV)</b>.</li>
+              <li class="frag">Um elétron da molécula é arrancado: forma-se o <b class="hl2">cátion radical</b>, o <b>íon molecular</b> M<sup>+•</sup>.</li>
+              <li class="frag"><span class="eq-box eq">M + e⁻ → M<sup>+•</sup> + 2 e⁻</span></li>
+              <li class="frag">"+" = carga positiva · "•" = elétron desemparelhado. A massa praticamente não muda (o elétron pesa ~1/1836 u).</li>
+            </ul>
+          </div>
+          <div class="hide-mobile">
+            <svg viewBox="0 0 420 300" class="dock-svg" aria-label="Elétron colidindo com uma molécula">
+              <defs><radialGradient id="gEI"><stop offset="0" stop-color="#ffb14f" stop-opacity=".9"/><stop offset="1" stop-color="#ffb14f" stop-opacity="0"/></radialGradient></defs>
+              <line x1="20" y1="150" x2="190" y2="150" stroke="#4f8cff" stroke-opacity=".35" stroke-dasharray="6 6" stroke-width="2"/>
+              <text x="40" y="130" fill="#9aa4b8" font-size="14" font-family="Segoe UI, sans-serif">feixe de e⁻ (70 eV)</text>
+              <g class="electron"><circle cx="190" cy="150" r="8" fill="#7fb0ff"/><text x="185" y="155" fill="#04121a" font-size="12" font-weight="700">e</text></g>
+              <circle class="burst" cx="230" cy="150" r="50" fill="url(#gEI)"/>
+              <g stroke="#22d3c7" stroke-width="5" fill="none" stroke-linejoin="round">
+                <polygon points="230,110 265,130 265,170 230,190 195,170 195,130"/>
+                <circle cx="230" cy="150" r="22" stroke-width="3" stroke-opacity=".7"/>
+              </g>
+              <g class="ion-fly"><text x="268" y="105" fill="#ff8adc" font-size="22" font-weight="800" font-family="Segoe UI, sans-serif">+•</text></g>
+              <text x="230" y="250" text-anchor="middle" fill="#9aa4b8" font-size="15" font-family="Segoe UI, sans-serif">C₆H₆ + e⁻ → C₆H₆⁺• + 2e⁻ · m/z 78</text>
+            </svg>
+          </div>
+        </div>
+      </section>
+
+      <!-- 8 · EI FRAGMENTA -->
+      <section class="slide" data-title="EI fragmenta">
+        <div class="kicker">Ionização por elétrons</div>
+        <h2>Energia demais <span class="grad">quebra a molécula</span></h2>
+        <div class="cols">
+          <div>
+            <ul>
+              <li class="frag">70 eV é muito mais que o necessário para ionizar (~10 eV). O excesso vira energia interna e leva à <b class="hl">fragmentação</b>.</li>
+              <li class="frag">Às vezes o íon molecular se fragmenta tão rápido que <b class="hl3">nem chega ao detector</b>.</li>
+              <li class="frag">A fragmentação segue padrões químicos e é <b>reprodutível</b>: o espectro vira uma <b class="hl2">impressão digital</b>.</li>
+              <li class="frag">Por isso é possível identificar a substância comparando o espectro com uma <b>biblioteca</b> (NIST: centenas de milhares de espectros) ou interpretando o padrão.</li>
+            </ul>
+          </div>
+          <div class="spec-card frag">
+            <div class="cap"><span>EI · <b>butano</b> (C₄H₁₀)</span><span>M = 58</span></div>
+            <div class="ms-plot" data-picos="58:12,57:3,43:100,42:12,41:28,39:12,29:44,28:32,27:37,26:6,15:5" data-xmin="10" data-xmax="65" data-destaque="58:mol" data-rotulos="58:M⁺•"></div>
+            <p class="small muted" style="margin:.2em 0 .4em">Um íon molecular, muitos fragmentos.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 9 · CI -->
+      <section class="slide" data-title="Ionização química">
+        <div class="cols">
+          <div>
+            <div class="kicker">Ionização química (CI)</div>
+            <h2>Uma ionização <span class="grad">mais suave</span></h2>
+            <ul>
+              <li class="frag">A amostra é ionizada por um <b class="hl3">fluxo de gás reagente ionizado</b>, que pode transferir prótons, elétrons ou formar um <b>aduto</b>.</li>
+              <li class="frag">Como é menos energética que a EI, a CI permite identificar melhor o <b class="hl">íon molecular</b> (ou <b>quase molecular</b>, [M+H]<sup>+</sup>), dependendo do gás.</li>
+              <li class="frag">Menos fragmentação = menos informação estrutural, mas <b>certeza sobre a massa</b>. As duas técnicas se completam.</li>
+            </ul>
+          </div>
+          <div class="tile frag" style="font-family: var(--mono); font-size:.95em; line-height:1.9">
+            <p class="small muted" style="font-family:inherit">Com metano:</p>
+            CH₄ + e⁻ → CH₄<sup>+•</sup> + 2e⁻<br>
+            CH₄<sup>+•</sup> + CH₄ → <b class="hl">CH₅⁺</b> + •CH₃<br>
+            CH₃⁺ + CH₄ → <b class="hl">C₂H₅⁺</b> + H₂<br>
+            M + CH₅⁺ → <b class="hl3">[M+H]⁺</b> + CH₄<br>
+            M + C₂H₅⁺ → <b class="hl3">[M+C₂H₅]⁺</b>
+            <p class="small muted" style="font-family:inherit; margin-top:.5em">[M+H]⁺ aparece em m/z = M + 1; o aduto com etila, em M + 29.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 10 · TABELA CI -->
+      <section class="slide" data-title="Gases reagentes">
+        <div class="kicker">Ionização química</div>
+        <h2>Cada gás reagente, <span class="grad">um íon analítico</span></h2>
+        <table class="mini-table" style="font-size:1.05em; margin-top:.6em">
+          <thead><tr><th>Gás</th><th>Íon reagente</th><th>Íon analítico</th></tr></thead>
+          <tbody>
+            <tr class="frag"><td>H₂</td><td class="mono">H₃⁺</td><td class="mono">[M+H]⁺</td></tr>
+            <tr class="frag"><td>CH₄ (metano)</td><td class="mono">CH₅⁺, C₂H₅⁺</td><td class="mono">[M+H]⁺, [M+C₂H₅]⁺</td></tr>
+            <tr class="frag"><td>NH₃ (amônia)</td><td class="mono">NH₄⁺</td><td class="mono">[M+H]⁺, [M+NH₄]⁺</td></tr>
+            <tr class="frag"><td>CH₃OH (metanol)</td><td class="mono">CH₃OH₂⁺</td><td class="mono">[M+H]⁺</td></tr>
+            <tr class="frag"><td>CH₃CN (acetonitrila)</td><td class="mono">CH₃CNH⁺</td><td class="mono">[M+H]⁺</td></tr>
+          </tbody>
+        </table>
+        <p class="frag" style="margin-top:1.2em">Os adutos são uma pista extra: ver picos em <b>M+1</b> e <b>M+18</b> (com NH₃) confirma qual é a massa molecular.</p>
+      </section>
+
+      <!-- 11 · CI EXEMPLO -->
+      <section class="slide dense" data-title="CI na prática">
+        <div class="kicker">Ionização química · exemplo</div>
+        <h2>Mesmo composto (M = 196), <span class="grad">três gases</span></h2>
+        <div class="cols-3" style="margin-top:.4em">
+          <div class="spec-card frag"><div class="cap"><span>gás: <b>CH₄</b></span><span>197 = MH⁺</span></div>
+            <div class="ms-plot" data-picos="81:30,95:12,109:8,121:6,137:100,197:15" data-xmin="70" data-xmax="225" data-destaque="197:mol" data-lim="5"></div></div>
+          <div class="spec-card frag"><div class="cap"><span>gás: <b>isobutano</b></span><span>197 = MH⁺</span></div>
+            <div class="ms-plot" data-picos="81:4,95:4,109:4,123:3,137:100,179:4,197:55" data-xmin="70" data-xmax="225" data-destaque="197:mol" data-lim="5"></div></div>
+          <div class="spec-card frag"><div class="cap"><span>gás: <b>NH₃</b></span><span>197 = MH⁺ · <b style="color:var(--warm)">214 = M+NH₄⁺</b></span></div>
+            <div class="ms-plot" data-picos="93:3,121:3,137:20,154:5,197:100,214:85" data-xmin="70" data-xmax="225" data-destaque="197:mol,214:hot" data-lim="5"></div></div>
+        </div>
+        <p class="frag" style="margin-top:1em">Quanto mais "suave" o gás, <b class="hl">maior o pico do íon quase molecular</b> e menor a fragmentação. Com NH₃ surge o aduto <b>[M+NH₄]⁺ = 196 + 18 = 214</b>.</p>
+        <p class="small muted" style="margin-top:.4em">Espectros esquemáticos, redesenhados a partir de Pavia et al., <i>Introdução à Espectroscopia</i>.</p>
+      </section>
+
+      <!-- 12 · TÉCNICAS SUAVES -->
+      <section class="slide" data-title="Ionização moderna">
+        <div class="kicker">Além do que cai na prova · ionização moderna</div>
+        <h2>Ionizar sem quebrar: <span class="grad">ESI, MALDI e APCI</span></h2>
+        <div class="cols-3">
+          <div class="tile frag"><div class="ico">💧</div><h4>ESI · electrospray</h4><p>A solução é borrifada sob alta tensão; as gotas evaporam e liberam íons [M+H]⁺ ou [M−H]⁻, inclusive com várias cargas. Base do LC-MS.</p></div>
+          <div class="tile frag"><div class="ico">🔦</div><h4>MALDI</h4><p>Um laser atinge a amostra misturada a uma matriz. Ioniza proteínas e polímeros inteiros. Usado para identificar bactérias em hospitais (MALDI-TOF).</p></div>
+          <div class="tile frag"><div class="ico">🌫️</div><h4>APCI</h4><p>Ionização química à pressão atmosférica: boa para moléculas pequenas e pouco polares em LC-MS.</p></div>
+        </div>
+        <p class="frag" style="margin-top:1.3em">Regra prática: <b class="hl">EI</b> para identificar pela fragmentação (com biblioteca) · <b class="hl2">técnicas suaves</b> para saber a massa de moléculas grandes ou frágeis.</p>
+      </section>
+
+      <!-- 13 · SETOR MAGNÉTICO -->
+      <section class="slide" data-title="Setor magnético">
+        <div class="kicker">Etapa 3 · Analisador de massas</div>
+        <h2>Setor magnético: <span class="grad">o ímã que separa massas</span></h2>
+        <div class="cols">
+          <div>
+            <ul>
+              <li class="frag">Os íons gerados na ionização (íon molecular e fragmentos) são <b>selecionados</b> para chegar ao detector. O parâmetro de seleção é a <b class="hl">razão massa/carga (m/z)</b>.</li>
+              <li class="frag">"Uma carga elétrica que atravessa um campo magnético sofre uma força que desvia sua trajetória" (regra da mão direita).</li>
+              <li class="frag">Mudando a intensidade do campo magnético (ou o potencial de aceleração), muda o raio da trajetória e <b>escolhe-se qual m/z chega ao detector</b>.</li>
+            </ul>
+          </div>
+          <div class="tile" style="text-align:center; display:grid; gap:.7em">
+            <div class="frag"><p class="small muted">Força magnética</p><span class="eq">F = z·v × B</span></div>
+            <div class="frag"><p class="small muted">Energia cinética (aceleração pelo potencial V)</p><span class="eq">½ m v² = z V</span></div>
+            <div class="frag"><p class="small muted">Força centrípeta = força magnética</p><span class="eq">m v² / r = z v B &nbsp;⇒&nbsp; r = m v / z B</span></div>
+            <div class="frag"><p class="small muted">Eliminando v:</p><span class="eq-box eq" style="font-size:1.6em">m/z = B² r² / 2V</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 14 · OUTROS ANALISADORES -->
+      <section class="slide" data-title="Quadrupolo e TOF">
+        <div class="kicker">Outros analisadores</div>
+        <h2>Filtrar, cronometrar, <span class="grad">orbitar</span></h2>
+        <div class="cols-3">
+          <div class="tile frag">
+            <svg viewBox="0 0 220 90" style="width:100%; height:auto" aria-hidden="true">
+              <g fill="none" stroke="#4f8cff" stroke-width="2"><rect x="20" y="10" width="170" height="16" rx="8"/><rect x="20" y="64" width="170" height="16" rx="8"/></g>
+              <g fill="none" stroke="#7c5cff" stroke-width="2"><rect x="20" y="30" width="170" height="10" rx="5" stroke-opacity=".5"/><rect x="20" y="50" width="170" height="10" rx="5" stroke-opacity=".5"/></g>
+              <path d="M5,45 C35,30 55,60 85,45 S135,30 165,45 S195,52 212,45" stroke="#22d3c7" stroke-width="2.5" fill="none"/>
+              <path d="M5,45 C30,40 50,25 70,10" stroke="#f87171" stroke-width="2" fill="none" stroke-dasharray="4 3"/>
+            </svg>
+            <h4>Quadrupolo</h4><p>Quatro barras com tensões contínua e alternada. Só os íons com o <b>m/z adequado</b> têm trajetória estável e atravessam até o detector; os outros colidem com as barras.</p></div>
+          <div class="tile frag">
+            <svg viewBox="0 0 220 90" style="width:100%; height:auto" aria-hidden="true">
+              <line x1="10" y1="45" x2="205" y2="45" stroke="#9aa4b8" stroke-dasharray="4 4"/><rect x="205" y="20" width="8" height="50" fill="#ffb14f"/>
+              <circle cx="150" cy="45" r="5" fill="#22d3c7"/><circle cx="110" cy="45" r="7" fill="#4f8cff"/><circle cx="70" cy="45" r="9" fill="#7c5cff"/>
+              <text x="150" y="30" fill="#9aa4b8" font-size="11" text-anchor="middle">leve</text><text x="70" y="27" fill="#9aa4b8" font-size="11" text-anchor="middle">pesado</text>
+            </svg>
+            <h4>Tempo de voo (TOF)</h4><p>Todos recebem a mesma energia; os <b>íons mais leves chegam antes</b> ao detector. Analisa espécies muito pesadas (até ~300 000 u); nos modelos simples a resolução é baixa, mas melhora muito com o refletor.</p></div>
+          <div class="tile frag">
+            <svg viewBox="0 0 220 90" style="width:100%; height:auto" aria-hidden="true">
+              <ellipse cx="110" cy="45" rx="95" ry="30" fill="none" stroke="#7c5cff" stroke-width="2"/>
+              <ellipse cx="110" cy="45" rx="20" ry="12" fill="#4f8cff" fill-opacity=".4" stroke="#4f8cff"/>
+              <ellipse cx="110" cy="45" rx="70" ry="22" fill="none" stroke="#22d3c7" stroke-width="2" stroke-dasharray="6 5"/>
+            </svg>
+            <h4>Orbitrap e FT-ICR</h4><p>Os íons orbitam e a <b>frequência</b> de oscilação revela o m/z. Resolução altíssima: massas exatas com 4 ou 5 casas decimais.</p></div>
+        </div>
+      </section>
+
+      <!-- 15 · DETECTOR + ESPECTRO -->
+      <section class="slide" data-title="Detector e espectro">
+        <div class="cols">
+          <div>
+            <div class="kicker">Etapa 4 · Detector</div>
+            <h2>Contar íons e <span class="grad">desenhar o espectro</span></h2>
+            <ul>
+              <li class="frag">O detector produz uma <b>corrente proporcional</b> ao número de íons que o atingem.</li>
+              <li class="frag">Como chegam pouquíssimos íons (corrente muito pequena), usa-se uma <b class="hl">multiplicadora de elétrons</b>, que amplifica o sinal por 10⁵ a 10⁶.</li>
+              <li class="frag">O espectro: <b>m/z</b> no eixo x e <b>abundância relativa</b> no eixo y. O pico mais intenso, o <b class="hl3">pico base</b>, vale 100%.</li>
+              <li class="frag">O <b style="color:var(--pink)">íon molecular</b> nem sempre é o pico base, e nem sempre aparece.</li>
+            </ul>
+          </div>
+          <div class="spec-card frag">
+            <div class="cap"><span>Anatomia de um espectro · <b>butano</b></span><span>passe o mouse nos picos</span></div>
+            <div class="ms-plot" data-picos="59:0.5,58:12,57:3,43:100,42:12,41:28,39:12,29:44,28:32,27:37,26:6,15:5" data-xmin="10" data-xmax="65" data-destaque="58:mol,43:hot,59:iso" data-rotulos="58:M⁺•,43:pico base,29:fragmento"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 16 · MASSA MOLECULAR -->
+      <section class="slide" data-title="Massa molecular">
+        <div class="kicker">Determinando a massa molecular</div>
+        <h2>O detector lê a massa de <span class="grad">cada íon</span>, não a média</h2>
+        <ul>
+          <li class="frag">Qualquer íon (inclusive o molecular) que tiver <b class="hl">tempo de vida maior que 10⁻⁵ s</b> consegue chegar ao detector.</li>
+          <li class="frag">O que o detector lê não é a massa molar média da tabela periódica, mas a <b class="hl3">massa exata do íon específico</b> que chegou, com os isótopos que ele tiver.</li>
+        </ul>
+        <div class="rx frag" style="margin-top:1.2em; gap:2.4em">
+          <figure><div style="font-size:1.4em; font-family:var(--mono)">H₃C–CH₃</div><figcaption>¹²C ¹²C · <b>m/z 30</b></figcaption></figure>
+          <figure><div style="font-size:1.4em; font-family:var(--mono)">H₃C–¹³CH₃</div><figcaption>um ¹³C · <b>m/z 31</b></figcaption></figure>
+          <figure><div style="font-size:1.4em; font-family:var(--mono)">H₃C–CH₂D</div><figcaption>um deutério · <b>m/z 31</b></figcaption></figure>
+        </div>
+        <p class="frag" style="margin-top:1.2em">É por isso que, ao lado do íon molecular, aparecem os picos <b class="hl2">M+1</b> e <b class="hl2">M+2</b>. Eles vão virar pistas valiosas.</p>
+      </section>
+
+      <!-- 17 · TER CERTEZA -->
+      <section class="slide" data-title="É mesmo o M?">
+        <div class="kicker">Massa molecular</div>
+        <h2>Como ter certeza de que <span class="grad">aquele é o íon molecular?</span></h2>
+        <div class="cols-4">
+          <div class="tile frag"><div class="ico">🎚️</div><h4>Variar a energia</h4><p>Diminuindo a energia do feixe de elétrons, o pico do possível íon molecular deve <b>aumentar</b> de intensidade (há menos fragmentação).</p></div>
+          <div class="tile frag"><div class="ico">⚪</div><h4>Elétron ímpar</h4><p>O íon molecular é um cátion radical: tem <b>número ímpar de elétrons</b>. Fragmentos com número par de elétrons não podem ser M.</p></div>
+          <div class="tile frag"><div class="ico">🔢</div><h4>Regra do nitrogênio</h4><p>M <b>par</b> → nenhum ou um número par de N. M <b>ímpar</b> → número ímpar de N.</p></div>
+          <div class="tile frag"><div class="ico">🚫</div><h4>Perdas impossíveis</h4><p>Perdas de 4 a 14 u e de 21 a 25 u são muito improváveis. Se houver um pico nessa distância abaixo do suposto M, o M verdadeiro está mais acima.</p></div>
+        </div>
+        <p class="frag" style="margin-top:1.3em">Na dúvida: repita com <b class="hl">ionização química</b> e procure [M+H]⁺.</p>
+      </section>
+
+      <!-- 18 · RESOLUÇÃO -->
+      <section class="slide" data-title="Resolução">
+        <div class="cols">
+          <div>
+            <div class="kicker">Resolução do espectrômetro</div>
+            <h2>Distinguir <span class="grad">60,0575 de 60,0688</span></h2>
+            <ul>
+              <li class="frag"><b>Resolução</b> é a capacidade de um aparelho de distinguir a massa de um íon da massa de outro.</li>
+              <li class="frag"><span class="eq-box eq">R = M<sub>n</sub> / (M<sub>n</sub> − M<sub>m</sub>)</span> &nbsp;com o vale entre os picos menor que 10% da altura.</li>
+              <li class="frag">Quanto maior a resolução, maior a capacidade de determinar a <b class="hl">fórmula molecular</b> pela massa exata (EM de alta resolução, HRMS).</li>
+            </ul>
+          </div>
+          <div class="tile frag">
+            <p class="small muted" style="margin-bottom:.5em">Quatro fórmulas com massa nominal 60</p>
+            <table class="mini-table">
+              <thead><tr><th>Fórmula</th><th>Massa nominal</th><th>Massa exata</th></tr></thead>
+              <tbody>
+                <tr><td>C₃H₈O</td><td>60</td><td class="mono">60,0575</td></tr>
+                <tr><td>C₂H₈N₂</td><td>60</td><td class="mono">60,0688</td></tr>
+                <tr><td>C₂H₄O₂</td><td>60</td><td class="mono">60,0211</td></tr>
+                <tr><td>CH₄N₂O</td><td>60</td><td class="mono">60,0323</td></tr>
+              </tbody>
+            </table>
+            <p class="small muted" style="margin-top:.6em">¹H = 1,00783 · ¹²C = 12,00000 · ¹⁴N = 14,00307 · ¹⁶O = 15,99491</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 19 · ISÓTOPOS -->
+      <section class="slide" data-title="Isótopos">
+        <div class="cols">
+          <div>
+            <div class="kicker">E sem alta resolução?</div>
+            <h2>Os isótopos <span class="grad">contam a fórmula</span></h2>
+            <ul>
+              <li class="frag">Se a intensidade do íon molecular for razoável, dá para diferenciar fórmulas pela <b class="hl">razão isotópica</b> (picos M+1, M+2…).</li>
+              <li class="frag"><span class="eq">[M+1] ≈ 1,1·C + 0,015·H + 0,37·N + 0,04·O + 0,8·S + 5,1·Si</span></li>
+              <li class="frag"><span class="eq">[M+2] ≈ (1,1·C)²/200 + 0,20·O + 4,4·S + 3,4·Si + 32·Cl + 97,3·Br</span></li>
+              <li class="frag">Atalho: <b class="hl3">nº de C ≈ (M+1 ÷ M × 100) ÷ 1,1</b></li>
+            </ul>
+          </div>
+          <div class="tile frag">
+            <table class="mini-table">
+              <thead><tr><th>Leve</th><th>%</th><th>Pesado</th><th>% relativa</th></tr></thead>
+              <tbody>
+                <tr><td>¹H</td><td>100</td><td>²H</td><td class="mono">0,015</td></tr>
+                <tr><td>¹²C</td><td>100</td><td>¹³C</td><td class="mono">1,1</td></tr>
+                <tr><td>¹⁴N</td><td>100</td><td>¹⁵N</td><td class="mono">0,37</td></tr>
+                <tr><td>¹⁶O</td><td>100</td><td>¹⁷O · ¹⁸O</td><td class="mono">0,04 · 0,20</td></tr>
+                <tr><td>²⁸Si</td><td>100</td><td>²⁹Si · ³⁰Si</td><td class="mono">5,1 · 3,4</td></tr>
+                <tr><td>³²S</td><td>100</td><td>³³S · ³⁴S</td><td class="mono">0,8 · 4,4</td></tr>
+                <tr><td>³⁵Cl</td><td>100</td><td>³⁷Cl</td><td class="mono" style="color:var(--warm)">32</td></tr>
+                <tr><td>⁷⁹Br</td><td>100</td><td>⁸¹Br</td><td class="mono" style="color:var(--warm)">97,3</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- 20 · PROPENO x DIAZOMETANO -->
+      <section class="slide" data-title="Exemplo isotópico">
+        <div class="kicker">Exemplo</div>
+        <h2>M = 42: <span class="grad">propeno ou diazometano?</span></h2>
+        <div class="cols" style="align-items:stretch">
+          <div class="tile frag left" style="text-align:center">
+            <div class="mol md" data-mol="propeno" style="margin:0 auto"></div>
+            <h4>Propeno · C₃H₆</h4>
+            <p class="mono" style="margin-top:.4em">M+1 = 3(1,1) + 6(0,015) = <b class="hl">3,39%</b></p>
+            <p class="mono">M+2 = (3,3)²/200 = <b class="hl">0,05%</b></p>
+          </div>
+          <div class="tile frag" style="text-align:center">
+            <div class="mol md" data-mol="diazometano" style="margin:0 auto"></div>
+            <h4>Diazometano · CH₂N₂</h4>
+            <p class="mono" style="margin-top:.4em">M+1 = 1,1 + 2(0,015) + 2(0,37) = <b class="hl2">1,87%</b></p>
+            <p class="mono">M+2 = (1,1)²/200 = <b class="hl2">0,006%</b></p>
+          </div>
+        </div>
+        <p class="frag" style="margin-top:1.2em">Mesma massa nominal, <b>M+1 quase duas vezes maior</b> no propeno. E o diazometano tem M par com <b>dois</b> nitrogênios, como manda a regra do N.</p>
+      </section>
+
+      <!-- 21 · HALOGÊNIOS -->
+      <section class="slide" data-title="Cloro e bromo">
+        <div class="kicker">Padrões isotópicos que saltam aos olhos</div>
+        <h2>Cloro e bromo <span class="grad">assinam o espectro</span></h2>
+        <div class="cols-4" style="margin-top:.8em">
+          <div class="tile frag" style="text-align:center"><h4>1 Cl</h4>
+            <div class="iso-bars" style="justify-content:center"><i style="height:100%"></i><i style="height:0"></i><i style="height:32%"></i></div>
+            <div class="iso-lbl" style="justify-content:center"><span>M</span><span></span><span>+2</span></div><p style="margin-top:.5em">≈ <b>3 : 1</b></p></div>
+          <div class="tile frag" style="text-align:center"><h4>2 Cl</h4>
+            <div class="iso-bars" style="justify-content:center"><i style="height:100%"></i><i style="height:0"></i><i style="height:64%"></i><i style="height:0"></i><i style="height:10%"></i></div>
+            <div class="iso-lbl" style="justify-content:center"><span>M</span><span></span><span>+2</span><span></span><span>+4</span></div><p style="margin-top:.5em">≈ <b>9 : 6 : 1</b></p></div>
+          <div class="tile frag" style="text-align:center"><h4>1 Br</h4>
+            <div class="iso-bars" style="justify-content:center"><i style="height:100%; background:var(--warm)"></i><i style="height:0"></i><i style="height:97%; background:var(--warm)"></i></div>
+            <div class="iso-lbl" style="justify-content:center"><span>M</span><span></span><span>+2</span></div><p style="margin-top:.5em">≈ <b>1 : 1</b></p></div>
+          <div class="tile frag" style="text-align:center"><h4>2 Br</h4>
+            <div class="iso-bars" style="justify-content:center"><i style="height:51%; background:var(--warm)"></i><i style="height:0"></i><i style="height:100%; background:var(--warm)"></i><i style="height:0"></i><i style="height:49%; background:var(--warm)"></i></div>
+            <div class="iso-lbl" style="justify-content:center"><span>M</span><span></span><span>+2</span><span></span><span>+4</span></div><p style="margin-top:.5em">≈ <b>1 : 2 : 1</b></p></div>
+        </div>
+        <p class="frag" style="margin-top:1.3em">Viu um M+2 enorme? Pense em <b class="hl3">Cl ou Br</b>. Um M+2 de ~4–5% sugere <b>enxofre</b>. Flúor e iodo são monoisotópicos: não deixam M+2.</p>
+      </section>
+
+      <!-- 22 · QUAL ELÉTRON SAI -->
+      <section class="slide" data-title="Qual elétron sai?">
+        <div class="cols">
+          <div>
+            <div class="kicker">A ionização, de perto</div>
+            <h2>Que elétron é <span class="grad">arrancado?</span></h2>
+            <ul>
+              <li class="frag">Na EI-MS, o primeiro processo é a formação do íon molecular, que nada mais é que um <b>cátion radical</b>.</li>
+              <li class="frag">Sai o elétron que estiver <b class="hl">menos "preso"</b> à molécula (menor potencial de ionização).</li>
+              <li class="frag">Elétrons em orbitais <b class="hl3">não ligantes (n)</b> saem mais facilmente que os de orbitais <b class="hl2">π</b>, que por sua vez saem mais facilmente que os de orbitais <b>σ</b>.</li>
+              <li class="frag"><span class="eq-box eq">facilidade de remoção: n &gt; π &gt; σ</span></li>
+            </ul>
+          </div>
+          <div class="tile frag" style="text-align:center">
+            <div class="mol lg" data-mol="eter_etilico" style="margin:0 auto"></div>
+            <p>Num éter, a carga e o radical ficam no <b class="hl3">oxigênio</b> (perdeu um elétron n).</p>
+            <p class="small muted" style="margin-top:.4em">Num alceno, sai um elétron π; num alcano, só restam elétrons σ, por isso alcanos fragmentam tanto.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 23 · FRAGMENTAÇÃO -->
+      <section class="slide dense" data-title="Fragmentação">
+        <div class="kicker">Fragmentação</div>
+        <h2>As regras do jogo da <span class="grad">fragmentação</span></h2>
+        <div class="cols" style="align-items:start">
+          <div>
+            <ul>
+              <li class="frag">Após a ionização, o íon molecular, altamente energético, passa por uma sequência de processos <b>unimoleculares</b> de fragmentação.</li>
+              <li class="frag"><b class="hl">Regra de Stevenson:</b> "a fragmentação vai gerar, preferencialmente, cátions com a energia de ionização mais baixa".</li>
+              <li class="frag">Considere a <b>estabilidade do carbocátion</b>, a eletronegatividade, a ressonância e a regra do octeto.</li>
+              <li class="frag">Havendo opção, sai o <b class="hl3">maior radical alquila</b> (o que deixa a cadeia mais longa como radical).</li>
+            </ul>
+          </div>
+          <div style="display:grid; gap:.8em">
+            <div class="tile frag" style="font-family:var(--mono); line-height:1.8">
+              <p class="small muted" style="font-family:inherit">Um cátion radical (OE<sup>+•</sup>) pode se fragmentar de duas formas:</p>
+              OE<sup>+•</sup> → <b class="hl">EE⁺</b> + R• &nbsp;<span class="muted small">(perde um radical)</span><br>
+              OE<sup>+•</sup> → <b class="hl2">OE<sup>+•</sup></b> + N &nbsp;<span class="muted small">(perde uma molécula neutra)</span><br>
+              EE⁺ → EE⁺ + N &nbsp;<span class="muted small">(regra do número par de elétrons)</span>
+            </div>
+            <div class="tile frag">
+              <p class="small muted">Estabilidade dos cátions</p>
+              <p class="mono" style="font-size:.92em">CH₃⁺ &lt; RCH₂⁺ &lt; R₂CH⁺ &lt; R₃C⁺ &lt; CH₂=CH–CH₂⁺ &lt; C₆H₅CH₂⁺</p>
+              <p class="small muted" style="margin-top:.3em">metila → primário → secundário → terciário → alila → benzila</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 24 · ALFA E INDUTIVA -->
+      <section class="slide" data-title="Clivagem α e indutiva">
+        <div class="kicker">Mecanismos de uma ligação</div>
+        <h2>Clivagem <span class="grad">α</span> e clivagem <span class="grad">indutiva</span></h2>
+        <div class="cols" style="align-items:stretch">
+          <div class="tile frag left">
+            <span class="tag tag-t">Segmentação α · radical</span>
+            <p style="margin-top:.6em">Ocorre na ligação do <b>carbono vizinho</b> ao sítio radical (heteroátomo ou ligação π). Um elétron vai formar nova ligação com o heteroátomo e sai um radical.</p>
+            <p class="mono" style="margin-top:.6em; color:#c6f35b">R–CH₂–Ö⁺•–R' → R• + CH₂=O⁺–R'</p>
+            <p class="mono" style="color:#c6f35b">R–C(=O⁺•)–CH₃ → R• + CH₃–C≡O⁺</p>
+            <p class="small muted" style="margin-top:.5em">Gera íons acílio (cetonas, ésteres), oxônio (álcoois, éteres) e imínio (aminas). Ocorre em ligações saturadas ou insaturadas, com ou sem heteroátomos.</p>
+          </div>
+          <div class="tile frag">
+            <span class="tag tag-w">Segmentação indutiva · carga</span>
+            <p style="margin-top:.6em">Ocorre pela atração de um <b>par de elétrons</b> por um heteroátomo eletronegativo; geralmente a clivagem acontece na ligação do heteroátomo, que sai como radical.</p>
+            <p class="mono" style="margin-top:.6em; color:#c6f35b">R–Br⁺• → R⁺ + Br•</p>
+            <p class="mono" style="color:#c6f35b">R–O⁺•–R' → R⁺ + •O–R'</p>
+            <p class="small muted" style="margin-top:.5em">Típica de haletos de alquila: o pico do cátion alquila (sem halogênio) costuma ser intenso.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 25 · DUAS LIGAÇÕES + RDA -->
+      <section class="slide" data-title="Duas ligações e RDA">
+        <div class="kicker">Mecanismos de duas ligações</div>
+        <h2>Perder uma molécula neutra e o <span class="grad">retro-Diels-Alder</span></h2>
+        <div class="cols">
+          <div>
+            <ul>
+              <li class="frag">Na segmentação de <b>duas ligações</b>, elimina-se uma molécula <b class="hl">neutra</b>, geralmente pequena: água (M−18), haletos de hidrogênio (M−36, M−80), alcenos (M−28)…</li>
+              <li class="frag">Perder um neutro <b>mantém</b> o íon como cátion radical: um M par gera um fragmento par.</li>
+              <li class="frag"><b class="hl3">Retro-Diels-Alder:</b> anéis de seis membros insaturados se fragmentam gerando um <b>alceno neutro</b> e o <b>cátion radical do dieno</b>.</li>
+            </ul>
+          </div>
+          <div class="tile frag">
+            <div class="rx">
+              <figure><div class="mol md" data-mol="cicloexeno"></div><figcaption>cicloexeno⁺• · <b>m/z 82</b></figcaption></figure>
+              <span class="arrow">→</span>
+              <figure><div class="mol md" data-mol="butadieno"></div><figcaption>butadieno⁺• · <b>m/z 54</b></figcaption></figure>
+              <span class="plus">+</span>
+              <figure><div class="mol sm" data-mol="eteno"></div><figcaption>eteno (28)</figcaption></figure>
+            </div>
+            <p class="small muted" style="text-align:center; margin-top:.4em">É a reação de Diels-Alder "andando para trás" dentro do espectrômetro.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 26 · MCLAFFERTY -->
+      <section class="slide dense" data-title="McLafferty">
+        <div class="kicker">Rearranjo de McLafferty</div>
+        <h2>O hidrogênio γ que <span class="grad">muda de lugar</span></h2>
+        <div class="cols" style="align-items:start">
+          <div>
+            <ul>
+              <li class="frag">Rearranjo muito comum: um <b class="hl">hidrogênio γ</b> (a três posições de distância) migra para um átomo com elevada densidade eletrônica, por um estado de transição de <b>seis membros</b>.</li>
+              <li class="frag">A ligação entre os carbonos <b>α e β</b> se rompe: sai um <b>alceno neutro</b> e fica um <b class="hl3">enol cátion radical</b> (m/z par, se não houver N).</li>
+              <li class="frag">Ocorre em <b>carbonilas</b> (cetonas, aldeídos, ácidos, ésteres), <b>alcenos</b>, <b>arenos</b> e <b>iminas</b>.</li>
+            </ul>
+            <div class="rx frag" style="margin-top:.6em">
+              <figure><div class="mol md" data-mol="pentanona2"></div><figcaption>2-pentanona⁺• · <b>86</b></figcaption></figure>
+              <span class="arrow">→</span>
+              <figure><div class="mol sm" data-mol="enol58"></div><figcaption>enol⁺• · <b>58</b></figcaption></figure>
+              <span class="plus">+</span>
+              <figure><div class="mol sm" data-mol="eteno"></div><figcaption>eteno (28)</figcaption></figure>
+            </div>
+          </div>
+          <div class="spec-card frag">
+            <div class="cap"><span>EI · <b>2-pentanona</b></span><span>C₅H₁₀O · M = 86</span></div>
+            <div class="ms-plot" data-picos="86:13,71:8,58:12,43:100,42:9,41:10,39:5,29:6,27:16,15:4" data-xmin="10" data-xmax="95" data-destaque="86:mol,58:hot" data-rotulos="86:M⁺•,58:McLafferty,43:CH₃CO⁺" data-lim="6"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 27 · ALCANOS -->
+      <section class="slide dense" data-title="Alcanos">
+        <div class="kicker">Interpretando por classe · alcanos</div>
+        <h2>Alcanos: <span class="grad">escadinha de 14 em 14</span></h2>
+        <div class="cols" style="align-items:start">
+          <div>
+            <ul>
+              <li class="frag">Espectro simples, caracterizado por fragmentos espaçados de <b class="hl">14 u</b> (perda de grupos CH₂): 15, 29, 43, 57, 71, 85… (série CₙH₂ₙ₊₁⁺).</li>
+              <li class="frag">O íon molecular costuma ser um pico <b>fraco</b>, mas visível, nos alcanos de cadeia normal.</li>
+              <li class="frag">Nos <b class="hl3">ramificados</b>, a quebra acontece no ponto de ramificação (forma um carbocátion mais estável) e o M fica ainda menor.</li>
+              <li class="frag">O pico M−15 muitas vezes nem aparece; geralmente o mais intenso é o C₃ (43) ou o C₄ (57).</li>
+            </ul>
+          </div>
+          <div style="display:grid; gap:.6em">
+            <div class="spec-card frag"><div class="cap"><span><b>butano</b> CH₃CH₂CH₂CH₃</span><span>M = 58</span></div>
+              <div class="ms-plot" data-h="215" data-picos="58:12,57:3,43:100,42:12,41:28,39:12,29:44,28:32,27:37,26:6,15:5" data-xmin="10" data-xmax="65" data-destaque="58:mol" data-rotulos="58:M⁺•"></div></div>
+            <div class="spec-card frag"><div class="cap"><span><b>isobutano</b> (CH₃)₃CH</span><span>M = 58</span></div>
+              <div class="ms-plot" data-h="215" data-picos="58:3,57:3,43:100,42:33,41:38,39:16,29:6,27:28,15:6" data-xmin="10" data-xmax="65" data-destaque="58:mol" data-rotulos="58:M⁺•"></div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 28 · ALCANOS MAIORES -->
+      <section class="slide dense" data-title="Octanos">
+        <div class="kicker">Alcanos · mesma fórmula, espectros diferentes</div>
+        <h2>C₈H₁₈: <span class="grad">octano × isoctano</span></h2>
+        <div class="cols">
+          <div class="spec-card frag"><div class="cap"><span><b>octano</b> CH₃(CH₂)₆CH₃</span><span>M = 114</span></div>
+            <div class="ms-plot" data-picos="114:6,99:1,85:28,84:6,71:20,70:9,57:33,56:14,43:100,42:15,41:38,29:34,27:26" data-xmin="20" data-xmax="120" data-destaque="114:mol" data-rotulos="114:M⁺•,85:M−29"></div>
+            <p class="small muted" style="margin:.2em 0 .4em">Escadinha 29 → 43 → 57 → 71 → 85; M visível.</p></div>
+          <div class="spec-card frag"><div class="cap"><span><b>2,2,4-trimetilpentano</b> (isoctano)</span><span>M = 114</span></div>
+            <div class="ms-plot" data-picos="114:0.3,99:5,57:100,56:32,43:23,41:27,39:7,29:15" data-xmin="20" data-xmax="120" data-destaque="57:hot" data-rotulos="57:(CH₃)₃C⁺"></div>
+            <p class="small muted" style="margin:.2em 0 .4em">Quebra no carbono quaternário: cátion terc-butila (57); M quase ausente.</p></div>
+        </div>
+        <p class="frag" style="margin-top:.8em">Mesma massa molecular, ramificação diferente: o <b class="hl">padrão de fragmentação</b> conta onde a cadeia se ramifica.</p>
+      </section>
+
+      <!-- 29 · CICLOALCANOS -->
+      <section class="slide dense" data-title="Cicloalcanos">
+        <div class="kicker">Interpretando por classe · cicloalcanos</div>
+        <h2>Cicloalcanos: <span class="grad">o anel resiste mais</span></h2>
+        <div class="cols" style="align-items:start">
+          <div>
+            <ul>
+              <li class="frag">Apresentam pico do íon molecular <b class="hl">mais intenso</b> que os alcanos (romper uma ligação do anel não separa a molécula em dois).</li>
+              <li class="frag">Fragmentação comum: clivagem de <b>duas ligações</b> com liberação de <b class="hl3">eteno (M−28)</b>.</li>
+              <li class="frag">Quando há cadeia lateral, ela costuma ser o ponto de clivagem, e a carga fica no composto cíclico (M−15 no metilciclopentano).</li>
+            </ul>
+            <table class="mini-table frag" style="margin-top:.8em"><thead><tr><th>Íon molecular</th><th>Íon fragmento</th></tr></thead>
+              <tbody><tr><td>M⁺ forte</td><td class="mono">M−28 · M−15, M−29, M−43</td></tr></tbody></table>
+          </div>
+          <div style="display:grid; gap:.6em">
+            <div class="spec-card frag"><div class="cap"><span><b>ciclopentano</b> C₅H₁₀</span><span>M = 70</span></div>
+              <div class="ms-plot" data-h="215" data-picos="70:30,55:30,42:100,41:31,39:18,29:8,27:27" data-xmin="20" data-xmax="80" data-destaque="70:mol,42:hot" data-rotulos="70:M⁺•,42:M−28"></div></div>
+            <div class="spec-card frag"><div class="cap"><span><b>metilciclopentano</b> C₆H₁₂</span><span>M = 84</span></div>
+              <div class="ms-plot" data-h="215" data-picos="84:16,69:28,56:100,55:33,42:27,41:60,39:22,27:17" data-xmin="20" data-xmax="95" data-destaque="84:mol,69:hot" data-rotulos="84:M⁺•,69:M−15"></div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ PARTE 2 · baseada no vídeo 006 ============ -->
+
+      <!-- 30 · ALCENOS -->
+      <section class="slide dense" data-title="Alcenos">
+        <div class="kicker">Interpretando por classe · alcenos</div>
+        <h2>Alcenos: o elétron sai <span class="grad">da ligação π</span></h2>
+        <div class="cols" style="align-items:start">
+          <div>
+            <ul>
+              <li class="frag">Como os alcenos têm uma <b class="hl">ligação π</b>, o elétron é retirado dela, e o <b>esqueleto carbônico permanece inalterado</b>: o M⁺• costuma ser bem visível.</li>
+              <li class="frag">Os alcenos <b>terminais</b> formam com muita facilidade o <b class="hl3">cátion alila (m/z 41)</b>, pela clivagem da ligação alílica (fragmentação α à ligação dupla).</li>
+              <li class="frag">A série típica é CₙH₂ₙ₋₁⁺: <b>27, 41, 55, 69…</b> (2 u abaixo da série dos alcanos).</li>
+              <li class="frag">Isômeros de posição da dupla têm espectros <b>parecidos</b>: a EM sozinha raramente diz onde está a ligação dupla.</li>
+            </ul>
+          </div>
+          <div style="display:grid; gap:.6em">
+            <div class="spec-card frag"><div class="cap"><span><b>1-penteno</b> CH₂=CHCH₂CH₂CH₃</span><span>M = 70</span></div>
+              <div class="ms-plot" data-h="215" data-picos="70:38,55:65,42:100,41:43,39:27,29:21,27:18" data-xmin="20" data-xmax="78" data-destaque="70:mol,41:hot" data-rotulos="70:M⁺•,41:alila"></div></div>
+            <div class="spec-card frag"><div class="cap"><span><b>(E)-2-penteno</b> CH₃CH=CHCH₂CH₃</span><span>M = 70</span></div>
+              <div class="ms-plot" data-h="215" data-picos="70:38,55:100,42:33,41:27,39:22,29:12,27:15" data-xmin="20" data-xmax="78" data-destaque="70:mol,55:hot" data-rotulos="70:M⁺•,55:M−15"></div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 31 · RDA NEM SEMPRE -->
+      <section class="slide dense" data-title="RDA nem sempre">
+        <div class="kicker">Cicloexenos · retro-Diels-Alder</div>
+        <h2>Retro-Diels-Alder: <span class="grad">mas não em todos os casos</span></h2>
+        <div class="cols" style="align-items:start">
+          <div class="spec-card frag">
+            <div class="cap"><span><b>α-ionona</b> C₁₃H₂₀O</span><span>M = 192</span></div>
+            <div class="mol md" data-mol="aionona" style="margin:0 auto; height:5.5em"></div>
+            <div class="ms-plot" data-h="200" data-picos="192:15,177:10,149:5,136:72,121:100,93:80,77:18,43:55" data-xmin="35" data-xmax="200" data-destaque="136:hot,192:mol"></div>
+            <p class="small muted" style="margin:.2em 0 .4em">m/z 136 = RDA (M−56). A dupla está <b>dentro do anel</b> na posição certa: sai isobuteno (56 u) e aparece m/z 136.</p>
+          </div>
+          <div class="spec-card frag">
+            <div class="cap"><span><b>β-ionona</b> C₁₃H₂₀O</span><span>M = 192</span></div>
+            <div class="mol md" data-mol="bionona" style="margin:0 auto; height:5.5em"></div>
+            <div class="ms-plot" data-h="200" data-picos="192:8,177:100,135:8,91:10,43:45" data-xmin="35" data-xmax="200" data-destaque="177:hot,192:mol" data-rotulos="177:M−15"></div>
+            <p class="small muted" style="margin:.2em 0 .4em">A dupla está na junção com a cadeia (conjugada): <b>não há RDA</b>; domina a perda de •CH₃ (177).</p>
+          </div>
+        </div>
+        <p class="frag" style="margin-top:.6em">Mesma fórmula, mesmo anel: a <b class="hl">posição da ligação dupla</b> decide se o retro-Diels-Alder acontece. Espectros esquemáticos baseados em Pavia et al.</p>
+      </section>
+
+      <!-- 32 · ALCINOS -->
+      <section class="slide" data-title="Alcinos">
+        <div class="kicker">Interpretando por classe · alcinos</div>
+        <h2>Alcinos: <span class="grad">primos dos alcenos</span></h2>
+        <div class="cols">
+          <div>
+            <ul>
+              <li class="frag">Os alcinos apresentam características muito parecidas com as dos alcenos:</li>
+              <li class="frag">formação do cátion radical na <b class="hl">ligação π</b>;</li>
+              <li class="frag"><b>integridade do esqueleto</b> carbônico;</li>
+              <li class="frag">facilidade de formar o <b class="hl3">íon propargila (m/z 39)</b>, análogo ao alila.</li>
+              <li class="frag">Os alcinos <b>terminais</b> apresentam pico <b class="hl2">M−1 forte</b>, pela perda do hidrogênio ligado ao carbono sp (H–C≡).</li>
+            </ul>
+          </div>
+          <div class="tile frag" style="text-align:center">
+            <p class="small muted">Íon propargila · m/z 39</p>
+            <p class="mono" style="font-size:1.5em; margin:.5em 0; color:#c6f35b">HC≡C–CH₂⁺ ⟷ HC⁺=C=CH₂</p>
+            <p class="small muted">Estabilizado por ressonância, como o alila (CH₂=CH–CH₂⁺, m/z 41).</p>
+            <table class="mini-table" style="margin-top:1em"><thead><tr><th>Classe</th><th>Íon típico</th></tr></thead>
+              <tbody><tr><td>Alcenos</td><td class="mono">41 (alila) · 27, 41, 55, 69…</td></tr>
+                     <tr><td>Alcinos</td><td class="mono">39 (propargila) · M−1</td></tr></tbody></table>
+          </div>
+        </div>
+      </section>
+
+      <!-- 33 · AROMÁTICOS -->
+      <section class="slide dense" data-title="Aromáticos">
+        <div class="kicker">Interpretando por classe · aromáticos</div>
+        <h2>Aromáticos: um íon molecular <span class="grad">bem "estável"</span></h2>
+        <div class="cols" style="align-items:start">
+          <div>
+            <ul>
+              <li class="frag">Apresentam pico do <b class="hl">íon molecular muito intenso</b>.</li>
+              <li class="frag">Como a fragmentação do anel requer muita energia, os picos que envolvem a <b>ruptura do anel</b> têm baixa intensidade.</li>
+              <li class="frag">Com cadeia lateral: clivagem benzílica → cátion benzila → <b class="hl3">íon tropílio (m/z 91)</b>; com R = CH₃, m/z 105.</li>
+              <li class="frag">O tropílio perde acetileno (26 u) em sequência: <b>91 → 65 → 39</b>.</li>
+              <li class="frag">Cadeia com H-γ: McLafferty dá <b class="hl2">m/z 92</b>.</li>
+            </ul>
+            <table class="mini-table frag" style="margin-top:.6em"><thead><tr><th>Íon molecular</th><th>Íon fragmento</th></tr></thead>
+              <tbody><tr><td>M⁺ forte</td><td class="mono">m/z 91, 92 · 77 · 65 · 39</td></tr></tbody></table>
+          </div>
+          <div style="display:grid; gap:.6em">
+            <div class="spec-card frag"><div class="cap"><span><b>benzeno</b> C₆H₆</span><span>M = 78</span></div>
+              <div class="ms-plot" data-h="200" data-picos="78:100,77:15,63:3,52:18,51:18,50:15,39:12" data-xmin="30" data-xmax="85" data-destaque="78:mol" data-rotulos="78:M⁺• (base)"></div></div>
+            <div class="spec-card frag"><div class="cap"><span><b>butilbenzeno</b> C₁₀H₁₄</span><span>M = 134</span></div>
+              <div class="ms-plot" data-h="200" data-picos="134:25,105:6,92:52,91:100,65:8,51:5,39:5" data-xmin="30" data-xmax="140" data-destaque="134:mol,91:hot,92:iso" data-rotulos="134:M⁺•,91:tropílio,92:McLafferty"></div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 34 · ÁLCOOIS -->
+      <section class="slide dense" data-title="Álcoois">
+        <div class="kicker">Interpretando por classe · álcoois</div>
+        <h2>Álcoois: o íon molecular <span class="grad">quase some</span></h2>
+        <div class="cols" style="align-items:start">
+          <div>
+            <ul>
+              <li class="frag">O pico do íon molecular é <b class="hl3">muito pouco expressivo</b>, ou inexistente, como ocorre em álcoois terciários.</li>
+              <li class="frag"><b class="hl">Clivagem α</b> ao carbono do OH: sai o maior radical e fica um íon oxônio. Primários → <b>m/z 31</b> (CH₂=OH⁺); secundários → 45, 59…; terciários → 59, 73…</li>
+              <li class="frag"><b class="hl2">Desidratação</b>: perda de água (M−18), muitas vezes seguida de perda de alceno.</li>
+              <li class="frag">Cuidado: o "último pico" de um álcool costuma ser M−18 ou M−15, e não o M.</li>
+            </ul>
+          </div>
+          <div class="spec-card frag">
+            <div class="cap"><span><b>2-pentanol</b> CH₃CH(OH)CH₂CH₂CH₃</span><span>M = 88</span></div>
+            <div class="ms-plot" data-picos="88:0.3,73:12,70:5,55:20,45:100,44:10,43:12,41:10,27:12" data-xmin="20" data-xmax="95" data-destaque="45:hot,88:mol" data-rotulos="45:CH₃CH=OH⁺,73:M−15,88:M (≈0)"></div>
+            <p class="small muted" style="margin:.2em 0 .4em">Clivagem α: sai •C₃H₇ (o maior radical) → m/z 45; ou sai •CH₃ → m/z 73.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 35 · ÁLCOOIS CÍCLICOS -->
+      <section class="slide dense" data-title="Álcoois cíclicos">
+        <div class="kicker">Álcoois · casos cíclicos</div>
+        <h2>Álcoois cíclicos: <span class="grad">um padrão mais complexo</span></h2>
+        <div class="cols" style="align-items:start">
+          <div>
+            <ul>
+              <li class="frag">Álcoois cíclicos apresentam um padrão de fragmentação <b>muito mais complexo</b>: a clivagem α abre o anel, mas não separa a molécula.</li>
+              <li class="frag"><b class="hl2">M−1 (m/z 99)</b>: perda do H• do carbono do OH, formando um oxônio cíclico.</li>
+              <li class="frag"><b class="hl">M−18 (m/z 82)</b>: perda de água.</li>
+              <li class="frag"><b class="hl3">m/z 57</b> (pico base): o anel se abre por clivagem α, um H migra e sai um radical propila, ficando C₃H₅O⁺.</li>
+            </ul>
+          </div>
+          <div class="spec-card frag">
+            <div class="cap"><span><b>cicloexanol</b> C₆H₁₂O</span><span>M = 100</span></div>
+            <div class="ms-plot" data-picos="100:4,99:3,82:50,71:14,67:27,57:100,44:28,43:15,41:26,39:20,29:12,27:11" data-xmin="20" data-xmax="105" data-destaque="57:hot,82:iso,100:mol" data-rotulos="57:C₃H₅O⁺,82:M−18,100:M⁺•"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 36 · FENÓIS -->
+      <section class="slide dense" data-title="Fenóis">
+        <div class="kicker">Interpretando por classe · fenóis</div>
+        <h2>Fenóis: <span class="grad">M forte, perdas de 1, 28 e 29</span></h2>
+        <div class="cols" style="align-items:start">
+          <div>
+            <ul>
+              <li class="frag">O pico do <b class="hl">íon molecular é intenso</b>, sendo na maioria das vezes o <b>pico base</b>.</li>
+              <li class="frag">Costumam perder o <b>hidrogênio fenólico</b>, gerando o <b class="hl2">M−1</b>.</li>
+              <li class="frag">Perdem <b class="hl3">monóxido de carbono</b> (após o rearranjo do anel para a forma ceto), gerando o <b>M−28</b>.</li>
+              <li class="frag">Perdem o radical formila (<b>HCO•</b>), gerando o <b>M−29</b>.</li>
+            </ul>
+            <table class="mini-table frag" style="margin-top:.6em"><thead><tr><th>Íon molecular</th><th>Íon fragmento</th></tr></thead>
+              <tbody><tr><td>M⁺ forte</td><td class="mono">M−1 · M−28 · M−29</td></tr></tbody></table>
+          </div>
+          <div class="spec-card frag">
+            <div class="cap"><span><b>2-metilfenol</b> (o-cresol) C₇H₈O</span><span>M = 108</span></div>
+            <div class="ms-plot" data-picos="108:100,107:80,90:6,80:10,79:30,77:24,53:8,51:10,39:12" data-xmin="30" data-xmax="115" data-destaque="108:mol,107:iso,80:hot,79:hot" data-rotulos="108:M⁺•,79:M−29"></div>
+            <p class="small muted" style="margin:.2em 0 .4em">Fenol (M = 94): 94 → 66 (perde CO) → 65 (perde H•).</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 37 · ÉTERES -->
+      <section class="slide dense" data-title="Éteres">
+        <div class="kicker">Interpretando por classe · éteres</div>
+        <h2>Éteres: <span class="grad">três caminhos a partir do oxigênio</span></h2>
+        <div class="cols" style="align-items:start">
+          <div>
+            <ul>
+              <li class="frag">O pico do íon molecular dos éteres é <b class="hl3">muito fraco</b>, mas mais intenso que o dos álcoois.</li>
+              <li class="frag"><b class="hl">Clivagem α:</b> sai um radical do carbono vizinho ao O e fica um oxônio (M−15, M−29…).</li>
+              <li class="frag"><b class="hl2">Clivagem indutiva:</b> o O fica com o radical e sai o carbocátion (m/z 43, 57…).</li>
+              <li class="frag"><b>Rearranjo:</b> o oxônio transfere um H e perde um alceno, dando íons pequenos como <b>m/z 45 e 59</b>.</li>
+            </ul>
+            <table class="mini-table frag" style="margin-top:.6em"><thead><tr><th>Íon molecular</th><th>Íon fragmento</th></tr></thead>
+              <tbody><tr><td>M⁺ fraco</td><td class="mono">segmentação α · m/z 43, 59, 73… · M−31, M−45, M−59…</td></tr></tbody></table>
+          </div>
+          <div class="spec-card frag">
+            <div class="cap"><span><b>éter di-sec-butílico</b> C₈H₁₈O</span><span>M = 130</span></div>
+            <div class="ms-plot" data-picos="130:1,115:2,101:35,59:30,57:80,45:100,41:25,29:40" data-xmin="20" data-xmax="140" data-destaque="101:hot,57:iso,45:hot" data-rotulos="101:α (M−29),57:indutiva,45:rearranjo"></div>
+            <p class="small muted" style="margin:.2em 0 .4em">130 → 115 (α, −CH₃) · 101 (α, −C₂H₅) · 57 (indutiva) · 45 e 59 (perda de buteno do oxônio).</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 38 · ÉTER AROMÁTICO -->
+      <section class="slide dense" data-title="Éter aromático">
+        <div class="kicker">Éteres · aromáticos</div>
+        <h2>Éter aromático: <span class="grad">o anel segura a carga</span></h2>
+        <div class="cols" style="align-items:start">
+          <div>
+            <ul>
+              <li class="frag">Em éteres aromáticos o <b class="hl">M⁺ é forte</b>, porque o anel estabiliza o cátion radical.</li>
+              <li class="frag"><b class="hl2">M−29 (m/z 107):</b> clivagem indutiva com saída do radical etila (•C₂H₅).</li>
+              <li class="frag"><b class="hl3">M−28 (m/z 108):</b> um H do grupo etila migra para o anel e sai <b>eteno</b> (neutro): forma-se o cátion radical do cresol.</li>
+              <li class="frag">Perder 28 (neutro) mantém a massa <b>par</b>; perder 29 (radical) deixa a massa <b>ímpar</b>.</li>
+            </ul>
+          </div>
+          <div class="spec-card frag">
+            <div class="cap"><span><b>4-etoxitolueno</b> CH₃–C₆H₄–OCH₂CH₃</span><span>M = 136</span></div>
+            <div class="ms-plot" data-picos="136:60,108:100,107:72,91:8,79:15,77:17,51:6,39:8" data-xmin="30" data-xmax="145" data-destaque="136:mol,108:hot,107:iso" data-rotulos="136:M⁺•,108:M−28"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 39 · CARBONÍLICOS E ALDEÍDOS -->
+      <section class="slide dense" data-title="Aldeídos">
+        <div class="kicker">Interpretando por classe · compostos carbonilados</div>
+        <h2>Aldeídos: <span class="grad">o m/z 44 denuncia a função</span></h2>
+        <div class="cols" style="align-items:start">
+          <div>
+            <ul>
+              <li class="frag">De maneira geral, todos os compostos carbonilados apresentam <b class="hl">segmentação α</b>, <b class="hl2">segmentação indutiva</b> e <b class="hl3">rearranjo de McLafferty</b> (se houver carbono γ).</li>
+              <li class="frag">Aldeídos têm um padrão mais exclusivo: <b>M−1</b> (perda do H• da carbonila) e <b>m/z 29</b> (HC≡O⁺).</li>
+              <li class="frag"><b>M−29</b> (perda de •CHO) e <b>M−43</b>.</li>
+              <li class="frag">O <b class="hl3">m/z 44</b>, vindo do McLafferty (CH₂=CH–OH⁺•), é decisivo para identificar a função.</li>
+            </ul>
+          </div>
+          <div class="spec-card frag">
+            <div class="cap"><span><b>pentanal</b> C₅H₁₀O</span><span>M = 86</span></div>
+            <div class="ms-plot" data-picos="86:2,85:1,71:3,58:45,57:32,44:100,43:30,41:40,29:47,27:30" data-xmin="20" data-xmax="95" data-destaque="44:hot,86:mol,29:iso" data-rotulos="44:McLafferty,29:HCO⁺,58:M−28,86:M⁺•"></div>
+            <p class="small muted" style="margin:.2em 0 .4em">85 (M−1) · 58 (M−28, perda de eteno) · 57 (M−29) · 44 · 43 · 29.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 40 · ALDEÍDO AROMÁTICO -->
+      <section class="slide dense" data-title="Benzaldeído">
+        <div class="kicker">Aldeídos · aromáticos</div>
+        <h2>Aldeído aromático: <span class="grad">M e M−1 lado a lado</span></h2>
+        <div class="cols" style="align-items:start">
+          <div>
+            <ul>
+              <li class="frag">O anel estabiliza o íon molecular: <b class="hl">M forte</b>.</li>
+              <li class="frag">A perda do H• da carbonila forma o <b class="hl3">cátion benzoíla (m/z 105)</b>, quase tão intenso quanto o M.</li>
+              <li class="frag">A benzoíla perde CO e dá o <b class="hl2">cátion fenila (m/z 77)</b>, que perde acetileno e dá m/z 51.</li>
+            </ul>
+            <div class="rx frag" style="margin-top:.8em">
+              <span class="mono" style="color:#c6f35b">106</span><span class="arrow">→</span><span class="mono">105</span><span class="arrow">→</span><span class="mono">77</span><span class="arrow">→</span><span class="mono">51</span>
+            </div>
+            <p class="small muted frag" style="text-align:center">−H• · −CO · −C₂H₂</p>
+          </div>
+          <div class="spec-card frag">
+            <div class="cap"><span><b>benzaldeído</b> C₇H₆O</span><span>M = 106</span></div>
+            <p class="small muted">106 = M⁺• · 105 = M−1</p><div class="ms-plot" data-picos="106:95,105:97,78:22,77:100,74:8,51:65,50:40,39:10,29:20" data-xmin="20" data-xmax="115" data-destaque="106:mol,105:hot"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 41 · CETONAS -->
+      <section class="slide dense" data-title="Cetonas">
+        <div class="kicker">Interpretando por classe · cetonas</div>
+        <h2>Cetonas: <span class="grad">sai o maior radical</span></h2>
+        <div class="cols" style="align-items:start">
+          <div>
+            <ul>
+              <li class="frag">As cetonas apresentam um padrão de fragmentação <b>similar ao dos aldeídos</b>.</li>
+              <li class="frag">Na clivagem α, a perda do radical alquila de <b class="hl">maior cadeia</b> é mais favorável (regra de Stevenson).</li>
+              <li class="frag">McLafferty dá m/z <b class="hl3">58, 72, 86…</b> (metilcetonas → 58).</li>
+            </ul>
+            <table class="mini-table frag" style="margin-top:.6em"><thead><tr><th>Íon molecular</th><th>Íon fragmento</th></tr></thead>
+              <tbody><tr><td rowspan="2">M⁺ forte</td><td class="mono">Alifáticas: M−15, M−29, M−43 · m/z 43 · 58, 72, 86… · 42, 83</td></tr>
+              <tr><td class="mono">Aromáticas: m/z 105, 120</td></tr></tbody></table>
+          </div>
+          <div class="spec-card frag">
+            <div class="cap"><span><b>2-octanona</b> CH₃CO(CH₂)₅CH₃</span><span>M = 128</span></div>
+            <div class="ms-plot" data-picos="128:5,113:4,85:5,71:12,59:8,58:60,43:100,41:15,29:12,27:15" data-xmin="20" data-xmax="135" data-destaque="43:hot,58:iso,128:mol" data-rotulos="43:M−85,58:McLafferty,128:M⁺•"></div>
+            <p class="small muted" style="margin:.2em 0 .4em">Sai o radical hexila (85 u, o maior) → m/z 43 (base). Sair •CH₃ (M−15 = 113) é bem menos favorável.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 42 · CETONAS CÍCLICAS E AROMÁTICAS -->
+      <section class="slide dense" data-title="Cetonas cíclicas e aromáticas">
+        <div class="kicker">Cetonas · cíclicas e aromáticas</div>
+        <h2>Cicloexanona e <span class="grad">butirofenona</span></h2>
+        <div class="cols" style="align-items:start">
+          <div class="spec-card frag">
+            <div class="cap"><span><b>cicloexanona</b> C₆H₁₀O</span><span>M = 98</span></div>
+            <div class="ms-plot" data-h="220" data-picos="98:30,83:8,70:25,69:20,55:100,42:85,41:35,39:27,27:33" data-xmin="20" data-xmax="105" data-destaque="55:hot,42:iso,98:mol" data-rotulos="55:base,42:M−56,98:M⁺•"></div>
+            <p class="small muted" style="margin:.2em 0 .4em">Clivagem α abre o anel; depois: perda de eteno → 70 → perda de CO → 42; transferência de H e perda de •C₃H₇ → 55; perda de •CH₃ → 83.</p>
+          </div>
+          <div class="spec-card frag">
+            <div class="cap"><span><b>butirofenona</b> C₆H₅COCH₂CH₂CH₃</span><span>M = 148</span></div>
+            <div class="ms-plot" data-h="220" data-picos="148:12,120:10,105:100,77:50,51:15" data-xmin="40" data-xmax="155" data-destaque="105:hot,120:iso,148:mol" data-rotulos="105:C₆H₅CO⁺,120:McLafferty,148:M⁺•"></div>
+            <p class="small muted" style="margin:.2em 0 .4em">Clivagem α (sai •C₃H₇) → benzoíla 105 → perde CO → fenila 77. McLafferty (sai eteno) → 120.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 43 · ÁCIDOS -->
+      <section class="slide dense" data-title="Ácidos carboxílicos">
+        <div class="kicker">Interpretando por classe · ácidos carboxílicos</div>
+        <h2>Ácidos: quebra <span class="grad">dos dois lados da carbonila</span></h2>
+        <div class="cols" style="align-items:start">
+          <div>
+            <ul>
+              <li class="frag">Como os demais carbonilados, os ácidos se fragmentam em <b>ambos os lados</b> do carbono carbonílico (um dos grupos é o –OH).</li>
+              <li class="frag">Perda de <b class="hl">•OH (M−17)</b> e de <b class="hl2">•COOH (M−45)</b>; o íon <b>⁺COOH</b> aparece em <b>m/z 45</b>.</li>
+              <li class="frag">Alifáticos com H-γ: McLafferty em <b class="hl3">m/z 60</b>. Aromáticos com substituinte <i>orto</i>: perda de água (M−18).</li>
+            </ul>
+            <table class="mini-table frag" style="margin-top:.6em"><thead><tr><th>Íon molecular</th><th>Íon fragmento</th></tr></thead>
+              <tbody><tr><td>M⁺ fraco, alifático</td><td class="mono">M−17, M−45 · m/z 45, 60</td></tr>
+              <tr><td>M⁺ intenso, aromático</td><td class="mono">M−17, M−45, M−18</td></tr></tbody></table>
+          </div>
+          <div class="spec-card frag">
+            <div class="cap"><span><b>ácido 4-metoxibenzoico</b> C₈H₈O₃</span><span>M = 152</span></div>
+            <div class="ms-plot" data-picos="152:100,135:98,107:12,92:12,77:20,64:10,63:8,45:8" data-xmin="35" data-xmax="160" data-destaque="152:mol,135:hot,107:iso" data-rotulos="152:M⁺•,135:M−17,107:−CO"></div>
+            <p class="small muted" style="margin:.2em 0 .4em">152 → 135 (perde •OH, forma o acílio) → 107 (perde CO). E m/z 45 (⁺COOH).</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 44 · ÉSTERES -->
+      <section class="slide dense" data-title="Ésteres">
+        <div class="kicker">Interpretando por classe · ésteres</div>
+        <h2>Ésteres: <span class="grad">acílio, alcóxido e McLafferty</span></h2>
+        <div class="cols" style="align-items:start">
+          <div>
+            <table class="mini-table frag"><thead><tr><th>Íon molecular</th><th>Íon fragmento</th></tr></thead>
+              <tbody><tr><td rowspan="2">M⁺ fraco ou inexistente</td><td class="mono">Ésteres de metila: M−31 · m/z 59, 74</td></tr>
+              <tr><td class="mono">Mais pesados: M−45, M−59, M−73 · m/z 73, 87, 101 · 88, 102, 116 · 61, 75, 89 · 77, 105, 108 · M−32, M−46, M−60</td></tr></tbody></table>
+            <ul style="margin-top:.8em">
+              <li class="frag">Clivagem α de um lado: sai •OCH₃ → acílio <b>m/z 71</b> (M−31). Do outro: sai •C₃H₇ → <b>m/z 59</b> (⁺C≡O–OCH₃).</li>
+              <li class="frag">Indutiva: <b>m/z 43</b> (C₃H₇⁺) e m/z 31 (CH₃O⁺).</li>
+              <li class="frag">McLafferty dos ésteres metílicos: <b class="hl3">m/z 74</b>.</li>
+            </ul>
+          </div>
+          <div class="spec-card frag">
+            <div class="cap"><span><b>butanoato de metila</b> C₅H₁₀O₂</span><span>M = 102</span></div>
+            <div class="ms-plot" data-picos="102:2,87:17,74:70,71:55,59:25,43:100,41:33,27:45,29:10" data-xmin="20" data-xmax="110" data-destaque="74:hot,71:iso,59:iso" data-rotulos="74:McLafferty"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 45 · McLAFFERTY+1 -->
+      <section class="slide dense" data-title="McLafferty+1">
+        <div class="kicker">Ésteres mais pesados</div>
+        <h2>Rearranjo <span class="grad">McLafferty+1</span></h2>
+        <div class="cols" style="align-items:start">
+          <div>
+            <ul>
+              <li class="frag">Quando a porção <b>alcoólica</b> do éster tem dois ou mais carbonos, <b class="hl">dois hidrogênios</b> migram dela para o grupo carboxila.</li>
+              <li class="frag">Sai um <b>radical alila/alquenila</b> e fica o <b class="hl3">ácido protonado</b>: m/z = massa do ácido + 1.</li>
+              <li class="frag">Por isso a série <b>61, 75, 89…</b> (acetatos, propanoatos, butanoatos…).</li>
+              <li class="frag">O McLafferty "normal" (lado do ácido, sai eteno) ainda aparece: m/z 116 no butanoato de butila.</li>
+            </ul>
+          </div>
+          <div class="spec-card frag">
+            <div class="cap"><span><b>butanoato de butila</b> C₈H₁₆O₂</span><span>M = 144</span></div>
+            <div class="ms-plot" data-picos="144:1,116:3,101:4,89:45,73:5,71:100,43:60,41:35,27:25" data-xmin="20" data-xmax="150" data-destaque="89:hot,71:iso" data-rotulos="89:McLafferty+1,71:C₃H₇CO⁺" data-lim="3"></div>
+            <p class="small muted" style="margin:.2em 0 .4em">71 = acílio (sai •OC₄H₉) · 101 = sai •C₃H₇ · 43 = C₃H₇⁺ · 116 = McLafferty (sai eteno) · 89 = ácido butanoico + H⁺.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ PARTE 3 · baseada no vídeo 007 ============ -->
+
+      <!-- AMINAS -->
+      <section class="slide dense" data-title="Aminas">
+        <div class="kicker">Interpretando por classe · aminas</div>
+        <h2>Aminas: a regra do nitrogênio <span class="grad">em ação</span></h2>
+        <div class="cols" style="align-items:start">
+          <div>
+            <ul>
+              <li class="frag">As aminas obedecem à <b class="hl">regra do nitrogênio</b>, por isso o valor do pico do íon molecular é especialmente útil: massa <b>par</b> → zero ou nº par de N; massa <b>ímpar</b> → nº ímpar de N.</li>
+              <li class="frag">O M⁺ é <b class="hl3">fraco</b>; domina a <b>segmentação α</b>: sai o radical R₁ de <b>maior cadeia</b> e fica o íon imínio. Aminas primárias → <b class="hl2">m/z 30</b> (CH₂=NH₂⁺).</li>
+              <li class="frag">Em aminas de <b>cadeia longa</b> o fragmento pode se ciclizar, com perdas sucessivas de grupos –CH₂–.</li>
+            </ul>
+            <table class="mini-table frag" style="margin-top:.6em"><thead><tr><th>Íon molecular</th><th>Íon fragmento</th></tr></thead>
+              <tbody><tr><td>M⁺ fraco</td><td class="mono">Segmentação α · m/z 30, 44, 58, 72…</td></tr></tbody></table>
+          </div>
+          <div style="display:grid; gap:.6em">
+            <div class="spec-card frag"><div class="cap"><span><b>etilamina</b> CH₃CH₂NH₂</span><span>M = 45</span></div>
+              <div class="ms-plot" data-h="200" data-picos="45:20,44:20,42:8,30:100,28:32,27:12,15:8" data-xmin="10" data-xmax="50" data-destaque="45:mol,30:hot" data-rotulos="45:M⁺•,30:CH₂=NH₂⁺"></div></div>
+            <div class="spec-card frag"><div class="cap"><span><b>dietilamina</b> (CH₃CH₂)₂NH</span><span>M = 73</span></div>
+              <div class="ms-plot" data-h="200" data-picos="73:15,72:5,58:100,44:15,42:12,30:75,29:35,27:25" data-xmin="20" data-xmax="80" data-destaque="73:mol,58:hot" data-rotulos="73:M⁺•,58:M−15"></div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- AMINAS CÍCLICAS E AROMÁTICAS -->
+      <section class="slide" data-title="Aminas cíclicas">
+        <div class="kicker">Aminas · cíclicas e aromáticas</div>
+        <h2>Aminas cíclicas e aromáticas: <span class="grad">padrões característicos</span></h2>
+        <div class="cols" style="align-items:stretch">
+          <div class="tile frag left">
+            <span class="tag tag-b">N-metilpirrolidina · M = 85</span>
+            <ul style="margin-top:.7em">
+              <li>Perde um H• do carbono α: <b class="hl">m/z 84</b> (M−1), íon imínio cíclico.</li>
+              <li>84 perde um alceno e dá <b>m/z 42</b> (CH₂=N⁺=CH₂).</li>
+              <li>Clivagem α abre o anel; após perda de eteno fica <b>m/z 57</b>, que perde •CH₃ → 42.</li>
+            </ul>
+            <p class="mono" style="margin-top:.6em; color:#c6f35b">85 → 84 → 42 · 85 → 57 → 42</p>
+          </div>
+          <div class="tile frag">
+            <span class="tag tag-p">Anilina · M = 93</span>
+            <ul style="margin-top:.7em">
+              <li>Aromática: <b class="hl">M⁺ intenso</b> (e ímpar: 1 N).</li>
+              <li>O anel se rearranja e perde <b class="hl3">HCN (27 u)</b>: m/z 66.</li>
+              <li>Depois perde H•: <b>m/z 65</b> (cátion ciclopentadienila).</li>
+            </ul>
+            <p class="mono" style="margin-top:.6em; color:#c6f35b">93 → 66 → 65</p>
+            <p class="small muted" style="margin-top:.5em">Compare com o fenol: 94 → 66 (perde CO) → 65.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- AMIDAS -->
+      <section class="slide" data-title="Amidas">
+        <div class="kicker">Interpretando por classe · amidas</div>
+        <h2>Amidas: carbonilados <span class="grad">com nitrogênio</span></h2>
+        <div class="cols">
+          <div>
+            <ul>
+              <li class="frag">As amidas apresentam padrão de fragmentação muito parecido com o dos outros <b>compostos carbonilados</b>.</li>
+              <li class="frag">Geralmente apresentam pico do <b class="hl">íon molecular bem observável</b>, além de obedecer à <b>regra do nitrogênio</b>.</li>
+              <li class="frag"><b class="hl2">Clivagem α:</b> sai R• e fica <b>H₂N–C≡O⁺ (m/z 44)</b>.</li>
+              <li class="frag"><b class="hl3">McLafferty</b> (se houver H-γ): sai um alceno e fica o enol da acetamida, <b>m/z 59</b>.</li>
+            </ul>
+          </div>
+          <div class="tile frag" style="font-family:var(--mono); line-height:2">
+            <p class="small muted" style="font-family:inherit">Amidas primárias R–CO–NH₂</p>
+            [R–CO–NH₂]<sup>+•</sup> → R• + <b class="hl">O=C=N⁺H₂</b> &nbsp;<span class="muted">m/z 44</span><br>
+            [R–CH₂–CH₂–CH₂–CONH₂]<sup>+•</sup> → alceno + <b class="hl3">CH₂=C(OH)NH₂⁺•</b> &nbsp;<span class="muted">m/z 59</span>
+            <p class="small muted" style="font-family:inherit; margin-top:.6em">Compare: ácidos dão 45 e 60; amidas dão 44 e 59 (−OH trocado por −NH₂, 1 u a menos).</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- NITRILAS -->
+      <section class="slide dense" data-title="Nitrilas">
+        <div class="kicker">Interpretando por classe · nitrilas</div>
+        <h2>Nitrilas: <span class="grad">o falso C₃H₅⁺</span></h2>
+        <div class="cols" style="align-items:start">
+          <div>
+            <ul>
+              <li class="frag">Nitrilas alifáticas apresentam pico do <b class="hl3">íon molecular muito pouco intenso</b>; o <b>M−1</b> (perda de H• α, formando R–CH=C=N⁺) costuma ser maior.</li>
+              <li class="frag">Quando possível o <b class="hl">rearranjo de McLafferty</b>, encontra-se um pico intenso em <b>m/z 41</b> (CH₂=C=NH⁺•), que pode ser <b>confundido com o pico do C₃H₅⁺</b> (alila).</li>
+              <li class="frag">Nitrilas aromáticas têm <b>M forte</b> e perdem <b class="hl2">HCN (27 u)</b>.</li>
+            </ul>
+          </div>
+          <div class="spec-card frag">
+            <div class="cap"><span><b>benzonitrila</b> C₆H₅CN</span><span>M = 103</span></div>
+            <div class="ms-plot" data-picos="103:100,104:8,77:6,76:30,75:8,51:8,50:15" data-xmin="40" data-xmax="110" data-destaque="103:mol,76:hot" data-rotulos="103:M⁺•,76:M−27 (HCN)"></div>
+            <p class="small muted" style="margin:.2em 0 .4em">Esquemático, baseado em Pavia et al.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- NITROCOMPOSTOS -->
+      <section class="slide" data-title="Nitrocompostos">
+        <div class="kicker">Interpretando por classe · nitrocompostos</div>
+        <h2>Nitrocompostos: <span class="grad">alifáticos × aromáticos</span></h2>
+        <div class="cols" style="align-items:stretch">
+          <div class="tile frag left">
+            <span class="tag tag-w">Alifáticos</span>
+            <p style="margin-top:.6em">Os nitrocompostos alifáticos apresentam pico do íon molecular <b class="hl3">pouco intenso</b>. A ligação C–N se rompe facilmente: domina o cátion alquila R⁺ (M−46).</p>
+            <p class="mono" style="margin-top:.5em; color:#c6f35b">R–NO₂⁺• → R⁺ + •NO₂ &nbsp;(M−46)</p>
+            <p class="small muted" style="margin-top:.4em">Picos pequenos em m/z 30 (NO⁺) e 46 (NO₂⁺).</p>
+          </div>
+          <div class="tile frag">
+            <span class="tag tag-t">Aromáticos</span>
+            <p style="margin-top:.6em">Diferentemente dos alifáticos, os nitroaromáticos têm <b class="hl">M⁺ intenso</b> (e ímpar, se houver um só N).</p>
+            <p class="mono" style="margin-top:.5em; color:#c6f35b">Ar–NO₂⁺• → Ar⁺ + •NO₂ &nbsp;(M−46)<br>Ar–NO₂⁺• → ArO⁺ + •NO &nbsp;(M−30)</p>
+            <p class="small muted" style="margin-top:.4em">ArO⁺ ainda perde CO (−28): no nitrobenzeno, 123 → 93 → 65.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- HALETOS DE ALQUILA -->
+      <section class="slide dense" data-title="Haletos de alquila">
+        <div class="kicker">Interpretando por classe · haletos de alquila</div>
+        <h2>Haletos: <span class="grad">o M+2 é a assinatura</span></h2>
+        <div class="cols" style="align-items:start">
+          <div>
+            <ul>
+              <li class="frag">O principal pico para a identificação é o <b class="hl3">M+2</b> (M : M+2 ≈ 3 : 1 nos cloretos e 1 : 1 nos brometos).</li>
+              <li class="frag">O M⁺ dos <b>iodetos</b> é mais intenso; o dos <b>fluoretos</b>, menos. Quanto <b>mais ramificado</b>, menos intenso o M⁺.</li>
+              <li class="frag">Mecanismos: perda de <b class="hl">X•</b> (M−35 Cl, M−79 Br) · perda de <b class="hl2">HX</b> (M−36, M−80) · <b>segmentação α</b> → CH₂=X⁺ (m/z 49 Cl, 93 Br) · ciclização (halônio cíclico).</li>
+            </ul>
+            <table class="mini-table frag" style="margin-top:.6em"><thead><tr><th>Íon molecular</th><th>Íon fragmento</th></tr></thead>
+              <tbody><tr><td>Pico M+2 forte<br><span class="mono">Cl 3:1 · Br 1:1</span></td><td class="mono">Perda de Cl ou Br · perda de HCl · segmentação α</td></tr></tbody></table>
+          </div>
+          <div class="spec-card frag">
+            <div class="cap"><span><b>2-cloro-heptano</b> C₇H₁₅Cl</span><span>M = 134</span></div>
+            <div class="ms-plot" data-picos="134:1,136:0.4,107:2,105:7,99:3,98:32,70:42,69:52,57:35,56:100,55:41,43:54,41:58" data-xmin="35" data-xmax="140" data-destaque="98:hot,105:iso,56:hot" data-rotulos="98:M−36 (HCl)" data-lim="6"></div>
+            <p class="small muted" style="margin:.2em 0 .4em">M quase invisível; perda de HCl (98), α com Cl retido (105/107) e alcenos/alquilas abaixo.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- POLI-HALOGENADOS -->
+      <section class="slide dense" data-title="Poli-halogenados">
+        <div class="kicker">Haletos · dois halogênios</div>
+        <h2>Dois halogênios: <span class="grad">M, M+2 e M+4</span></h2>
+        <div class="cols" style="align-items:start">
+          <div class="spec-card frag">
+            <div class="cap"><span><b>1-bromo-2-cloroetano</b> ClCH₂CH₂Br</span><span>M = 142</span></div>
+            <div class="ms-plot" data-h="220" data-picos="142:5,144:6.5,146:1.5,107:2,109:2,93:5,95:5,65:32,63:100,49:3,27:85,26:25" data-xmin="20" data-xmax="150" data-destaque="63:hot,65:hot,142:mol,144:iso,146:iso" data-rotulos="63:CH₂CH₂Cl⁺,144:M+2" data-lim="4"></div>
+            <p class="small muted" style="margin:.2em 0 .4em">Sai o Br• (o mais fácil) e fica ClCH₂CH₂⁺: par 63/65 em 3 : 1, porque o Cl ficou.</p>
+          </div>
+          <div class="spec-card frag">
+            <div class="cap"><span><b>dibromometano</b> CH₂Br₂</span><span>M = 172</span></div>
+            <div class="ms-plot" data-h="220" data-picos="172:45,174:88,176:43,95:95,93:100,81:25,79:25" data-xmin="60" data-xmax="185" data-destaque="93:hot,95:hot,172:mol,174:iso,176:iso" data-rotulos="93:CH₂Br⁺"></div>
+            <p class="small muted" style="margin:.2em 0 .4em">Dois Br: 172 : 174 : 176 ≈ 1 : 2 : 1. Perde Br• e fica CH₂Br⁺ (93/95, 1 : 1).</p>
+          </div>
+        </div>
+        <p class="frag" style="margin-top:.6em">Regra prática: conte os picos do aglomerado do M e compare as alturas com os padrões de Cl e Br. <span class="muted small">Espectros esquemáticos baseados em Pavia et al.</span></p>
+      </section>
+
+      <!-- 30 · ROTEIRO -->
+      <section class="slide" data-title="Roteiro">
+        <div class="kicker">Juntando tudo</div>
+        <h2>Roteiro para <span class="grad">ler um espectro desconhecido</span></h2>
+        <ol class="checklist" style="margin-top:.6em">
+          <li class="frag">Ache o <b class="hl">íon molecular</b> (o pico de maior m/z que não seja isotópico).</li>
+          <li class="frag">Aplique a <b>regra do nitrogênio</b>: M par ou ímpar?</li>
+          <li class="frag">Olhe o <b>M+2</b>: há Cl, Br ou S?</li>
+          <li class="frag">Use o <b>M+1</b> para estimar o número de carbonos.</li>
+          <li class="frag">Monte fórmulas possíveis e calcule as <b>insaturações</b>: IDH = C − H/2 − X/2 + N/2 + 1.</li>
+          <li class="frag">Identifique o <b class="hl3">pico base</b> e as <b>perdas</b> a partir do M (−15, −18, −28, −29, −31, −43, −45…).</li>
+          <li class="frag">Procure os <b>mecanismos</b>: clivagem α, indutiva, benzílica, McLafferty, retro-Diels-Alder.</li>
+          <li class="frag">Proponha a estrutura e <b>confira</b> com uma biblioteca (NIST) e com IV e RMN.</li>
+        </ol>
+      </section>
+
+      <!-- 31 · ÍONS CARACTERÍSTICOS -->
+      <section class="slide" data-title="Cola de bolso">
+        <div class="kicker">Cola de bolso</div>
+        <h2>Perdas e íons que <span class="grad">você vai encontrar</span></h2>
+        <div class="cols" style="align-items:start">
+          <div class="frag">
+            <h4 style="margin-bottom:.5em">Perdas comuns a partir do M</h4>
+            <div class="chip-row">
+              <span><b>−1</b> H• (aldeídos)</span><span><b>−15</b> •CH₃</span><span><b>−17</b> •OH</span><span><b>−18</b> H₂O (álcoois)</span><span><b>−27</b> HCN (anilinas, nitrilas)</span><span><b>−28</b> CO ou C₂H₄</span><span><b>−29</b> •C₂H₅ ou •CHO</span><span><b>−31</b> •OCH₃</span><span><b>−35/37</b> •Cl</span><span><b>−36</b> HCl</span><span><b>−43</b> •C₃H₇ ou CH₃CO•</span><span><b>−45</b> •OC₂H₅ ou •COOH</span><span><b>−46</b> •NO₂</span><span><b>−79/81</b> •Br</span>
+            </div>
+          </div>
+          <div class="frag">
+            <h4 style="margin-bottom:.5em">Íons característicos</h4>
+            <div class="chip-row">
+              <span><b>29</b> HC≡O⁺ (aldeídos)</span><span><b>30</b> CH₂=NH₂⁺ (aminas)</span><span><b>31</b> CH₂=OH⁺ (álcoois)</span><span><b>39</b> propargila</span><span><b>41</b> alila</span><span><b>43</b> CH₃CO⁺ ou C₃H₇⁺</span><span><b>44</b> H₂NCO⁺ (amidas)</span><span><b>44</b> McLafferty de aldeído</span><span><b>45</b> oxônio / ⁺COOH</span><span><b>58</b> McLafferty de metilcetona</span><span><b>60</b> McLafferty de ácido</span><span><b>74</b> McLafferty de éster metílico</span><span><b>77</b> C₆H₅⁺ (fenila)</span><span><b>89</b> McLafferty+1 (butanoatos)</span><span><b>91</b> C₇H₇⁺ (tropílio)</span><span><b>105</b> C₆H₅CO⁺ (benzoíla)</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 32 · APLICAÇÕES -->
+      <section class="slide" data-title="Aplicações">
+        <div class="kicker">Para que serve, no mundo real</div>
+        <h2>Da pista de atletismo <span class="grad">ao hospital</span></h2>
+        <div class="cols-4">
+          <div class="tile frag"><div class="ico">🏅</div><h4>Antidoping</h4><p>GC-MS e LC-MS/MS detectam esteroides e estimulantes em urina em níveis de nanogramas por mililitro.</p></div>
+          <div class="tile frag"><div class="ico">🦠</div><h4>Microbiologia</h4><p>MALDI-TOF identifica bactérias e fungos pelo "perfil de proteínas" em minutos, em vez de dias.</p></div>
+          <div class="tile frag"><div class="ico">🔎</div><h4>Perícia e ambiente</h4><p>Drogas de abuso, resíduos de agrotóxicos, poluentes em água, mercúrio em peixes da Amazônia (ICP-MS).</p></div>
+          <div class="tile frag"><div class="ico">💊</div><h4>Fármacos</h4><p>Controle de qualidade, impurezas, metabolismo e farmacocinética de novos medicamentos.</p></div>
+        </div>
+        <p class="frag" style="margin-top:1.3em">E na sala de aula: os bancos abertos <b class="hl">NIST WebBook</b>, <b class="hl2">MassBank</b> e <b class="hl3">SDBS</b> permitem consultar espectros reais de graça.</p>
+      </section>
+
+      <!-- 33 · MISSÃO -->
+      <section class="slide" data-title="Sua missão">
+        <div class="kicker">Mão na massa</div>
+        <h2>🔬 Sua <span class="grad">Missão Espectral</span></h2>
+        <p class="frag muted">Cada um vai receber, por sorteio, o espectro de uma <b>amostra desconhecida</b> diferente e vai identificá-la como um químico analítico:</p>
+        <div class="pipe">
+          <div class="step frag"><div class="n">00</div><div class="ico">🎲</div><h4>Sorteio</h4><p>Sua amostra exclusiva</p></div>
+          <div class="step frag"><div class="n">01</div><div class="ico">🎯</div><h4>Íon molecular</h4><p>Ache o M⁺•</p></div>
+          <div class="step frag"><div class="n">02</div><div class="ico">🔢</div><h4>Nitrogênio</h4><p>M par ou ímpar?</p></div>
+          <div class="step frag"><div class="n">03</div><div class="ico">⚖️</div><h4>Isótopos</h4><p>M+1 e M+2</p></div>
+          <div class="step frag"><div class="n">04</div><div class="ico">💥</div><h4>Fragmentação</h4><p>Explique o pico-chave</p></div>
+          <div class="step frag"><div class="n">05</div><div class="ico">🧩</div><h4>Identificação</h4><p>Qual é a molécula?</p></div>
+          <div class="step frag"><div class="n">06</div><div class="ico">🧠</div><h4>Conclusão</h4><p>Justifique</p></div>
+        </div>
+        <div class="frag" style="margin-top:1.4em"><a class="btn btn-primary" href="#missao" data-noadvance>Começar a Missão Espectral →</a></div>
+      </section>
+
+      <!-- 34 · ENCERRAMENTO -->
+      <section class="slide" data-title="Obrigado">
+        <div style="text-align:center">
+          <div class="kicker">Encerramento</div>
+          <h1>Obrigado! <span class="grad">Sua opinião importa.</span></h1>
+          <p class="lead" style="margin:1em auto 0">Responda ao questionário de percepção. Leva 2 minutos, é só clicar, e ajuda a melhorar os próximos minicursos.</p>
+          <div style="margin-top:1.6em; display:flex; gap:.8em; justify-content:center; flex-wrap:wrap">
+            <a class="btn btn-primary" href="#questionario" data-noadvance>📝 Responder ao questionário</a>
+            <a class="btn btn-ghost" href="#analise" data-noadvance>📊 Ver análise dos dados</a>
+          </div>
+          <p class="muted" style="margin-top:2em; font-size:.95em">Prof. Dr. Rafael Vieira · rafael.vieira@ifro.edu.br · rafaelvieira.org</p>
+          <p class="muted small" style="margin-top:.6em">Referências: Pavia, Lampman, Kriz &amp; Vyvyan, <i>Introdução à Espectroscopia</i> · Silverstein, Webster &amp; Kiemle, <i>Identificação Espectrométrica de Compostos Orgânicos</i></p>
+        </div>
+      </section>
+
+      <div class="deck-progress" id="deck-progress"></div>
+      <div class="deck-hint" id="deck-hint">clique ou use → para avançar</div>
+    </div>
+
+    <div class="deck-bar">
+      <button class="btn btn-ghost btn-sm" id="btn-prev">← Voltar</button>
+      <button class="btn btn-primary btn-sm" id="btn-next">Avançar →</button>
+      <button class="btn btn-ghost btn-sm" id="btn-play">▶ Reproduzir</button>
+      <span class="deck-count" id="deck-count">1 / 57</span>
+      <span class="spacer"></span>
+      <button class="btn btn-ghost btn-sm" id="btn-restart">↺ Início</button>
+      <button class="btn btn-ghost btn-sm" id="btn-full">⛶ Tela cheia</button>
+    </div>
+  </div>
+</main>
+
+<!-- =========================================================
+     MISSÃO ESPECTRAL
+     ========================================================= -->
+<main id="view-missao" class="view">
+  <section class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Desafio</span>
+      <h2>🔬 Missão Espectral</h2>
+      <p>Um espectro só seu, de uma amostra desconhecida. Seis etapas: cada uma resolvida destrava a próxima.</p>
+    </div>
+    <div id="mission-body" class="mission"></div>
+  </section>
+</main>
+
+<!-- =========================================================
+     QUESTIONÁRIO
+     ========================================================= -->
+<main id="view-questionario" class="view">
+  <section class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Percepção</span>
+      <h2>📝 Como foi o minicurso para você?</h2>
+      <p>Clique na opção que melhor representa sua opinião. As respostas são anônimas.</p>
+    </div>
+    <div id="quiz-body" class="quiz"></div>
+  </section>
+</main>
+
+<!-- =========================================================
+     ANÁLISE DE DADOS
+     ========================================================= -->
+<main id="view-analise" class="view">
+  <section class="wrap" style="max-width:1180px">
+    <div class="section-head">
+      <span class="eyebrow">Resultados</span>
+      <h2>📊 Análise de Dados</h2>
+      <p>Gráficos e interpretações gerados automaticamente a partir das respostas gravadas na planilha.</p>
+      <div style="margin-top:18px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap">
+        <button class="btn btn-primary" id="btn-analisar">📊 Analisar dados agora</button>
+      </div>
+    </div>
+    <div id="analysis-body"></div>
+  </section>
+</main>
+
+<footer>
+  © 2026 Prof. Dr. Rafael Vieira · IFRO. Minicurso de Espectrometria de Massas.
+</footer>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/estruturas.js"></script>
+<script src="moleculas/amostras.js"></script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/espectro.js"></script>
+<script src="assets/js/slides.js"></script>
+<script src="assets/js/missao.js"></script>
+<script src="assets/js/questionario.js"></script>
+<script src="assets/js/analise.js"></script>
+</body>
+</html>

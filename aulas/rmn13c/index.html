@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aula — RMN de ¹³C | Prof. Dr. Rafael Vieira</title>
+<meta name="description" content="Aula de RMN de ¹³C (Análise Orgânica): apresentação interativa, Missão ¹³C (identificação de uma amostra desconhecida), questionário de percepção e análise de dados.">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<div class="bg-glow"></div>
+
+<header>
+  <a class="logo" href="#apresentacao">Rafael<span>Vieira</span><small>Análise Orgânica · RMN de ¹³C</small></a>
+  <nav>
+    <a href="#apresentacao" data-view="apresentacao">🎬 Apresentação</a>
+    <a href="#missao" data-view="missao">🧲 Missão ¹³C</a>
+    <a href="#questionario" data-view="questionario">📝 Questionário</a>
+    <a href="#analise" data-view="analise" class="nav-data">📊 Análise de Dados</a>
+  </nav>
+</header>
+
+<!-- =========================================================
+     APRESENTAÇÃO
+     Cada elemento com class="frag" aparece a cada clique.
+     Espectros: <div class="c13-plot" data-sinais="δ tipo [nºC]; …"> (ver assets/js/c13.js)
+     Moléculas: <div class="mol md" data-mol="nome"> (ver assets/js/estruturas.js)
+     ========================================================= -->
+<main id="view-apresentacao" class="view">
+  <div class="deck-wrap">
+    <div class="deck" id="deck" tabindex="0" aria-label="Apresentação — clique para avançar">
+
+      <!-- 1 · CAPA -->
+      <section class="slide" data-title="Capa">
+        <div class="cols">
+          <div>
+            <div class="kicker">Análise Orgânica · IFRO · 2026</div>
+            <h1>RMN de <span class="grad">Carbono-13</span></h1>
+            <p class="lead">O ¹H mostra os hidrogênios. O ¹³C mostra o esqueleto inteiro, inclusive os carbonos que não têm hidrogênio nenhum.</p>
+            <p style="margin-top:1.6em; font-size:1em;" class="muted">Prof. Dr. Rafael Vieira · Instituto Federal de Rondônia</p>
+          </div>
+          <div class="hide-mobile spec-card">
+            <div class="cap"><span>¹³C desacoplado · <b>acetato de etila</b></span><span>CDCl₃ · 75 MHz</span></div>
+            <div class="c13-plot" data-sinais="171.1 C; 60.4 CH2; 21.0 CH3; 14.2 CH3" data-rot="C=O,OCH₂,CH₃C=O,CH₃"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2 · O NÚCLEO -->
+      <section class="slide" data-title="RMN de ¹³C">
+        <div class="cols">
+          <div>
+            <div class="kicker">RMN – C¹³</div>
+            <h2>Um núcleo ativo, <span class="grad">mas raro</span></h2>
+            <ul>
+              <li class="frag">O ¹²C (98,9% do carbono) tem <b>I = 0</b>: é "invisível" na RMN. O <b class="hl">¹³C</b> tem <b>I = ½</b> e, portanto, é ativo.</li>
+              <li class="frag">Mas a sua <b>abundância isotópica é muito pequena</b> (1,08%) e o γ é ~4 vezes menor que o do ¹H: a <b class="hl2">intensidade do sinal é baixa</b>. Só os aparelhos FT, somando milhares de pulsos, tornaram o ¹³C rotina.</li>
+              <li class="frag">Dificilmente uma única molécula tem mais de um ¹³C. Por isso <b class="hl3">não há acoplamento ¹³C–¹³C</b>.</li>
+              <li class="frag">O espectro fornece uma visão ampla dos <b>carbonos não equivalentes</b> da molécula.</li>
+            </ul>
+          </div>
+          <table class="mini-table frag" style="font-size:.95em">
+            <thead><tr><th>Isótopo</th><th>Abund. (%)</th><th>B₀ (T)</th><th>ν (MHz)</th></tr></thead>
+            <tbody>
+              <tr><td>¹H</td><td>99,98</td><td>1,00 · 4,70 · 7,05</td><td>42,6 · 200 · <b>300</b></td></tr>
+              <tr><td><b>¹³C</b></td><td class="hl">1,108</td><td>1,00 · 4,70 · 7,05</td><td class="hl">10,7 · 50,0 · <b>75,0</b></td></tr>
+              <tr><td>²H</td><td>0,0156</td><td>1,00</td><td>6,5</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 3 · ESCALA -->
+      <section class="slide" data-title="0 a 220 ppm">
+        <div class="kicker">Uma escala vinte vezes maior</div>
+        <h2>O ¹³C vai de <span class="grad">0 a 220 ppm</span></h2>
+        <div class="cols-3" style="margin-top:1em">
+          <div class="tile frag"><div class="big-num hl">0–12</div><h4>¹H</h4><p>Sinais muitas vezes se sobrepõem.</p></div>
+          <div class="tile frag"><div class="big-num hl2">0–220</div><h4>¹³C</h4><p>Muito mais sensível a eletronegatividade, hibridização e anisotropia. Picos raramente se sobrepõem.</p></div>
+          <div class="tile frag"><div class="big-num hl3">1 pico</div><h4>por C diferente</h4><p>No espectro desacoplado, cada carbono não equivalente é um singleto.</p></div>
+        </div>
+        <p class="frag" style="margin-top:1.4em">Os mesmos efeitos do ¹H valem aqui (eletronegatividade, hibridização, anisotropia), só que <b class="hl">ampliados</b>: o C sente diretamente os átomos ligados a ele.</p>
+      </section>
+
+      <!-- 4 · CARTA -->
+      <section class="slide dense" data-title="Carta de correlação">
+        <div class="kicker">Carta de correlação de ¹³C</div>
+        <h2>Onde cada tipo de carbono <span class="grad">aparece</span></h2>
+        <div class="cols" style="align-items:start">
+          <table class="mini-table frag" style="font-size:.9em">
+            <thead><tr><th>Carbono</th><th>δ (ppm)</th></tr></thead>
+            <tbody>
+              <tr><td>R–CH₃</td><td>8–30</td></tr>
+              <tr><td>R₂CH₂</td><td>15–55</td></tr>
+              <tr><td>R₃CH · R₄C</td><td>20–60</td></tr>
+              <tr><td>C–I · C–Br</td><td>0–40 · 25–65</td></tr>
+              <tr><td>C–N · C–Cl</td><td>30–65 · 35–80</td></tr>
+              <tr><td>C–O</td><td class="hl">40–80</td></tr>
+            </tbody>
+          </table>
+          <table class="mini-table frag" style="font-size:.9em">
+            <thead><tr><th>Carbono</th><th>δ (ppm)</th></tr></thead>
+            <tbody>
+              <tr><td>C≡C (alcino)</td><td>65–90</td></tr>
+              <tr><td>C=C (alceno)</td><td class="hl">100–150</td></tr>
+              <tr><td>C≡N (nitrila)</td><td>110–140</td></tr>
+              <tr><td>C aromático</td><td class="hl">110–175</td></tr>
+              <tr><td>C=O de ácido, éster, amida, anidrido</td><td class="hl2">155–185</td></tr>
+              <tr><td>C=O de aldeído e cetona</td><td class="hl2">185–220</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="small muted" style="margin-top:.5em">Faixas da carta de correlação de Pavia et al., <i>Introdução à Espectroscopia</i>.</p>
+      </section>
+
+      <!-- 5 · REGIÕES -->
+      <section class="slide" data-title="Regiões">
+        <div class="kicker">Para memorizar</div>
+        <h2>Quatro regiões <span class="grad">que resolvem quase tudo</span></h2>
+        <div class="frag" style="margin-top:1em">
+          <div class="shift-bar" style="background: linear-gradient(90deg, #ff8adc 0%, #ff8adc 18%, #c6f35b 18%, #c6f35b 50%, #22d3c7 50%, #22d3c7 64%, #4f8cff 64%, #7c5cff 100%)"></div>
+          <div class="shift-scale"><span>220</span><span>200</span><span>180</span><span>160</span><span>140</span><span>120</span><span>100</span><span>80</span><span>60</span><span>40</span><span>20</span><span>0</span></div>
+        </div>
+        <div class="cols-4" style="margin-top:1em">
+          <div class="tile frag"><div class="big-num hl2">160–220</div><h4>C=O</h4><p>Carbonilas (cetona/aldeído acima de 185).</p></div>
+          <div class="tile frag"><div class="big-num" style="color:#c6f35b">110–175</div><h4>C=C · aromáticos</h4><p>Carbonos sp² (e o C≡N).</p></div>
+          <div class="tile frag"><div class="big-num hl3">35–80</div><h4>C–O · C–X</h4><p>C sp³ ligado a O, N, Cl, Br.</p></div>
+          <div class="tile frag"><div class="big-num hl">10–50</div><h4>C sp³</h4><p>Alcanos: CH₃, CH₂, CH, C.</p></div>
+        </div>
+      </section>
+
+      <!-- 6 · INCREMENTOS -->
+      <section class="slide dense" data-title="Tabelas de incremento">
+        <div class="kicker">Tabelas de correlação</div>
+        <h2>δ pode ser <span class="grad">calculado</span></h2>
+        <p class="frag">Como o deslocamento do ¹³C é muito mais fácil de prever, existem tabelas de <b>incrementos</b>: parte-se de um valor-padrão e somam-se as contribuições dos substituintes. Para o benzeno, o valor-base é <b class="hl">128,5 ppm</b>.</p>
+        <table class="mini-table frag" style="font-size:.92em; margin-top:.6em">
+          <thead><tr><th>Substituinte</th><th>ipso</th><th>orto</th><th>meta</th><th>para</th></tr></thead>
+          <tbody>
+            <tr><td><b>–CH₃</b></td><td class="hl">+9,3</td><td class="hl">+0,7</td><td class="hl">−0,1</td><td class="hl">−2,9</td></tr>
+            <tr><td>–Cl</td><td>+6,2</td><td>+0,4</td><td>+1,3</td><td>−1,9</td></tr>
+            <tr><td>–OH</td><td>+26,9</td><td>−12,7</td><td>+1,4</td><td>−7,3</td></tr>
+            <tr><td>–OCH₃</td><td>+31,4</td><td>−14,4</td><td>+1,0</td><td>−7,7</td></tr>
+            <tr><td>–NH₂</td><td>+18,2</td><td>−13,4</td><td>+0,8</td><td>−10,0</td></tr>
+            <tr><td>–CHO</td><td>+8,2</td><td>+1,2</td><td>+0,6</td><td>+5,8</td></tr>
+            <tr><td>–COOH</td><td>+2,1</td><td>+1,6</td><td>−0,1</td><td>+5,2</td></tr>
+            <tr><td>–NO₂</td><td>+19,6</td><td>−5,3</td><td>+0,9</td><td>+6,0</td></tr>
+          </tbody>
+        </table>
+        <p class="small muted" style="margin-top:.4em">Doadores de elétrons (OH, NH₂, OCH₃) blindam orto e para; retiradores (CHO, NO₂) desblindam o para. Valores de Pavia et al.</p>
+      </section>
+
+      <!-- 7 · M-XILENO -->
+      <section class="slide dense" data-title="Exemplo: m-xileno">
+        <div class="kicker">Calculando um espectro</div>
+        <h2>m-Xileno: <span class="grad">conta × experimento</span></h2>
+        <div class="cols" style="align-items:start">
+          <div class="frag">
+            <div class="mol md" data-mol="s_mxileno" style="margin:0 auto"></div>
+            <table class="mini-table" style="font-size:.9em">
+              <thead><tr><th>C</th><th>soma</th><th>calc.</th><th>exp.</th></tr></thead>
+              <tbody>
+                <tr><td>C1 = C3</td><td class="mono">128,5 + ipso + meta = 128,5 + 9,3 − 0,1</td><td class="hl">137,7</td><td>137,6</td></tr>
+                <tr><td>C2</td><td class="mono">128,5 + orto + orto = 128,5 + 0,7 + 0,7</td><td class="hl">129,9</td><td>130,0</td></tr>
+                <tr><td>C4 = C6</td><td class="mono">128,5 + orto + para = 128,5 + 0,7 − 2,9</td><td class="hl">126,3</td><td>126,2</td></tr>
+                <tr><td>C5</td><td class="mono">128,5 + meta + meta = 128,5 − 0,1 − 0,1</td><td class="hl">128,3</td><td>128,3</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="spec-card frag"><div class="cap"><span><b>m-xileno</b> · região aromática</span><span>4 sinais aromáticos</span></div>
+            <div class="c13-plot" data-sinais="137.7 C 2; 130.0 CH; 128.3 CH; 126.2 CH 2" data-xmin="124" data-xmax="140" data-solv="0" data-tms="0" data-rot="C1/3,C2,C5,C4/6"></div></div>
+        </div>
+      </section>
+
+      <!-- 8 · DESACOPLADO -->
+      <section class="slide" data-title="Desacoplado">
+        <div class="kicker">Espectro desacoplado de prótons</div>
+        <h2>Um carbono diferente, <span class="grad">um singleto</span></h2>
+        <div class="cols" style="align-items:start">
+          <div>
+            <ul>
+              <li class="frag">Durante a aquisição, irradia-se <b>toda a faixa de ¹H</b>: os H trocam de spin tão rápido que o C "enxerga" só a média. O acoplamento C–H some.</li>
+              <li class="frag">Resultado: cada carbono não equivalente dá <b class="hl">um singleto</b>, cuja posição depende da proximidade de grupos eletronegativos, da hibridização, da anisotropia etc.</li>
+              <li class="frag">O CDCl₃ aparece como um <b>tripleto em 77 ppm</b> (o C acopla com o deutério, que não é desacoplado).</li>
+            </ul>
+          </div>
+          <div class="spec-card frag"><div class="cap"><span><b>propan-1-ol</b> · HO–CH₂CH₂CH₃</span><span>3 C · 3 sinais</span></div>
+            <div class="c13-plot" data-sinais="64.2 CH2; 25.9 CH2; 10.2 CH3" data-xmax="100" data-rot="C–O,CH₂,CH₃"></div></div>
+        </div>
+      </section>
+
+      <!-- 9 · FENILACETATO DE ETILA -->
+      <section class="slide dense" data-title="Cada C, um sinal">
+        <div class="kicker">Lendo um espectro desacoplado</div>
+        <h2>Cada núcleo de ¹³C não equivalente <span class="grad">corresponde a um sinal</span></h2>
+        <div class="cols" style="grid-template-columns: 1fr 2.2fr; align-items:center">
+          <div class="frag"><div class="mol lg" data-mol="s_fenilacetato_etila"></div>
+            <p class="small">fenilacetato de etila · C₁₀H₁₂O₂ · 10 C, mas só <b>8 sinais</b>: no anel, os C 2/6 e 3/5 são equivalentes.</p></div>
+          <div class="spec-card frag"><div class="cap"><span>¹³C desacoplado</span><span>75 MHz</span></div>
+            <div class="c13-plot" data-sinais="171.2 C; 134.2 C; 129.3 CH 2; 128.6 CH 2; 127.1 CH; 60.9 CH2; 41.4 CH2; 14.2 CH3" data-rot="C=O,C-1,2/6,3/5,C-4,O–CH₂,CH₂C=O,CH₃"></div></div>
+        </div>
+      </section>
+
+      <!-- 10 · ACOPLADO -->
+      <section class="slide dense" data-title="Espectro acoplado">
+        <div class="kicker">Espectro acoplado</div>
+        <h2>O ¹³C acopla com o ¹H: <span class="grad">regra do n + 1</span></h2>
+        <div>
+          <div>
+            <ul>
+              <li class="frag">Os núcleos de ¹³C acoplam com os de ¹H, exibindo o mesmo padrão n + 1: é um <b>acoplamento heteronuclear</b>.</li>
+              <li class="frag">Diferente do ¹H, considera-se só o acoplamento com os <b class="hl">H ligados diretamente</b> ao carbono: <span class="mono">¹J(C–H) = 100–250 Hz</span>. Os ²J e ³J (0–2 Hz) quase não aparecem.</li>
+              <li class="frag">Compare: no ¹H, <span class="mono">³J(H–H) = 1–20 Hz</span>.</li>
+            </ul>
+          </div>
+          <div class="cols-4 frag" style="gap:.6em; margin-top:.8em">
+            <div class="tile"><h4>CH₃</h4><div class="rmn-plot" data-modo="zoom" data-sinais="1 1 q125"></div><p class="small">quarteto</p></div>
+            <div class="tile"><h4>CH₂</h4><div class="rmn-plot" data-modo="zoom" data-sinais="1 1 t125"></div><p class="small">tripleto</p></div>
+            <div class="tile"><h4>CH</h4><div class="rmn-plot" data-modo="zoom" data-sinais="1 1 d125"></div><p class="small">dubleto</p></div>
+            <div class="tile"><h4>C</h4><div class="rmn-plot" data-modo="zoom" data-sinais="1 1 s"></div><p class="small">singleto</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 11 · ACOPLADO × DESACOPLADO -->
+      <section class="slide dense" data-title="Acoplado × desacoplado">
+        <div class="kicker">Por que desacoplar?</div>
+        <h2>Acoplado: informação demais, <span class="grad">picos demais</span></h2>
+        <div class="spec-card frag"><div class="cap"><span>(a) <b>acoplado</b> · fenilacetato de etila</span><span>multipletos se sobrepõem</span></div>
+          <div class="c13-plot" data-modo="acoplado" data-sinais="171.2 C; 134.2 C; 129.3 CH 2; 128.6 CH 2; 127.1 CH; 60.9 CH2; 41.4 CH2; 14.2 CH3" data-h="190"></div></div>
+        <div class="spec-card frag" style="margin-top:.6em"><div class="cap"><span>(b) <b>desacoplado</b></span><span>um singleto por C</span></div>
+          <div class="c13-plot" data-sinais="171.2 C; 134.2 C; 129.3 CH 2; 128.6 CH 2; 127.1 CH; 60.9 CH2; 41.4 CH2; 14.2 CH3" data-h="170"></div></div>
+      </section>
+
+      <!-- 12 · NOE -->
+      <section class="slide" data-title="NOE">
+        <div class="kicker">Intensificação Nuclear Overhauser (NOE)</div>
+        <h2>Por que os picos <span class="grad">têm alturas tão diferentes?</span></h2>
+        <div class="cols" style="align-items:start">
+          <div>
+            <ul>
+              <li class="frag">Ao desacoplar, a energia dos ¹H irradiados passa em parte para o ¹³C vizinho: o sinal do C é <b class="hl">intensificado</b>.</li>
+              <li class="frag">Quanto mais H ligados ao C, maior a intensificação, mas <b>não de forma linear</b>:</li>
+              <li class="frag"><span class="eq-box eq">CH₃ &gt; CH₂ &gt; CH ≫ C</span></li>
+              <li class="frag">Consequência: no ¹³C <b class="hl2">a integração não é confiável</b>. Carbonos quaternários (C=O, C ipso) aparecem pequenos.</li>
+            </ul>
+          </div>
+          <div class="spec-card frag"><div class="cap"><span><b>acetofenona</b></span><span>repare nos C sem H</span></div>
+            <div class="c13-plot" data-sinais="198.1 C; 137.1 C; 133.1 CH; 128.6 CH 2; 128.3 CH 2; 26.6 CH3" data-rot="C=O,C-1,,,,CH₃"></div></div>
+        </div>
+      </section>
+
+      <!-- 13 · FORA DE RESSONÂNCIA -->
+      <section class="slide" data-title="Fora de ressonância">
+        <div class="kicker">Espectro desacoplado fora da ressonância</div>
+        <h2>Um meio-termo: <span class="grad">multiplicidade sem confusão</span></h2>
+        <div class="cols" style="align-items:start">
+          <div>
+            <ul>
+              <li class="frag">Irradia-se o ¹H com uma frequência um pouco <b>fora</b> da ressonância: o acoplamento não some, mas os J ficam <b>bem menores</b>.</li>
+              <li class="frag">Os multipletos ficam estreitos e <b>não se sobrepõem</b>, e ainda mostram quantos H cada C tem: <b>q</b> = CH₃, <b>t</b> = CH₂, <b>d</b> = CH, <b>s</b> = C.</li>
+              <li class="frag">Hoje esse papel foi assumido pelo <b class="hl">DEPT</b>, mais rápido e mais claro.</li>
+            </ul>
+          </div>
+          <div class="spec-card frag"><div class="cap"><span><b>butanona</b> · fora de ressonância</span><span>s · t · q · q</span></div>
+            <div class="c13-plot" data-modo="offres" data-sinais="209.3 C; 36.9 CH2; 29.4 CH3; 7.9 CH3" data-rot="singleto,tripleto,quarteto,quarteto"></div></div>
+        </div>
+      </section>
+
+      <!-- 14 · DEPT -->
+      <section class="slide" data-title="DEPT">
+        <div class="kicker">Espectro DEPT</div>
+        <h2>DEPT: <span class="grad">quem tem quantos H</span></h2>
+        <p class="frag muted">Distortionless Enhancement by Polarization Transfer (intensificação sem distorção por transferência de polarização).</p>
+        <ul style="margin-top:.6em">
+          <li class="frag">É uma sequência de pulsos que, ajustando um ângulo (45°, 90° ou 135°), gera <b>subespectros</b> com informação sobre o nº de H em cada C.</li>
+          <li class="frag">A fase (para cima ou para baixo) e a presença do sinal dependem de quantos H estão ligados ao carbono.</li>
+        </ul>
+        <div class="cols-4" style="margin-top:1em">
+          <div class="tile frag"><span class="tag tag-t">¹³C</span><h4 style="margin-top:.4em">"Completo"</h4><p>Todos os carbonos, inclusive os C sem H.</p></div>
+          <div class="tile frag"><span class="tag tag-b">DEPT-45</span><h4 style="margin-top:.4em">Só protonados</h4><p>CH, CH₂ e CH₃, todos para cima.</p></div>
+          <div class="tile frag"><span class="tag tag-p">DEPT-90</span><h4 style="margin-top:.4em">Só CH</h4><p>Carbonos monoprotonados.</p></div>
+          <div class="tile frag"><span class="tag tag-t">DEPT-135</span><h4 style="margin-top:.4em">Fases distintas</h4><p>CH e CH₃ <b>para cima</b>, CH₂ <b>para baixo</b>. C some.</p></div>
+        </div>
+      </section>
+
+      <!-- 15 · DEPT EXEMPLO -->
+      <section class="slide dense" data-title="DEPT na prática">
+        <div class="kicker">DEPT na prática</div>
+        <h2>Acetato de isobutila: <span class="grad">três espectros, uma resposta</span></h2>
+        <div class="cols" style="grid-template-columns: 1fr 2fr; align-items:center">
+          <div class="frag"><div class="mol md" data-mol="s_acetato_isobutila"></div>
+            <ul class="small" style="margin-top:.5em">
+              <li><b>171,0</b> só no ¹³C → C (C=O)</li>
+              <li><b>70,8</b> para baixo no DEPT-135 → CH₂ (O–CH₂)</li>
+              <li><b>27,8</b> no DEPT-90 → CH</li>
+              <li><b>20,9</b> e <b>19,1</b> para cima, fora do DEPT-90 → CH₃</li>
+            </ul></div>
+          <div class="spec-card frag"><div class="c13-plot" data-modo="dept" data-sinais="171.0 C; 70.8 CH2; 27.8 CH; 20.9 CH3; 19.1 CH3 2" data-rot="C=O,OCH₂,CH,CH₃,(CH₃)₂"></div></div>
+        </div>
+      </section>
+
+      <!-- 16 · EQUIVALENTES -->
+      <section class="slide dense" data-title="C equivalentes">
+        <div class="kicker">Átomos de carbono equivalentes</div>
+        <h2>Simetria: <span class="grad">menos sinais que carbonos</span></h2>
+        <div class="cols" style="align-items:start">
+          <div>
+            <ul>
+              <li class="frag">Assim como no ¹H, um conjunto de <b>carbonos equivalentes</b> (simétricos) aparece como <b>um único pico</b>.</li>
+              <li class="frag">A integração <b class="hl2">não</b> fornece um valor adequado no ¹³C: deve-se levar em conta o NOE (quanto mais H, mais intenso o pico).</li>
+              <li class="frag">No 2,2-dimetilbutano, os três CH₃ do terc-butila são equivalentes: <b>6 C, 4 sinais</b>.</li>
+            </ul>
+          </div>
+          <div class="spec-card frag"><div class="cap"><span><b>2,2-dimetilbutano</b> · (CH₃)₃C–CH₂CH₃</span><span>6 C · 4 sinais</span></div>
+            <div class="mol sm" data-mol="s_dimetilbutano" style="margin:0 auto"></div>
+            <div class="c13-plot" data-sinais="36.5 CH2; 30.4 C; 28.9 CH3 3; 8.7 CH3" data-xmax="50" data-rot="CH₂,C,(CH₃)₃,CH₃"></div></div>
+        </div>
+      </section>
+
+      <!-- 17 · CONTANDO -->
+      <section class="slide" data-title="Contando carbonos">
+        <div class="kicker">Sem simetria, todos aparecem</div>
+        <h2>N carbonos diferentes, <span class="grad">N picos</span></h2>
+        <div class="cols" style="margin-top:.8em">
+          <div class="tile frag"><div class="mol md" data-mol="s_metilpentanol" style="margin:0 auto"></div>
+            <h4>3-metilpentan-2-ol</h4><p>6 átomos de carbono → <b class="hl">6 picos</b> no espectro.</p></div>
+          <div class="tile frag"><div class="mol md" data-mol="s_mentol" style="margin:0 auto"></div>
+            <h4>Mentol</h4><p>10 átomos de carbono → <b class="hl">10 picos</b>. Até os dois CH₃ do isopropila são diferentes: estão perto de um centro quiral.</p></div>
+        </div>
+      </section>
+
+      <!-- 18 · AROMÁTICOS -->
+      <section class="slide dense" data-title="Aromáticos">
+        <div class="kicker">Compostos aromáticos</div>
+        <h2>Aromáticos: <span class="grad">100 a 175 ppm</span></h2>
+        <div class="cols" style="align-items:start">
+          <div>
+            <ul>
+              <li class="frag">Os carbonos aromáticos aparecem entre <b class="hl">100 e 175 ppm</b>.</li>
+              <li class="frag">Dependendo da substituição (e da simetria), o nº de picos muda.</li>
+              <li class="frag">A atribuição exata dos picos é feita com as <b>tabelas de incremento</b>. No tolueno:</li>
+            </ul>
+            <p class="frag mono small" style="margin-top:.4em">orto = 128,5 + 0,7 = 129,2 · meta = 128,5 − 0,1 = 128,4<br>para = 128,5 − 2,9 = 125,6 · ipso = 128,5 + 9,3 = 137,8</p>
+          </div>
+          <div class="spec-card frag"><div class="cap"><span><b>tolueno</b> · C₇H₈</span><span>7 C · 5 sinais</span></div>
+            <div class="c13-plot" data-sinais="137.9 C; 129.1 CH 2; 128.3 CH 2; 125.4 CH; 21.5 CH3" data-rot="ipso,orto,meta,para,CH₃"></div></div>
+        </div>
+      </section>
+
+      <!-- 19 · DICLOROBENZENOS -->
+      <section class="slide dense" data-title="Diclorobenzenos">
+        <div class="kicker">Simetria no anel</div>
+        <h2>Três isômeros, <span class="grad">três contagens</span></h2>
+        <div class="cols-3" style="margin-top:.4em">
+          <div class="spec-card frag"><div class="mol sm" data-mol="s_odcb" style="margin:0 auto"></div><div class="cap"><span><b>orto</b></span><span class="hl">3 picos</span></div>
+            <div class="c13-plot" data-sinais="132.6 C 2; 130.5 CH 2; 127.7 CH 2" data-xmin="124" data-xmax="138" data-solv="0" data-tms="0" data-h="170"></div></div>
+          <div class="spec-card frag"><div class="mol sm" data-mol="s_mdcb" style="margin:0 auto"></div><div class="cap"><span><b>meta</b></span><span class="hl">4 picos</span></div>
+            <div class="c13-plot" data-sinais="135.0 C 2; 130.5 CH; 128.7 CH; 126.9 CH 2" data-xmin="124" data-xmax="138" data-solv="0" data-tms="0" data-h="170"></div></div>
+          <div class="spec-card frag"><div class="mol sm" data-mol="s_pdcb" style="margin:0 auto"></div><div class="cap"><span><b>para</b></span><span class="hl">2 picos</span></div>
+            <div class="c13-plot" data-sinais="132.6 C 2; 129.7 CH 4" data-xmin="124" data-xmax="138" data-solv="0" data-tms="0" data-h="170"></div></div>
+        </div>
+        <p class="frag" style="margin-top:.6em">Só contando os picos já se distinguem os três isômeros, algo difícil de fazer pelo ¹H.</p>
+      </section>
+
+      <!-- 20 · D, F, P -->
+      <section class="slide dense" data-title="Acoplamento com D, F e P">
+        <div class="kicker">Acoplamento heteronuclear</div>
+        <h2>O ¹³C acopla também com <span class="grad">D, ¹⁹F e ³¹P</span></h2>
+        <div class="cols" style="align-items:start">
+          <div>
+            <ul>
+              <li class="frag">O desacoplador só atua no ¹H. Outros núcleos ativos continuam desdobrando o sinal do carbono.</li>
+              <li class="frag"><b class="hl">Deutério</b> (I = 1): a multiplicidade segue <span class="eq-box eq">M = 2nI + 1</span>. CDCl₃: 2·1·1 + 1 = <b>3 linhas 1:1:1</b> em 77 ppm. DMSO-d₆ (CD₃): 2·3·1 + 1 = <b>7 linhas</b> em 39,5 ppm.</li>
+              <li class="frag"><b class="hl2">¹⁹F</b> e <b class="hl3">³¹P</b> (I = ½) seguem n + 1, com J grandes: ¹J(C–F) ≈ 250–300 Hz; ²J(C–F) ≈ 30–40 Hz; ¹J(C–P) de dezenas a ~150 Hz.</li>
+            </ul>
+          </div>
+          <div class="frag">
+            <svg viewBox="0 0 420 230" class="dia" aria-label="Tripleto 1:1:1 do CDCl₃ e septeto do DMSO-d₆">
+              <text x="20" y="22" font-size="14">CDCl₃ · 1 D (I = 1) → 1 : 1 : 1</text>
+              <g stroke="#22d3c7" stroke-width="4"><line x1="60" y1="100" x2="60" y2="40"/><line x1="110" y1="100" x2="110" y2="40"/><line x1="160" y1="100" x2="160" y2="40"/></g>
+              <line x1="30" y1="100" x2="190" y2="100" stroke="#9aa4b8"/>
+              <text x="20" y="135" font-size="14">DMSO-d₆ · 3 D → 7 linhas (1:3:6:7:6:3:1)</text>
+              <g stroke="#ff8adc" stroke-width="4">
+                <line x1="40" y1="215" x2="40" y2="203"/><line x1="80" y1="215" x2="80" y2="179"/><line x1="120" y1="215" x2="120" y2="143"/><line x1="160" y1="215" x2="160" y2="131"/><line x1="200" y1="215" x2="200" y2="143"/><line x1="240" y1="215" x2="240" y2="179"/><line x1="280" y1="215" x2="280" y2="203"/></g>
+              <line x1="20" y1="215" x2="300" y2="215" stroke="#9aa4b8"/>
+            </svg>
+          </div>
+        </div>
+      </section>
+
+      <!-- 21 · CICLOEXANONA -->
+      <section class="slide" data-title="Cicloexanona">
+        <div class="kicker">Exemplo</div>
+        <h2>Cicloexanona: <span class="grad">C=O lá em cima</span></h2>
+        <div class="cols" style="align-items:start">
+          <div>
+            <div class="mol md frag" data-mol="s_cicloexanona"></div>
+            <ul class="frag">
+              <li><b>211,9</b>: C=O de cetona (185–220), pico baixo (C sem H).</li>
+              <li><b>42,0</b>: C-2/6, α à carbonila (2 C equivalentes).</li>
+              <li><b>27,1</b> e <b>25,1</b>: C-3/5 e C-4.</li>
+            </ul>
+            <p class="frag small">6 carbonos, <b>4 sinais</b>: o plano de simetria passa pela C=O e pelo C-4.</p>
+          </div>
+          <div class="spec-card frag"><div class="c13-plot" data-sinais="211.9 C; 42.0 CH2 2; 27.1 CH2 2; 25.1 CH2" data-rot="C=O,C-2/6,C-3/5,C-4"></div></div>
+        </div>
+      </section>
+
+      <!-- 22 · PROBLEMA: ¹H -->
+      <section class="slide dense" data-title="Problema: ¹H">
+        <div class="kicker">Problema resolvido · C₆H₁₀O₂ · IDH = 2</div>
+        <h2>Primeiro, o <span class="grad">espectro de prótons</span></h2>
+        <div class="cols" style="align-items:start">
+          <div class="spec-card frag"><div class="rmn-plot" data-sinais="12.0 1 br; 6.89 1 t7.4; 2.20 2 quint7.5; 1.82 3 s; 1.06 3 t7.6" data-xmax="13" data-int="1" data-rot="COOH,CH=,CH₂,CH₃,CH₃"></div></div>
+          <div>
+            <table class="mini-table frag" style="font-size:.88em">
+              <thead><tr><th>Região de ¹H</th><th>Grupos</th></tr></thead>
+              <tbody>
+                <tr><td>0,8–1,8</td><td>CH, CH₂, CH₃</td></tr>
+                <tr><td>1,8–3,0</td><td>CH₂–C=O, CH₂–C=C, CH₂–Ar, C≡C–H</td></tr>
+                <tr><td>3,0–4,5</td><td>–O–CH₂–, –O–CH₃, –CH₂–Cl, –CH₂–Br</td></tr>
+                <tr><td>6,5–8,5</td><td>H–C=C, H–Ar</td></tr>
+                <tr><td>9,0–10,0</td><td>H–C=O</td></tr>
+                <tr><td>11,0–13,0</td><td>COOH</td></tr>
+              </tbody>
+            </table>
+            <p class="frag small" style="margin-top:.5em">COOH (12,0) + um H vinílico (6,89) + um CH₂ e dois CH₃. IDH 2 = C=O + C=C.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 23 · PROBLEMA: ¹³C -->
+      <section class="slide dense" data-title="Problema: ¹³C + DEPT">
+        <div class="kicker">Problema resolvido · C₆H₁₀O₂</div>
+        <h2>O ¹³C e o DEPT <span class="grad">fecham a estrutura</span></h2>
+        <div class="cols" style="grid-template-columns: 1.6fr 1fr; align-items:start">
+          <div class="spec-card frag"><div class="c13-plot" data-modo="dept" data-sinais="174.19 C; 146.71 CH; 126.62 C; 22.24 CH2; 12.89 CH3; 11.79 CH3" data-rot="C=O,=CH,=C,CH₂,CH₃,CH₃"></div></div>
+          <div>
+            <table class="mini-table frag" style="font-size:.85em">
+              <thead><tr><th>δ</th><th>DEPT-135</th><th>DEPT-90</th><th>Conclusão</th></tr></thead>
+              <tbody>
+                <tr><td>11,79</td><td>+</td><td>0</td><td>CH₃</td></tr>
+                <tr><td>12,89</td><td>+</td><td>0</td><td>CH₃</td></tr>
+                <tr><td>22,24</td><td>−</td><td>0</td><td>CH₂</td></tr>
+                <tr><td>126,62</td><td>0</td><td>0</td><td>C</td></tr>
+                <tr><td>146,71</td><td>+</td><td>+</td><td>CH</td></tr>
+                <tr><td>174,19</td><td>0</td><td>0</td><td>C=O</td></tr>
+              </tbody>
+            </table>
+            <div class="frag tile" style="margin-top:.5em"><div class="mol md" data-mol="s_metilpentenoico" style="margin:0 auto"></div>
+              <p class="small"><b class="hl">Ácido 2-metil-2-pentenoico</b>: o C=C tem um CH (146,7) e um C (126,6, que carrega o CH₃ e o COOH).</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 24 · EXERCÍCIO: NÚMERO DE PICOS -->
+      <section class="slide" data-title="Exercício: quantos picos?">
+        <div class="kicker">Exercício</div>
+        <h2>Quantos picos no ¹³C <span class="grad">para cada molécula?</span></h2>
+        <div class="cols-3" style="margin-top:.6em; grid-template-columns: repeat(5, 1fr)">
+          <div class="tile"><div class="mol sm" data-mol="e_acetato_etila"></div><p class="small">acetato de etila</p><p class="frag big-num hl" style="font-size:1.8em">4</p></div>
+          <div class="tile"><div class="mol sm" data-mol="e_bromobenzoico"></div><p class="small">ácido 4-bromobenzoico</p><p class="frag big-num hl" style="font-size:1.8em">5</p></div>
+          <div class="tile"><div class="mol sm" data-mol="e_prenol"></div><p class="small">3-metilbut-2-en-1-ol</p><p class="frag big-num hl" style="font-size:1.8em">5</p></div>
+          <div class="tile"><div class="mol sm" data-mol="e_pentanol3"></div><p class="small">pentan-3-ol</p><p class="frag big-num hl" style="font-size:1.8em">3</p></div>
+          <div class="tile"><div class="mol sm" data-mol="e_obromobenzoico"></div><p class="small">ácido 2-bromobenzoico</p><p class="frag big-num hl" style="font-size:1.8em">7</p></div>
+        </div>
+        <p class="frag" style="margin-top:1em">Os dois CH₃ do 3-metilbut-2-en-1-ol são diferentes (um cis e outro trans ao CH₂OH); no pentan-3-ol, os dois etilas são iguais. No ácido 4-bromobenzoico a simetria junta C-2/6 e C-3/5; no isômero 2-bromo, nenhum C se repete.</p>
+      </section>
+
+      <!-- 25 · EXERCÍCIO: ÉSTER -->
+      <section class="slide dense" data-title="Exercício: éster C₅H₈O₂">
+        <div class="kicker">Exercício · éster C₅H₈O₂ (IDH = 2)</div>
+        <h2>Determine a estrutura <span class="grad">do éster</span></h2>
+        <div class="cols" style="grid-template-columns: 1.6fr 1fr; align-items:start">
+          <div class="spec-card"><div class="c13-plot" data-modo="dept" data-sinais="167.8 C; 136.3 C; 125.3 CH2; 51.7 CH3; 18.3 CH3"></div></div>
+          <div>
+            <div class="cols-3" style="grid-template-columns:1fr; gap:.3em">
+              <div class="tile"><div class="mol sm" data-mol="e_acrilato_etila"></div><p class="small">acrilato de etila</p></div>
+              <div class="tile"><div class="mol sm" data-mol="e_metacrilato_metila"></div><p class="small">metacrilato de metila</p></div>
+              <div class="tile"><div class="mol sm" data-mol="e_propanoato_vinila"></div><p class="small">propanoato de vinila</p></div>
+            </div>
+            <p class="frag small" style="margin-top:.5em">✅ <b class="hl">Metacrilato de metila</b>: C=O (167,8), um C= sem H (136,3), um =CH₂ (negativo no DEPT-135), um OCH₃ (51,7) e um CH₃ (18,3). O acrilato de etila teria um CH= e um OCH₂; o propanoato de vinila, um =CH–O em ~141.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 26 · ROTEIRO -->
+      <section class="slide" data-title="Roteiro">
+        <div class="kicker">Juntando tudo</div>
+        <h2>Roteiro para <span class="grad">ler um espectro de ¹³C</span></h2>
+        <ol class="checklist" style="margin-top:.6em">
+          <li class="frag">Calcule o <b class="hl">IDH</b> a partir da fórmula molecular.</li>
+          <li class="frag">Conte os <b>sinais</b> (sem o CDCl₃ e o TMS) e compare com o nº de C da fórmula: há <b>simetria</b>?</li>
+          <li class="frag">Use as <b>regiões</b>: C=O (155–220), C=C e aromáticos (100–175), C–O/C–X (35–80), sp³ (10–50).</li>
+          <li class="frag">Use o <b class="hl3">DEPT</b> para saber quantos H tem cada C (C, CH, CH₂, CH₃).</li>
+          <li class="frag">Não use a altura dos picos para contar carbonos (NOE!).</li>
+          <li class="frag">Combine com o <b>¹H</b> e o <b>IV</b> e confira: a estrutura explica <b>todos</b> os sinais?</li>
+        </ol>
+      </section>
+
+      <!-- 27 · COLA -->
+      <section class="slide dense" data-title="¹H × ¹³C">
+        <div class="kicker">Cola de bolso</div>
+        <h2>¹H × ¹³C, <span class="grad">lado a lado</span></h2>
+        <table class="mini-table" style="font-size:.95em">
+          <thead><tr><th></th><th>RMN de ¹H</th><th>RMN de ¹³C</th></tr></thead>
+          <tbody>
+            <tr class="frag"><td>Faixa</td><td>0–12 ppm</td><td>0–220 ppm</td></tr>
+            <tr class="frag"><td>Sensibilidade</td><td>alta (99,98%)</td><td>baixa (1,1%): precisa de FT e muitas varreduras</td></tr>
+            <tr class="frag"><td>Integração</td><td>proporcional ao nº de H</td><td><b>não confiável</b> (NOE)</td></tr>
+            <tr class="frag"><td>Desdobramento</td><td>H vizinhos (n + 1), J = 1–20 Hz</td><td>desacoplado: singletos · acoplado: H ligados, ¹J = 100–250 Hz</td></tr>
+            <tr class="frag"><td>Nº de H em cada átomo</td><td>integração</td><td>DEPT (ou fora de ressonância)</td></tr>
+            <tr class="frag"><td>Vê C sem H?</td><td>não</td><td><b>sim</b> (C=O, quaternários)</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- 28 · MISSÃO -->
+      <section class="slide" data-title="Sua missão">
+        <div class="kicker">Mão na massa</div>
+        <h2>🧲 Sua <span class="grad">Missão ¹³C</span></h2>
+        <p class="frag muted">Cada um vai receber, por sorteio, os espectros de ¹³C e DEPT de uma <b>amostra desconhecida</b> diferente e vai identificá-la:</p>
+        <div class="pipe">
+          <div class="step frag"><div class="n">00</div><div class="ico">🎲</div><h4>Sorteio</h4><p>Sua amostra exclusiva</p></div>
+          <div class="step frag"><div class="n">01</div><div class="ico">🧮</div><h4>IDH</h4><p>Insaturações da fórmula</p></div>
+          <div class="step frag"><div class="n">02</div><div class="ico">📏</div><h4>Sinais</h4><p>Quantos? Há simetria?</p></div>
+          <div class="step frag"><div class="n">03</div><div class="ico">🔀</div><h4>DEPT</h4><p>C, CH, CH₂ ou CH₃</p></div>
+          <div class="step frag"><div class="n">04</div><div class="ico">🧲</div><h4>Deslocamento</h4><p>Que carbono é esse?</p></div>
+          <div class="step frag"><div class="n">05</div><div class="ico">🧩</div><h4>Identificação</h4><p>Qual é a molécula?</p></div>
+          <div class="step frag"><div class="n">06</div><div class="ico">🧠</div><h4>Conclusão</h4><p>Justifique</p></div>
+        </div>
+        <div class="frag" style="margin-top:1.4em"><a class="btn btn-primary" href="#missao" data-noadvance>Começar a Missão ¹³C →</a></div>
+      </section>
+
+      <!-- 29 · ENCERRAMENTO -->
+      <section class="slide" data-title="Obrigado">
+        <div style="text-align:center">
+          <div class="kicker">Encerramento</div>
+          <h1>Obrigado! <span class="grad">Sua opinião importa.</span></h1>
+          <p class="lead" style="margin:1em auto 0">Responda ao questionário de percepção. Leva 2 minutos, é só clicar, e ajuda a melhorar as próximas aulas.</p>
+          <div style="margin-top:1.6em; display:flex; gap:.8em; justify-content:center; flex-wrap:wrap">
+            <a class="btn btn-primary" href="#questionario" data-noadvance>📝 Responder ao questionário</a>
+            <a class="btn btn-ghost" href="#analise" data-noadvance>📊 Ver análise dos dados</a>
+          </div>
+          <p class="muted" style="margin-top:2em; font-size:.95em">Prof. Dr. Rafael Vieira · rafael.vieira@ifro.edu.br · rafaelvieira.org</p>
+          <p class="muted small" style="margin-top:.6em">Referências: Pavia, Lampman, Kriz &amp; Vyvyan, <i>Introdução à Espectroscopia</i> · Silverstein, Webster &amp; Kiemle, <i>Identificação Espectrométrica de Compostos Orgânicos</i></p>
+        </div>
+      </section>
+
+
+      <div class="deck-progress" id="deck-progress"></div>
+      <div class="deck-hint" id="deck-hint">clique ou use → para avançar</div>
+    </div>
+
+    <div class="deck-bar">
+      <button class="btn btn-ghost btn-sm" id="btn-prev">← Voltar</button>
+      <button class="btn btn-primary btn-sm" id="btn-next">Avançar →</button>
+      <button class="btn btn-ghost btn-sm" id="btn-play">▶ Reproduzir</button>
+      <span class="deck-count" id="deck-count">1 / 57</span>
+      <span class="spacer"></span>
+      <button class="btn btn-ghost btn-sm" id="btn-restart">↺ Início</button>
+      <button class="btn btn-ghost btn-sm" id="btn-full">⛶ Tela cheia</button>
+    </div>
+  </div>
+</main>
+
+<!-- =========================================================
+     MISSÃO ¹³C
+     ========================================================= -->
+<main id="view-missao" class="view">
+  <section class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Desafio</span>
+      <h2>🧲 Missão ¹³C</h2>
+      <p>Espectros de ¹³C e DEPT só seus, de uma amostra desconhecida. Seis etapas: cada uma resolvida destrava a próxima.</p>
+    </div>
+    <div id="mission-body" class="mission"></div>
+  </section>
+</main>
+
+<!-- =========================================================
+     QUESTIONÁRIO
+     ========================================================= -->
+<main id="view-questionario" class="view">
+  <section class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Percepção</span>
+      <h2>📝 Como foi a aula para você?</h2>
+      <p>Clique na opção que melhor representa sua opinião. As respostas são anônimas.</p>
+    </div>
+    <div id="quiz-body" class="quiz"></div>
+  </section>
+</main>
+
+<!-- =========================================================
+     ANÁLISE DE DADOS
+     ========================================================= -->
+<main id="view-analise" class="view">
+  <section class="wrap" style="max-width:1180px">
+    <div class="section-head">
+      <span class="eyebrow">Resultados</span>
+      <h2>📊 Análise de Dados</h2>
+      <p>Gráficos e interpretações gerados automaticamente a partir das respostas gravadas na planilha.</p>
+      <div style="margin-top:18px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap">
+        <button class="btn btn-primary" id="btn-analisar">📊 Analisar dados agora</button>
+      </div>
+    </div>
+    <div id="analysis-body"></div>
+  </section>
+</main>
+
+<footer>
+  © 2026 Prof. Dr. Rafael Vieira · IFRO. Aula de RMN de ¹³C · Análise Orgânica.
+</footer>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/estruturas.js"></script>
+<script src="moleculas/amostras.js"></script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/rmn.js"></script>
+<script src="assets/js/c13.js"></script>
+<script src="assets/js/slides.js"></script>
+<script src="assets/js/missao.js"></script>
+<script src="assets/js/questionario.js"></script>
+<script src="assets/js/analise.js"></script>
+</body>
+</html>
