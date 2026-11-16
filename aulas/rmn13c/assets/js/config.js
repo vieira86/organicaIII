@@ -11,7 +11,7 @@
    (sem garantia de não repetir entre alunos) e nada é gravado.
    ============================================================ */
 
-const WEBAPP_URL = "";
+const WEBAPP_URL = "https://script.google.com/macros/s/AKfycbyeN0EE_GbvVbxzbp5SSl55PiEyXtAi6AYJXeMWJGOYcEbWRCEk_JP6y2AaGYnWJs0D/exec";
 
 const MINICURSO = {
   titulo: "Ressonância Magnética Nuclear de ¹³C",
