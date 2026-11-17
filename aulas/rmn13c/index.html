@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Aula — RMN de ¹³C | Prof. Dr. Rafael Vieira</title>
 <meta name="description" content="Aula de RMN de ¹³C (Análise Orgânica): apresentação interativa, Missão ¹³C (identificação de uma amostra desconhecida), questionário de percepção e análise de dados.">
-<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/style.css?v=20261117">
 </head>
 <body>
 <div class="bg-glow"></div>
@@ -407,27 +407,23 @@
         </div>
       </section>
 
-      <!-- 22 · PROBLEMA: ¹H -->
-      <section class="slide dense" data-title="Problema: ¹H">
+      <!-- 22 · PROBLEMA: ¹H e ¹³C -->
+      <section class="slide dense" data-title="Problema: ¹H e ¹³C">
         <div class="kicker">Problema resolvido · C₆H₁₀O₂ · IDH = 2</div>
-        <h2>Primeiro, o <span class="grad">espectro de prótons</span></h2>
-        <div class="cols" style="align-items:start">
-          <div class="spec-card frag"><div class="rmn-plot" data-sinais="12.0 1 br; 6.89 1 t7.4; 2.20 2 quint7.5; 1.82 3 s; 1.06 3 t7.6" data-xmax="13" data-int="1" data-rot="COOH,CH=,CH₂,CH₃,CH₃"></div></div>
-          <div>
-            <table class="mini-table frag" style="font-size:.88em">
-              <thead><tr><th>Região de ¹H</th><th>Grupos</th></tr></thead>
-              <tbody>
-                <tr><td>0,8–1,8</td><td>CH, CH₂, CH₃</td></tr>
-                <tr><td>1,8–3,0</td><td>CH₂–C=O, CH₂–C=C, CH₂–Ar, C≡C–H</td></tr>
-                <tr><td>3,0–4,5</td><td>–O–CH₂–, –O–CH₃, –CH₂–Cl, –CH₂–Br</td></tr>
-                <tr><td>6,5–8,5</td><td>H–C=C, H–Ar</td></tr>
-                <tr><td>9,0–10,0</td><td>H–C=O</td></tr>
-                <tr><td>11,0–13,0</td><td>COOH</td></tr>
-              </tbody>
-            </table>
-            <p class="frag small" style="margin-top:.5em">COOH (12,0) + um H vinílico (6,89) + um CH₂ e dois CH₃. IDH 2 = C=O + C=C.</p>
+        <h2>Os dados: <span class="grad">RMN de ¹H e de ¹³C</span></h2>
+        <div class="cols" style="grid-template-columns: 1.45fr 1fr; align-items:start; gap:1em">
+          <div class="spec-card frag">
+            <div class="cap"><span><b>RMN de ¹H</b> (prótons) · CDCl₃</span><span>300 MHz</span></div>
+            <div class="rmn-plot" data-sinais="12.0 1 br; 6.89 1 t7.4; 2.20 2 quint7.5; 1.82 3 s; 1.06 3 t7.6" data-xmax="13" data-int="1" data-ampl="1" data-h="150" data-rot="COOH,CH="></div>
+            <p class="small" style="margin-top:.3em">Ampliações: 12,0 <b>singleto largo</b> (COOH) · 6,89 <b>tripleto</b> (CH=, vizinho de CH₂) · 2,20 <b>quinteto</b> (CH₂, vizinho de CH= e CH₃) · 1,82 <b>singleto</b> (CH₃ no C=C) · 1,06 <b>tripleto</b> (CH₃ do etila).</p>
+          </div>
+          <div class="spec-card frag">
+            <div class="cap"><span><b>RMN de ¹³C</b> (carbonos, desacoplado) · CDCl₃</span><span>75 MHz</span></div>
+            <div class="c13-plot" data-sinais="174.19 C; 146.71 CH; 126.62 C; 22.24 CH2; 12.89 CH3; 11.79 CH3" data-h="200"></div>
+            <p class="small" style="margin-top:.3em">6 sinais para 6 C: 174 (C=O de ácido) · 147 e 127 (C=C) · 22, 13 e 12 (sp³).</p>
           </div>
         </div>
+        <p class="frag small" style="margin-top:.7em">IDH 2 = <b class="hl">C=O + C=C</b>. Falta saber quantos H tem cada carbono: é o trabalho do DEPT (próximo slide).</p>
       </section>
 
       <!-- 23 · PROBLEMA: ¹³C -->
@@ -514,6 +510,176 @@
             <tr class="frag"><td>Vê C sem H?</td><td>não</td><td><b>sim</b> (C=O, quaternários)</td></tr>
           </tbody>
         </table>
+      </section>
+
+      <!-- EX 1 · EXEMPLO COMPLETO: APRESENTAÇÃO -->
+      <section class="slide" data-title="Exemplo completo">
+        <div class="kicker">Exemplo completo · do zero à estrutura</div>
+        <h2>Uma amostra desconhecida, <span class="grad">cinco técnicas</span></h2>
+        <p class="frag lead" style="margin-top:.4em">Um sólido branco foi isolado no laboratório. Vamos identificá-lo como num laudo de verdade: cada técnica responde a uma pergunta diferente, e uma confere a outra.</p>
+        <div class="pipe" style="margin-top:1em">
+          <div class="step frag"><div class="n">01</div><div class="ico">⚖️</div><h4>Análise elementar</h4><p>Que elementos, em que proporção?</p></div>
+          <div class="step frag"><div class="n">02</div><div class="ico">⚡</div><h4>Massas</h4><p>Qual a massa molar? Que pedaços?</p></div>
+          <div class="step frag"><div class="n">03</div><div class="ico">🧮</div><h4>IDH</h4><p>Quantos anéis e ligações π?</p></div>
+          <div class="step frag"><div class="n">04</div><div class="ico">🌈</div><h4>IV</h4><p>Que grupos funcionais?</p></div>
+          <div class="step frag"><div class="n">05</div><div class="ico">🧲</div><h4>RMN de ¹H</h4><p>Que fragmentos de H, e quem é vizinho de quem?</p></div>
+          <div class="step frag"><div class="n">06</div><div class="ico">🧬</div><h4>RMN de ¹³C</h4><p>Quantos C, e quantos H em cada um?</p></div>
+        </div>
+      </section>
+
+      <!-- EX 2 · ANÁLISE ELEMENTAR -->
+      <section class="slide dense" data-title="Exemplo: análise elementar">
+        <div class="kicker">Exemplo completo · passo 1</div>
+        <h2>Análise elementar: <span class="grad">a fórmula mínima</span></h2>
+        <div class="cols" style="grid-template-columns: 1.4fr 1fr; align-items:start">
+          <div>
+            <p class="frag">A combustão da amostra (análise CHN) deu <b>C 73,15%</b> e <b>H 7,37%</b>. Não há N, S nem halogênio, então o resto é oxigênio: <b class="hl">O = 100 − 73,15 − 7,37 = 19,48%</b>.</p>
+            <table class="mini-table calc-tab frag" style="margin-top:.7em; font-size:.95em">
+              <thead><tr><th>Elemento</th><th>% em massa</th><th>÷ massa atômica</th><th>÷ menor (1,218)</th></tr></thead>
+              <tbody>
+                <tr><td><b>C</b></td><td>73,15</td><td class="mono">73,15 ÷ 12,01 = 6,091</td><td class="hl">5,00</td></tr>
+                <tr><td><b>H</b></td><td>7,37</td><td class="mono">7,37 ÷ 1,008 = 7,312</td><td class="hl">6,00</td></tr>
+                <tr><td><b>O</b></td><td>19,48</td><td class="mono">19,48 ÷ 16,00 = 1,218</td><td class="hl">1,00</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div>
+            <div class="tile frag"><div class="big-num hl">C₅H₆O</div><h4>Fórmula mínima</h4><p>Massa da fórmula mínima: 5(12) + 6(1) + 16 = <b>82 g/mol</b>.</p></div>
+            <div class="tile frag" style="margin-top:.6em"><h4>⚠️ Ainda não é a fórmula molecular</h4><p>Pode ser C₅H₆O, C₁₀H₁₂O₂, C₁₅H₁₈O₃… Quem decide é a <b class="hl2">massa molar</b>, que vem da espectrometria de massas.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- EX 3 · MASSAS: ÍON MOLECULAR -->
+      <section class="slide dense" data-title="Exemplo: massas (M)">
+        <div class="kicker">Exemplo completo · passo 2</div>
+        <h2>Espectro de massas: <span class="grad">a fórmula molecular</span></h2>
+        <div class="cols" style="grid-template-columns: 1.35fr 1fr; align-items:start">
+          <div class="spec-card frag"><div class="cap"><span><b>EM</b> · impacto de elétrons, 70 eV</span><span>passe o mouse nos picos</span></div>
+            <div class="ms-plot" data-picos="39:5,50:4,63:6,64:5,77:16,92:12,107:10,135:100,136:9,164:22,165:2.4" data-xmin="30" data-xmax="175" data-rotulos="164:M⁺•,135:pico base"></div></div>
+          <div>
+            <ul>
+              <li class="frag"><b>Íon molecular:</b> m/z <b class="hl">164</b> (o pico de maior m/z, sem contar o M+1).</li>
+              <li class="frag"><b>n</b> = 164 ÷ 82 = <b>2</b> → fórmula molecular <b class="hl">C₁₀H₁₂O₂</b>.</li>
+              <li class="frag"><b>Regra do N:</b> M par → 0 (ou nº par de) N. Confere com a análise elementar.</li>
+              <li class="frag"><b>Pico M+1:</b> 2,4 ÷ 22 ≈ 11% → 11 ÷ 1,1 ≈ <b>10 carbonos</b>. Confere!</li>
+              <li class="frag"><b>IDH</b> = (2·10 + 2 − 12) ÷ 2 = <b class="hl2">5</b> → um anel benzênico (4) + mais uma ligação π.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- EX 4 · MASSAS: FRAGMENTOS -->
+      <section class="slide dense" data-title="Exemplo: fragmentação">
+        <div class="kicker">Exemplo completo · passo 2 (continuação)</div>
+        <h2>Os fragmentos <span class="grad">contam pedaços da molécula</span></h2>
+        <table class="mini-table" style="font-size:.95em">
+          <thead><tr><th>De → para</th><th>Perda</th><th>O que saiu</th><th>O que isso indica</th></tr></thead>
+          <tbody>
+            <tr class="frag"><td class="mono">164 → <b class="hl">135</b></td><td>29</td><td>•CH₂CH₃ (radical etila)</td><td><b>Clivagem α</b> ao lado de uma C=O: forma o íon acílio Ar–C≡O⁺, muito estável (por isso é o <b>pico base</b>). Há um <b>etila preso a uma carbonila</b>.</td></tr>
+            <tr class="frag"><td class="mono">135 → 107</td><td>28</td><td>CO</td><td>O íon acílio perde o próprio C≡O. Sobra o anel com o substituinte: CH₃O–C₆H₄⁺.</td></tr>
+            <tr class="frag"><td class="mono">107 → 92</td><td>15</td><td>•CH₃</td><td>Perda de metila do grupo <b>metóxi</b> (–OCH₃).</td></tr>
+            <tr class="frag"><td class="mono">107 → 77</td><td>30</td><td>CH₂O (formaldeído)</td><td>Saída típica de éteres aromáticos metílicos; m/z 77 = C₆H₅⁺ (anel benzênico).</td></tr>
+          </tbody>
+        </table>
+        <p class="frag" style="margin-top:.8em">Hipótese até aqui: <b class="hl">CH₃CH₂–C(=O)–</b> ligado a um <b class="hl2">anel</b> que carrega um <b class="hl3">–OCH₃</b>. Vamos conferir com o IV.</p>
+      </section>
+
+      <!-- EX 5 · IV -->
+      <section class="slide dense" data-title="Exemplo: IV">
+        <div class="kicker">Exemplo completo · passo 3</div>
+        <h2>Infravermelho: <span class="grad">os grupos funcionais</span></h2>
+        <div class="cols" style="grid-template-columns: 1.3fr 1fr; align-items:start">
+          <div class="spec-card frag"><div class="cap"><span><b>IV</b> · pastilha de KBr</span><span>passe o mouse para ler cm⁻¹</span></div>
+            <div class="ir-plot" data-rotulos="2975,1678,1510,1258,1030,835" data-bandas="3070:.15:30; 3005:.12:25; 2975:.35:30; 2940:.3:30; 2840:.25:25; 1678:.95:26; 1601:.85:18; 1575:.4:14; 1510:.6:16; 1460:.35:18; 1420:.3:16; 1350:.3:18; 1258:.95:30; 1222:.5:20; 1172:.7:22; 1030:.6:24; 950:.3:20; 835:.6:20; 790:.25:18; 600:.25:20"></div></div>
+          <table class="mini-table frag" style="font-size:.85em">
+            <thead><tr><th>cm⁻¹</th><th>Atribuição</th></tr></thead>
+            <tbody>
+              <tr><td>3070, 3005</td><td>C–H aromático (acima de 3000)</td></tr>
+              <tr><td>2975, 2940, 2840</td><td>C–H sp³ (2840: típico de O–CH₃)</td></tr>
+              <tr><td><b class="hl">1678</b></td><td><b>C=O de cetona conjugada</b> (abaixo de 1715)</td></tr>
+              <tr><td>1601, 1575, 1510</td><td>C=C do anel aromático</td></tr>
+              <tr><td><b class="hl2">1258 e 1030</b></td><td><b>C–O de éter aril-alquílico</b> (Ar–O–CH₃)</td></tr>
+              <tr><td>835</td><td>anel <b>para</b>-dissubstituído</td></tr>
+              <tr><td>ausentes</td><td>O–H (3200–3600) e C–H de aldeído (2720)</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="frag small" style="margin-top:.5em">Os dois O já têm dono: um na <b>cetona</b> e outro no <b>éter</b>. Não é éster (a C=O de éster fica acima de 1715) nem álcool ou ácido (não há O–H).</p>
+      </section>
+
+      <!-- EX 6 · RMN ¹H -->
+      <section class="slide dense" data-title="Exemplo: RMN ¹H">
+        <div class="kicker">Exemplo completo · passo 4</div>
+        <h2>RMN de ¹H: <span class="grad">os fragmentos e seus vizinhos</span></h2>
+        <div class="cols" style="grid-template-columns: 1.35fr 1fr; align-items:start">
+          <div class="spec-card frag"><div class="cap"><span><b>RMN de ¹H</b> · CDCl₃</span><span>300 MHz</span></div>
+            <div class="rmn-plot" data-sinais="7.95 2 d8.9; 6.93 2 d8.9; 3.87 3 s; 2.95 2 q7.3; 1.21 3 t7.3" data-xmax="9" data-int="1" data-ampl="1" data-h="150" data-rot="a,b,c,d,e"></div></div>
+          <table class="mini-table frag" style="font-size:.82em">
+            <thead><tr><th></th><th>ppm</th><th>sinal</th><th>atribuição</th></tr></thead>
+            <tbody>
+              <tr><td class="hl">a</td><td>7,95</td><td>d, 2H</td><td>H aromáticos <b>orto à C=O</b> (desblindados pela carbonila)</td></tr>
+              <tr><td class="hl">b</td><td>6,93</td><td>d, 2H</td><td>H aromáticos <b>orto ao OCH₃</b> (blindados pelo O doador)</td></tr>
+              <tr><td class="hl">c</td><td>3,87</td><td>s, 3H</td><td><b>–OCH₃</b>: sem vizinhos, ligado ao O</td></tr>
+              <tr><td class="hl">d</td><td>2,95</td><td>q, 2H</td><td><b>CH₂ α à C=O</b>, vizinho de um CH₃</td></tr>
+              <tr><td class="hl">e</td><td>1,21</td><td>t, 3H</td><td><b>CH₃</b> do etila, vizinho de um CH₂</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="frag small" style="margin-top:.5em">Dois dubletos de 2H com o mesmo J (8,9 Hz, orto) = <b>anel para-dissubstituído</b>, como o IV indicou. Quarteto + tripleto (mesmo J) = <b>etila</b>. Total: 2 + 2 + 3 + 2 + 3 = <b>12 H</b>. ✓</p>
+      </section>
+
+      <!-- EX 7 · RMN ¹³C + DEPT -->
+      <section class="slide dense" data-title="Exemplo: RMN ¹³C + DEPT">
+        <div class="kicker">Exemplo completo · passo 5</div>
+        <h2>RMN de ¹³C e DEPT: <span class="grad">o esqueleto confirmado</span></h2>
+        <div class="cols" style="grid-template-columns: 1.3fr 1fr; align-items:start">
+          <div class="spec-card frag"><div class="c13-plot" data-modo="dept" data-sinais="199.5 C; 163.3 C; 130.2 CH 2; 130.0 C; 113.7 CH 2; 55.4 CH3; 31.4 CH2; 8.5 CH3" data-rot="C=O,C–O,,,,OCH₃,CH₂,CH₃"></div></div>
+          <div>
+            <table class="mini-table frag" style="font-size:.82em">
+              <thead><tr><th>ppm</th><th>DEPT</th><th>atribuição</th></tr></thead>
+              <tbody>
+                <tr><td>199,5</td><td>C</td><td>C=O de <b>cetona</b> (185–220)</td></tr>
+                <tr><td>163,3</td><td>C</td><td>C do anel ligado ao OCH₃</td></tr>
+                <tr><td>130,2</td><td>CH (×2)</td><td>CH do anel, orto à C=O</td></tr>
+                <tr><td>130,0</td><td>C</td><td>C do anel ligado à C=O</td></tr>
+                <tr><td>113,7</td><td>CH (×2)</td><td>CH do anel, orto ao OCH₃</td></tr>
+                <tr><td>55,4</td><td>CH₃</td><td>–OCH₃</td></tr>
+                <tr><td>31,4</td><td>CH₂</td><td>CH₂ α à C=O</td></tr>
+                <tr><td>8,5</td><td>CH₃</td><td>CH₃ do etila</td></tr>
+              </tbody>
+            </table>
+            <p class="frag small" style="margin-top:.4em"><b>8 sinais para 10 C</b>: a simetria do anel para junta dois pares. Repare: 130,2 e 130,0 quase se sobrepõem, mas o DEPT mostra que um é CH e o outro é C.</p>
+          </div>
+        </div>
+        <p class="frag small" style="margin-top:.4em"><b>Conferindo com os incrementos</b> (benzeno = 128,5): C–OCH₃ = 128,5 + 31,4 + 4,2 (para do –COR) = 164,1 ≈ 163,3 ✓ · C–C=O = 128,5 + 9,1 − 7,7 (para do OCH₃) = 129,9 ≈ 130,0 ✓</p>
+      </section>
+
+      <!-- EX 8 · ESTRUTURA -->
+      <section class="slide dense" data-title="Exemplo: a estrutura">
+        <div class="kicker">Exemplo completo · conclusão</div>
+        <h2>Juntando as peças: <span class="grad">4′-metoxipropiofenona</span></h2>
+        <div class="cols" style="grid-template-columns: 1fr 1.25fr; align-items:center">
+          <div class="frag">
+            <div class="tile" style="text-align:center">
+              <div style="max-width:300px; margin:0 auto"><svg version='1.1' baseProfile='full' xmlns='http://www.w3.org/2000/svg' xmlns:rdkit='http://www.rdkit.org/xml' xmlns:xlink='http://www.w3.org/1999/xlink' xml:space='preserve' width='100%' height='100%' preserveAspectRatio='xMidYMid meet' viewBox='0 0 260 190'> <rect style='opacity:1.0;fill:#00000000;stroke:none' width='260.0' height='190.0' x='0.0' y='0.0'> </rect> <path class='bond-0 atom-0 atom-1' d='M 31.2,76.0 L 62.6,71.1' style='fill:none;fill-rule:evenodd;stroke:#E4ECF7;stroke-width:3.0px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1' /> <path class='bond-1 atom-1 atom-2' d='M 62.6,71.1 L 82.5,95.9' style='fill:none;fill-rule:evenodd;stroke:#E4ECF7;stroke-width:3.0px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1' /> <path class='bond-2 atom-2 atom-3' d='M 80.8,93.8 L 76.4,105.2' style='fill:none;fill-rule:evenodd;stroke:#E4ECF7;stroke-width:3.0px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1' /> <path class='bond-2 atom-2 atom-3' d='M 76.4,105.2 L 72.0,116.5' style='fill:none;fill-rule:evenodd;stroke:#FF7F7F;stroke-width:3.0px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1' /> <path class='bond-2 atom-2 atom-3' d='M 85.3,95.5 L 80.8,106.9' style='fill:none;fill-rule:evenodd;stroke:#E4ECF7;stroke-width:3.0px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1' /> <path class='bond-2 atom-2 atom-3' d='M 80.8,106.9 L 76.4,118.2' style='fill:none;fill-rule:evenodd;stroke:#FF7F7F;stroke-width:3.0px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1' /> <path class='bond-3 atom-2 atom-4' d='M 82.5,95.9 L 114.0,91.1' style='fill:none;fill-rule:evenodd;stroke:#E4ECF7;stroke-width:3.0px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1' /> <path class='bond-4 atom-4 atom-5' d='M 114.0,91.1 L 133.9,115.9' style='fill:none;fill-rule:evenodd;stroke:#E4ECF7;stroke-width:3.0px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1' /> <path class='bond-5 atom-5 atom-6' d='M 133.9,115.9 L 165.3,111.1' style='fill:none;fill-rule:evenodd;stroke:#E4ECF7;stroke-width:3.0px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1' /> <path class='bond-5 atom-5 atom-6' d='M 135.9,110.8 L 161.9,106.8' style='fill:none;fill-rule:evenodd;stroke:#E4ECF7;stroke-width:3.0px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1' /> <path class='bond-6 atom-6 atom-7' d='M 165.3,111.1 L 176.9,81.4' style='fill:none;fill-rule:evenodd;stroke:#E4ECF7;stroke-width:3.0px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1' /> <path class='bond-7 atom-7 atom-8' d='M 176.9,81.4 L 188.8,79.6' style='fill:none;fill-rule:evenodd;stroke:#E4ECF7;stroke-width:3.0px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1' /> <path class='bond-7 atom-7 atom-8' d='M 188.8,79.6 L 200.7,77.8' style='fill:none;fill-rule:evenodd;stroke:#FF7F7F;stroke-width:3.0px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1' /> <path class='bond-8 atom-8 atom-9' d='M 215.1,85.0 L 221.6,93.2' style='fill:none;fill-rule:evenodd;stroke:#FF7F7F;stroke-width:3.0px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1' /> <path class='bond-8 atom-8 atom-9' d='M 221.6,93.2 L 228.2,101.4' style='fill:none;fill-rule:evenodd;stroke:#E4ECF7;stroke-width:3.0px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1' /> <path class='bond-9 atom-7 atom-10' d='M 176.9,81.4 L 157.0,56.6' style='fill:none;fill-rule:evenodd;stroke:#E4ECF7;stroke-width:3.0px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1' /> <path class='bond-9 atom-7 atom-10' d='M 171.4,82.3 L 155.0,61.8' style='fill:none;fill-rule:evenodd;stroke:#E4ECF7;stroke-width:3.0px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1' /> <path class='bond-10 atom-10 atom-11' d='M 157.0,56.6 L 125.5,61.5' style='fill:none;fill-rule:evenodd;stroke:#E4ECF7;stroke-width:3.0px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1' /> <path class='bond-11 atom-11 atom-4' d='M 125.5,61.5 L 114.0,91.1' style='fill:none;fill-rule:evenodd;stroke:#E4ECF7;stroke-width:3.0px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1' /> <path class='bond-11 atom-11 atom-4' d='M 129.0,65.8 L 119.4,90.3' style='fill:none;fill-rule:evenodd;stroke:#E4ECF7;stroke-width:3.0px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1' /> <path d='M 61.1,71.4 L 62.6,71.1 L 63.6,72.4' style='fill:none;stroke:#E4ECF7;stroke-width:3.0px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;' /> <path d='M 81.5,94.7 L 82.5,95.9 L 84.1,95.7' style='fill:none;stroke:#E4ECF7;stroke-width:3.0px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;' /> <path d='M 132.9,114.7 L 133.9,115.9 L 135.5,115.7' style='fill:none;stroke:#E4ECF7;stroke-width:3.0px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;' /> <path d='M 163.8,111.3 L 165.3,111.1 L 165.9,109.6' style='fill:none;stroke:#E4ECF7;stroke-width:3.0px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;' /> <path d='M 157.9,57.9 L 157.0,56.6 L 155.4,56.9' style='fill:none;stroke:#E4ECF7;stroke-width:3.0px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;' /> <path d='M 127.1,61.2 L 125.5,61.5 L 124.9,62.9' style='fill:none;stroke:#E4ECF7;stroke-width:3.0px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;' /> <path class='atom-3' d='M 64.5 125.6 Q 64.5 122.2, 66.2 120.3 Q 67.9 118.4, 71.0 118.4 Q 74.1 118.4, 75.8 120.3 Q 77.5 122.2, 77.5 125.6 Q 77.5 129.1, 75.8 131.0 Q 74.1 133.0, 71.0 133.0 Q 67.9 133.0, 66.2 131.0 Q 64.5 129.1, 64.5 125.6 M 71.0 131.4 Q 73.2 131.4, 74.3 129.9 Q 75.5 128.5, 75.5 125.6 Q 75.5 122.8, 74.3 121.4 Q 73.2 120.0, 71.0 120.0 Q 68.8 120.0, 67.7 121.4 Q 66.5 122.8, 66.5 125.6 Q 66.5 128.5, 67.7 129.9 Q 68.8 131.4, 71.0 131.4 ' fill='#FF7F7F'/> <path class='atom-8' d='M 201.8 76.7 Q 201.8 73.3, 203.5 71.4 Q 205.2 69.5, 208.3 69.5 Q 211.4 69.5, 213.1 71.4 Q 214.8 73.3, 214.8 76.7 Q 214.8 80.1, 213.1 82.1 Q 211.4 84.0, 208.3 84.0 Q 205.2 84.0, 203.5 82.1 Q 201.8 80.1, 201.8 76.7 M 208.3 82.4 Q 210.5 82.4, 211.6 81.0 Q 212.8 79.5, 212.8 76.7 Q 212.8 73.9, 211.6 72.5 Q 210.5 71.1, 208.3 71.1 Q 206.1 71.1, 205.0 72.5 Q 203.8 73.9, 203.8 76.7 Q 203.8 79.5, 205.0 81.0 Q 206.1 82.4, 208.3 82.4 ' fill='#FF7F7F'/> </svg></div>
+              <p><b class="hl">1-(4-metoxifenil)propan-1-ona</b> · C₁₀H₁₂O₂ · M = 164</p>
+              <p class="small muted" style="margin-top:.3em">CH₃CH₂–C(=O)– &nbsp;+&nbsp; –C₆H₄– (para) &nbsp;+&nbsp; –OCH₃ = C₁₀H₁₂O₂ ✓</p>
+            </div>
+          </div>
+          <table class="mini-table" style="font-size:.88em">
+            <thead><tr><th>Técnica</th><th>O que ela confirmou</th></tr></thead>
+            <tbody>
+              <tr class="frag"><td>⚖️ Análise elementar</td><td>proporção C₅H₆O</td></tr>
+              <tr class="frag"><td>⚡ Massas</td><td>M = 164 → C₁₀H₁₂O₂ · perda de etila (29) gera o acílio · perda de CO e de CH₂O</td></tr>
+              <tr class="frag"><td>🧮 IDH = 5</td><td>anel benzênico + uma C=O</td></tr>
+              <tr class="frag"><td>🌈 IV</td><td>cetona conjugada (1678) · éter Ar–O–CH₃ (1258/1030) · anel para (835)</td></tr>
+              <tr class="frag"><td>🧲 RMN de ¹H</td><td>dois dubletos (para) · OCH₃ (s) · etila (q + t) · 12 H</td></tr>
+              <tr class="frag"><td>🧬 RMN de ¹³C</td><td>cetona (199,5) · 8 sinais para 10 C (simetria) · DEPT: 3 C, 2 CH, 1 CH₂, 2 CH₃</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="frag" style="margin-top:.7em">Nenhuma técnica sozinha resolveria o problema: é a <b class="hl">concordância entre todas</b> que dá segurança à estrutura.</p>
       </section>
 
       <!-- 28 · MISSÃO -->
@@ -620,6 +786,8 @@
 <script src="assets/js/app.js"></script>
 <script src="assets/js/rmn.js"></script>
 <script src="assets/js/c13.js"></script>
+<script src="assets/js/espectro.js?v=20261117"></script>
+<script src="assets/js/ir.js?v=20261117"></script>
 <script src="assets/js/slides.js"></script>
 <script src="assets/js/missao.js"></script>
 <script src="assets/js/questionario.js"></script>

@@ -675,3 +675,14 @@ details.help div{ margin-top: 6px; padding: 10px 12px; border-radius: 10px; back
 .slide .c13-ptit{ font-size: 13px; } .slide .c13-solv{ font-size: 13px; }
 .slide .c13-svg{ max-height: 24em; }
 .dept-sel{ background: var(--card-2); color: var(--text); border: 1px solid var(--card-border); border-radius: 8px; padding: 6px 8px; font-family: var(--mono); }
+
+/* ---------- IV (ir.js) ---------- */
+.ir-plot{ position: relative; width: 100%; }
+.ir-svg{ width: 100%; height: auto; display:block; overflow: visible; }
+.ir-line{ fill:none; stroke: var(--accent3); stroke-width: 1.5; stroke-linejoin: round; }
+.ir-num{ fill: var(--warm); font-size: 10.5px; font-family: var(--mono); }
+.slide .ir-num{ font-size: 14px; }
+.ir-cursor{ stroke: rgba(255,255,255,.35); stroke-dasharray: 3 3; }
+.ir-hit{ fill: transparent; cursor: crosshair; }
+.slide .ir-svg{ max-height: 22em; }
+.calc-tab td, .calc-tab th{ text-align:center; }
